@@ -109,7 +109,7 @@ class ConfigLoader {
    * Load all configuration files
    */
   public async loadConfig(): Promise<VioboxConfig> {
-    if (this.config) {
+    if (this.config !== null) {
       return this.config;
     }
 
@@ -129,7 +129,7 @@ class ConfigLoader {
         ? JSON.parse(fs.readFileSync(defaultsPath, 'utf-8'))
         : {};
 
-      this.config = {
+      const config: VioboxConfig = {
         ui: uiText,
         severity,
         bureaus,
@@ -140,7 +140,8 @@ class ConfigLoader {
         defaults
       };
 
-      return this.config;
+      this.config = config;
+      return config;
     } catch (error) {
       console.error('Failed to load configuration:', error);
       throw error;
@@ -181,7 +182,7 @@ class ConfigLoader {
    */
   public async getSeverityLevel(level: string) {
     const config = await this.loadConfig();
-    return config.severity.severityLevels[level] || config.severity.severityLevels.unknown;
+    return config.severity.severityLevels[level] || config.severity.severityLevels['unknown'];
   }
 
   /**
@@ -232,7 +233,7 @@ class ConfigLoader {
       return;
     }
 
-    const watcher = fs.watch(this.configPath, { recursive: true }, async (eventType, filename) => {
+    const watcher = fs.watch(this.configPath, { recursive: true }, async (_eventType, filename) => {
       if (filename && filename.endsWith('.json')) {
         console.log(`Config file changed: ${filename}`);
         await this.reloadConfig();

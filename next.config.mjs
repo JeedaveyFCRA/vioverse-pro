@@ -1,3 +1,6 @@
+// Safety valve: Allow type errors only in CI on non-main branches
+const allowTypeErrors = process.env['CI'] && process.env['BRANCH'] !== 'main';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Strict mode for React
@@ -16,14 +19,14 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 
-  // TypeScript - ignore errors for now to get deployed
+  // TypeScript - strict on main, flexible in CI for other branches
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: !!allowTypeErrors,
   },
 
-  // ESLint - ignore during build
+  // ESLint - strict on main, flexible in CI for other branches
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: !!allowTypeErrors,
   },
 
   // Trailing slashes
@@ -34,8 +37,8 @@ const nextConfig = {
 
   // Environment variables
   env: {
-    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_APP_URL: process.env['NEXT_PUBLIC_APP_URL'],
+    NEXT_PUBLIC_API_URL: process.env['NEXT_PUBLIC_API_URL'],
   },
 };
 

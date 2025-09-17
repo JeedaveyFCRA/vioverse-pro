@@ -36,11 +36,10 @@
     "sourceMap": true,
     "removeComments": false,
     "importHelpers": true,
-    "importsNotUsedAsValues": "error",
+    "verbatimModuleSyntax": true,
     "downlevelIteration": true,
     "inlineSources": false,
     "preserveConstEnums": true,
-    "preserveValueImports": true,
 
     /* JavaScript Support */
     "allowSyntheticDefaultImports": true,

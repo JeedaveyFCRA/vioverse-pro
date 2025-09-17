@@ -17,7 +17,6 @@ export type Breakpoint = z.infer<typeof BreakpointSchema>;
 
 // Color schema with accessibility validation
 const HexColorSchema = z.string().regex(/^#[0-9A-Fa-f]{6}$/);
-const RGBAColorSchema = z.string().regex(/^rgba?\(\d{1,3},\s*\d{1,3},\s*\d{1,3}(,\s*[\d.]+)?\)$/);
 
 export const ColorSchemeSchema = z.object({
   primary: HexColorSchema,
@@ -73,7 +72,7 @@ export const ThemeSchema = z.object({
 export type Theme = z.infer<typeof ThemeSchema>;
 
 // Navigation schema
-export const NavItemSchema = z.object({
+export const NavItemSchema: z.ZodType<any> = z.object({
   id: z.string(),
   label: z.string(),
   href: z.string().optional(),
