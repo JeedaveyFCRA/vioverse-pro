@@ -79,8 +79,8 @@ export const NavItemSchema = z.object({
   href: z.string().optional(),
   icon: z.string().optional(),
   badge: z.string().optional(),
-  disabled: z.boolean().default(false),
-  external: z.boolean().default(false),
+  disabled: z.boolean().optional().default(false),
+  external: z.boolean().optional().default(false),
   children: z.lazy(() => z.array(NavItemSchema)).optional(),
 }).strict();
 

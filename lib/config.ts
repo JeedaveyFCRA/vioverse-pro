@@ -2,12 +2,10 @@ import { z } from 'zod';
 import fs from 'fs';
 import path from 'path';
 import {
-  AppConfigSchema,
   NavigationSchema,
   BreakpointSchema,
   ThemeSchema,
   FeatureFlagsSchema,
-  type AppConfig,
   type Navigation,
   type Breakpoint,
   type Theme,
@@ -73,7 +71,7 @@ class ConfigLoader {
   private configPath: string;
 
   private constructor() {
-    this.configPath = process.env.CONFIG_PATH || path.join(process.cwd(), 'data', 'config');
+    this.configPath = process.env['CONFIG_PATH'] || path.join(process.cwd(), 'data', 'config');
   }
 
   public static getInstance(): ConfigLoader {

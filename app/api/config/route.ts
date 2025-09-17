@@ -50,7 +50,7 @@ export async function GET() {
  * POST /api/config/reload
  * Reload configuration (dev only)
  */
-export async function POST(request: Request) {
+export async function POST() {
   // Only allow in development
   if (process.env.NODE_ENV !== 'development') {
     return NextResponse.json(

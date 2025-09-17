@@ -95,7 +95,7 @@ export function useSeverityLevel(level: string) {
     return null;
   }
 
-  return data.severity.severityLevels[level] || data.severity.severityLevels.unknown;
+  return data.severity.severityLevels[level] || data.severity.severityLevels['unknown'];
 }
 
 /**

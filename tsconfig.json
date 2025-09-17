@@ -109,6 +109,7 @@
     "build",
     ".turbo",
     "coverage",
-    "storybook-static"
+    "storybook-static",
+    "frontend"
   ]
 }
