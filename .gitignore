@@ -141,4 +141,3 @@ env/
 
 # Lock files (keep package-lock.json)
 yarn.lock
-pnpm-lock.yaml
