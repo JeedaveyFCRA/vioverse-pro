@@ -1,9 +1,4 @@
-import { withSentryConfig } from '@sentry/nextjs';
-import bundleAnalyzer from '@next/bundle-analyzer';
-
-const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-});
+import crypto from 'crypto';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -13,33 +8,8 @@ const nextConfig = {
   // Disable x-powered-by header
   poweredByHeader: false,
 
-  // Enable SWC minification
-  swcMinify: true,
-
-  // Experimental features
-  experimental: {
-    // Enable server actions
-    serverActions: {
-      bodySizeLimit: '2mb',
-    },
-    // Optimize package imports
-    optimizePackageImports: [
-      '@radix-ui/react-accordion',
-      '@radix-ui/react-dialog',
-      '@radix-ui/react-dropdown-menu',
-      '@radix-ui/react-select',
-      '@radix-ui/react-tabs',
-      'lucide-react',
-      'date-fns',
-      'framer-motion'
-    ],
-    // Enable partial prerendering
-    ppr: true,
-    // Type-safe routes
-    typedRoutes: true,
-    // Web vitals attribution
-    webVitalsAttribution: ['CLS', 'LCP', 'FID', 'FCP', 'TTFB', 'INP'],
-  },
+  // Type-safe routes
+  typedRoutes: true,
 
   // Image optimization
   images: {
@@ -213,7 +183,7 @@ const nextConfig = {
   },
 
   // Output configuration
-  output: 'hybrid',
+  output: 'standalone',
 
   // Trailing slashes
   trailingSlash: false,
@@ -260,18 +230,5 @@ const ContentSecurityPolicy = `
   upgrade-insecure-requests;
 `;
 
-// Sentry configuration
-const sentryWebpackPluginOptions = {
-  org: 'vioverse',
-  project: 'vioverse-web',
-  silent: true,
-  widenClientFileUpload: true,
-  hideSourceMaps: true,
-  disableLogger: true,
-  automaticVercelMonitors: true,
-};
-
-// Export with plugins
-export default withBundleAnalyzer(
-  withSentryConfig(nextConfig, sentryWebpackPluginOptions)
-);
+// Export configuration
+export default nextConfig;

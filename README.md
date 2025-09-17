@@ -19,6 +19,24 @@ Vioverse v3.0 is a production-grade, enterprise-level system for detecting, anal
 - 🌍 **Internationalized**: Multi-language support
 - 📈 **Real-time Analytics**: Live violation tracking
 
+## 📝 Assumptions & Open TODOs
+
+### Current Assumptions
+- Using SQLite for local development database
+- Config system will use JSON/YAML files with Zod validation
+- All UI strings will be loaded from centralized config
+- Component styles use Tailwind CSS with container queries
+- Server Components by default, client only when needed
+
+### Open TODOs
+- [ ] Define exact config file structure (JSON vs YAML)
+- [ ] Set up database schema for violations
+- [ ] Configure PDF.js for document rendering
+- [ ] Implement VioBox coordinate system
+- [ ] Set up TanStack Query for data fetching
+- [ ] Configure Lighthouse CI thresholds
+- [ ] Create health check endpoint
+
 ## 🏗️ Architecture
 
 ### Tech Stack
