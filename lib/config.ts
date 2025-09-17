@@ -12,7 +12,53 @@ import {
   type FeatureFlags
 } from '@/schemas/config.schema';
 
-// UI Text Schema (from ui-text.json)
+// UI Config Schema (from ui.json)
+export const UIConfigSchema = z.object({
+  app: z.object({
+    title: z.string(),
+    subtitle: z.string(),
+    description: z.string(),
+    version: z.string(),
+    techStack: z.string()
+  }),
+  nav: z.array(z.string()),
+  status: z.object({
+    title: z.string(),
+    items: z.array(z.object({
+      label: z.string(),
+      value: z.string(),
+      status: z.enum(['success', 'warning', 'error'])
+    }))
+  }),
+  features: z.object({
+    title: z.string(),
+    items: z.array(z.object({
+      icon: z.string(),
+      title: z.string(),
+      description: z.string()
+    }))
+  }),
+  labels: z.record(z.string()),
+  violations: z.object({
+    severities: z.array(z.string()),
+    bureaus: z.array(z.string()),
+    messages: z.record(z.string()),
+    stats: z.record(z.string())
+  }),
+  pdf: z.object({
+    defaultFormat: z.string(),
+    defaultBackground: z.string(),
+    defaultFont: z.string(),
+    controls: z.record(z.string())
+  }),
+  elements: z.object({
+    ids: z.record(z.string())
+  })
+});
+
+export type UIConfig = z.infer<typeof UIConfigSchema>;
+
+// UI Text Schema (from ui-text.json) - keeping for backward compatibility
 export const UITextSchema = z.object({
   titles: z.record(z.string()),
   buttons: z.record(z.string()),
@@ -265,6 +311,17 @@ export async function isFeatureEnabled(feature: string): Promise<boolean> {
 
 export async function getSeverityLevel(level: string) {
   return configLoader.getSeverityLevel(level);
+}
+
+// New UI Config convenience function
+export async function getUIConfig(): Promise<UIConfig> {
+  try {
+    const raw = (await import('@/data/config/ui.json')).default;
+    return UIConfigSchema.parse(raw);
+  } catch (error) {
+    console.error('Failed to load UI config:', error);
+    throw new Error('Invalid UI configuration');
+  }
 }
 
 // Initialize config on module load (for Server Components)

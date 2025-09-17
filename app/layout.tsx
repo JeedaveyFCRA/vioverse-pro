@@ -1,13 +1,18 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { getUIConfig } from '@/lib/config';
+import { WebVitals } from '@/components/WebVitals';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: 'Vioverse V3 - Credit Report Violation Analysis',
-  description: 'Enterprise-grade FCRA violation detection and analysis system',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getUIConfig();
+  return {
+    title: `${config.app.title} - ${config.app.subtitle}`,
+    description: config.app.description,
+  };
+}
 
 export default function RootLayout({
   children,
@@ -16,7 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <WebVitals />
+        {children}
+      </body>
     </html>
   );
 }

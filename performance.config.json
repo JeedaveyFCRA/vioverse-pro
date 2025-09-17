@@ -1,0 +1,70 @@
+{
+  "budgets": {
+    "bundles": {
+      "main": {
+        "maxSize": "200kb",
+        "warning": "150kb"
+      },
+      "vendor": {
+        "maxSize": "300kb",
+        "warning": "250kb"
+      },
+      "total": {
+        "maxSize": "500kb",
+        "warning": "400kb"
+      }
+    },
+    "resources": {
+      "scripts": {
+        "maxCount": 10,
+        "maxSize": "500kb"
+      },
+      "styles": {
+        "maxCount": 5,
+        "maxSize": "100kb"
+      },
+      "images": {
+        "maxSize": "2mb",
+        "formats": ["webp", "avif"]
+      },
+      "fonts": {
+        "maxCount": 3,
+        "maxSize": "200kb"
+      }
+    },
+    "metrics": {
+      "FCP": {
+        "desktop": 2000,
+        "mobile": 3000
+      },
+      "LCP": {
+        "desktop": 2500,
+        "mobile": 4000
+      },
+      "CLS": {
+        "max": 0.1
+      },
+      "TBT": {
+        "desktop": 200,
+        "mobile": 300
+      },
+      "TTI": {
+        "desktop": 3800,
+        "mobile": 5000
+      },
+      "SpeedIndex": {
+        "desktop": 3400,
+        "mobile": 4500
+      }
+    },
+    "scores": {
+      "performance": {
+        "desktop": 90,
+        "mobile": 85
+      },
+      "accessibility": 90,
+      "bestPractices": 90,
+      "seo": 90
+    }
+  }
+}

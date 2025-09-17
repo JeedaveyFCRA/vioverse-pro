@@ -3,6 +3,8 @@
  * Handles all CSV processing with configurable bureau detection
  */
 
+import { configLoader } from './config-loader.js';
+
 export class CSVProcessor {
     constructor(bureauConfig) {
         this.bureauConfig = bureauConfig;
@@ -31,8 +33,8 @@ export class CSVProcessor {
                 header: true,
                 dynamicTyping: true,
                 skipEmptyLines: true,
-                complete: (results) => {
-                    const validData = this.validateAndEnrichData(results.data, file.name);
+                complete: async (results) => {
+                    const validData = await this.validateAndEnrichData(results.data, file.name);
                     resolve(validData);
                 },
                 error: (error) => {
@@ -49,10 +51,15 @@ export class CSVProcessor {
      * @param {String} filename - Source filename for bureau detection
      * @returns {Array} Validated and enriched data
      */
-    validateAndEnrichData(data, filename) {
-        return data
-            .filter(row => this.isValidViolation(row))
-            .map(row => this.enrichViolation(row, filename));
+    async validateAndEnrichData(data, filename) {
+        const validRows = [];
+        for (const row of data) {
+            if (await this.isValidViolation(row)) {
+                const enriched = await this.enrichViolation(row, filename);
+                validRows.push(enriched);
+            }
+        }
+        return validRows;
     }
 
     /**
@@ -60,10 +67,11 @@ export class CSVProcessor {
      * @param {Object} row - CSV row data
      * @returns {Boolean} True if valid violation
      */
-    isValidViolation(row) {
+    async isValidViolation(row) {
         // Filter out invalid entries
         if (!row.violation_type) return false;
-        if (row.violation_type === 'No Violations Found') return false;
+        const noViolationsMsg = await configLoader.getViolationMessage('noViolations');
+        if (row.violation_type === noViolationsMsg) return false;
         if (row.violation_type.startsWith('COMBO_')) return false;
 
         // Check for required fields
@@ -78,9 +86,9 @@ export class CSVProcessor {
      * @param {String} sourceFile - Source CSV filename
      * @returns {Object} Enriched violation
      */
-    enrichViolation(row, sourceFile) {
+    async enrichViolation(row, sourceFile) {
         // Detect bureau from PDF filename or source
-        const bureau = this.detectBureau(row.pdf_filename || sourceFile);
+        const bureau = await this.detectBureau(row.pdf_filename || sourceFile);
 
         // Parse coordinates as numbers
         const violation = {
@@ -91,7 +99,7 @@ export class CSVProcessor {
             width: parseFloat(row.width) || 0,
             height: parseFloat(row.height) || 0,
             page: parseInt(row.page) || 1,
-            severity: (row.severity || 'unknown').toLowerCase(),
+            severity: (row.severity || await configLoader.getViolationMessage('unknownType')).toLowerCase(),
             hasCoordinates: !!(row.x && row.y && row.width && row.height)
         };
 
@@ -103,8 +111,9 @@ export class CSVProcessor {
      * @param {String} filename - Filename to check
      * @returns {String} Bureau acronym or 'UNKNOWN'
      */
-    detectBureau(filename) {
-        if (!filename) return 'UNKNOWN';
+    async detectBureau(filename) {
+        const unknownBureau = (await configLoader.getBureaus()).find(b => b === 'UNKNOWN') || 'UNKNOWN';
+        if (!filename) return unknownBureau;
 
         const upperFilename = filename.toUpperCase();
 
@@ -116,7 +125,7 @@ export class CSVProcessor {
             }
         }
 
-        return 'UNKNOWN';
+        return unknownBureau;
     }
 
     /**
@@ -140,7 +149,7 @@ export class CSVProcessor {
      * @param {Array} violations - Violation data
      * @returns {Object} Statistics summary
      */
-    getStatistics(violations) {
+    async getStatistics(violations) {
         const stats = {
             total: violations.length,
             bySeverity: {},
@@ -151,20 +160,24 @@ export class CSVProcessor {
         };
 
         // Initialize counters
-        const severities = ['extreme', 'severe', 'serious', 'minor', 'unknown'];
+        const severities = await configLoader.getSeverities();
         severities.forEach(s => stats.bySeverity[s] = 0);
 
         Object.keys(this.bureauConfig.bureaus).forEach(b => stats.byBureau[b] = 0);
-        stats.byBureau['UNKNOWN'] = 0;
+        const bureaus = await configLoader.getBureaus();
+        const unknownBureau = bureaus.find(b => b === 'UNKNOWN') || 'UNKNOWN';
+        stats.byBureau[unknownBureau] = 0;
 
         // Count violations
-        violations.forEach(v => {
+        for (const v of violations) {
             // Severity
-            const severity = v.severity || 'unknown';
+            const defaultSeverity = await configLoader.getViolationMessage('unknownType');
+            const severity = v.severity || defaultSeverity;
             stats.bySeverity[severity] = (stats.bySeverity[severity] || 0) + 1;
 
             // Bureau
-            const bureau = v.bureau || 'UNKNOWN';
+            const unknownBureau = (await configLoader.getBureaus()).find(b => b === 'UNKNOWN') || 'UNKNOWN';
+            const bureau = v.bureau || unknownBureau;
             stats.byBureau[bureau] = (stats.byBureau[bureau] || 0) + 1;
 
             // PDF
@@ -177,7 +190,7 @@ export class CSVProcessor {
             } else {
                 stats.withoutCoordinates++;
             }
-        });
+        }
 
         return stats;
     }
