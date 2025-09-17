@@ -1,6 +1,11 @@
 {
   "bureaus": {
     "TU": {
+      "name": "TransUnion",
+      "code": "TU",
+      "color": "#4CAF50",
+      "enabled": true,
+      "order": 1,
       "acronym": "TU",
       "shortName": "TransUnion",
       "fullName": "TransUnion LLC",
@@ -11,6 +16,11 @@
       "countBadgeId": "badgeTU"
     },
     "EX": {
+      "name": "Experian",
+      "code": "EX",
+      "color": "#2196F3",
+      "enabled": true,
+      "order": 2,
       "acronym": "EX",
       "shortName": "Experian",
       "fullName": "Experian Information Solutions Inc.",
@@ -21,6 +31,11 @@
       "countBadgeId": "badgeEX"
     },
     "EQ": {
+      "name": "Equifax",
+      "code": "EQ",
+      "color": "#FF9800",
+      "enabled": true,
+      "order": 3,
       "acronym": "EQ",
       "shortName": "Equifax",
       "fullName": "Equifax Information Services LLC",
