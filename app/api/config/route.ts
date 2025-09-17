@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getConfig } from '@/app/lib/config';
+import { getConfig } from '../../lib/config';
 
 /**
  * GET /api/config

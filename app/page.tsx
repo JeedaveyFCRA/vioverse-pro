@@ -1,4 +1,4 @@
-import { getConfig } from '@/app/lib/config';
+import { getConfig } from './lib/config';
 
 export default async function HomePage() {
   const config = await getConfig();
