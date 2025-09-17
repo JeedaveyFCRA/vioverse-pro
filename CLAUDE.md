@@ -45,3 +45,16 @@ vioverse-clean-site/
 - This project is completely isolated from `/home/avid_arrajeedavey/vioverse-refactor/`
 - No code or patterns from the previous project should be carried over unless explicitly requested
 - This is a clean slate for the new Vioverse site
+---
+
+## ⚖️ A+ WEB DEVELOPMENT LAW — MANDATORY QC AFTER EVERY TASK
+After any task, run a QC check against A+ standards (no hard-coding, data-driven config, responsive 320–1920, WCAG 2.2 AA, perf budgets ≥90, security headers, TS strict, ESLint/tests/CI). If violations:
+- List every offense
+- Fix immediately or log in KNOWN-OFFENSES.md for next thread
+
+## 🛑 RULE GUARDRAIL — NON-NEGOTIABLE
+If a user request would violate A+ rules:
+- STOP and warn
+- List rules broken + repercussions
+- Propose compliant alternatives
+- Proceed only with compliant plan
