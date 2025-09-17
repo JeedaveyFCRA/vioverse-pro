@@ -1,0 +1,42 @@
+{
+  "bureaus": {
+    "TU": {
+      "acronym": "TU",
+      "shortName": "TransUnion",
+      "fullName": "TransUnion LLC",
+      "badgeColor": "#4CAF50",
+      "badgeClass": "badge-tu",
+      "patterns": ["-TU-", "_TU_", "transunion", "TransUnion"],
+      "checkboxId": "filterTU",
+      "countBadgeId": "badgeTU"
+    },
+    "EX": {
+      "acronym": "EX",
+      "shortName": "Experian",
+      "fullName": "Experian Information Solutions Inc.",
+      "badgeColor": "#2196F3",
+      "badgeClass": "badge-ex",
+      "patterns": ["-EX-", "_EX_", "experian", "Experian"],
+      "checkboxId": "filterEX",
+      "countBadgeId": "badgeEX"
+    },
+    "EQ": {
+      "acronym": "EQ",
+      "shortName": "Equifax",
+      "fullName": "Equifax Information Services LLC",
+      "badgeColor": "#FF9800",
+      "badgeClass": "badge-eq",
+      "patterns": ["-EQ-", "_EQ_", "equifax", "Equifax"],
+      "checkboxId": "filterEQ",
+      "countBadgeId": "badgeEQ"
+    }
+  },
+  "defaultActive": ["TU", "EX", "EQ"],
+  "unknownBureau": {
+    "acronym": "UNKNOWN",
+    "shortName": "Unknown",
+    "fullName": "Unknown Bureau",
+    "badgeColor": "#9E9E9E",
+    "badgeClass": "badge-unknown"
+  }
+}

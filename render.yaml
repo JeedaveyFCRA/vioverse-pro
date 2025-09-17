@@ -1,0 +1,105 @@
+# Render.com Deployment Configuration
+# This file automates the deployment setup on Render
+
+services:
+  # Web Service for Next.js Application
+  - type: web
+    name: vioverse-v3
+    runtime: node
+    region: oregon # or ohio, frankfurt, singapore
+    plan: starter # free, starter ($7/mo), standard ($25/mo), pro ($85/mo)
+
+    # Build configuration
+    buildCommand: |
+      npm install -g pnpm
+      pnpm install
+      pnpm build
+      npx prisma generate
+      npx prisma migrate deploy
+
+    # Start command for production
+    startCommand: pnpm start
+
+    # Health check
+    healthCheckPath: /api/health
+
+    # Environment variables (set in Render dashboard)
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000  # Render's default port
+      - key: NEXT_PUBLIC_APP_URL
+        sync: false  # Set in dashboard
+      - key: DATABASE_URL
+        fromDatabase:
+          name: vioverse-db
+          property: connectionString
+      - key: NEXTAUTH_SECRET
+        generateValue: true
+      - key: NEXTAUTH_URL
+        sync: false  # Set in dashboard after deploy
+
+    # Scaling
+    scaling:
+      minInstances: 1
+      maxInstances: 3
+      targetMemoryPercent: 80
+      targetCPUPercent: 80
+
+    # Disk (for persistent storage)
+    disk:
+      name: uploads
+      mountPath: /var/data
+      sizeGB: 1
+
+# PostgreSQL Database
+databases:
+  - name: vioverse-db
+    databaseName: vioverse_v3
+    region: oregon # must match service region
+    plan: starter # free (limited), starter ($7/mo)
+    postgresMajorVersion: 15
+
+# Redis for caching (optional)
+# Uncomment if you want Redis
+# - type: redis
+#   name: vioverse-cache
+#   region: oregon
+#   plan: starter # free (25MB), starter ($10/mo)
+#   ipAllowList: []
+
+# Background worker (optional)
+# For processing CSV/PDF in background
+# - type: worker
+#   name: vioverse-worker
+#   runtime: node
+#   region: oregon
+#   plan: starter
+#   buildCommand: |
+#     npm install -g pnpm
+#     pnpm install
+#   startCommand: pnpm run worker
+#   envVars:
+#     - key: NODE_ENV
+#       value: production
+#     - key: DATABASE_URL
+#       fromDatabase:
+#         name: vioverse-db
+#         property: connectionString
+
+# Cron job (optional)
+# For scheduled tasks
+# - type: cron
+#   name: vioverse-cleanup
+#   runtime: node
+#   schedule: "0 2 * * *" # 2 AM daily
+#   buildCommand: |
+#     npm install -g pnpm
+#     pnpm install
+#   command: pnpm run cleanup
+#   envVars:
+#     - key: DATABASE_URL
+#       fromDatabase:
+#         name: vioverse-db
+#         property: connectionString

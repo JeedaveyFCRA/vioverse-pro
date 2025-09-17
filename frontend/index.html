@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viobox System v2.0 - Data-Driven Violation Viewer</title>
+
+    <!-- Core CSS only - minimal styles -->
+    <link rel="stylesheet" href="css/core.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <!-- View-specific CSS loaded dynamically by JavaScript -->
+</head>
+<body>
+    <!-- Main Application Container -->
+    <div id="app" data-view="evidence">
+
+        <!-- Navigation Bar -->
+        <nav id="main-nav" class="nav-container">
+            <div class="nav-brand">Viobox System v2.0</div>
+            <div class="nav-views">
+                <button class="view-btn active" data-view="evidence">Evidence View</button>
+                <button class="view-btn" data-view="timeline">Timeline View</button>
+            </div>
+            <div class="nav-controls">
+                <button id="upload-csv">Upload CSV</button>
+                <button id="upload-pdf">Upload PDF</button>
+            </div>
+        </nav>
+
+        <!-- View Container -->
+        <main id="view-container" class="view-container">
+
+            <!-- Evidence View -->
+            <div id="evidence-view" class="view-panel active" data-view="evidence">
+                <div class="evidence-layout">
+                    <!-- PDF Display Area -->
+                    <div class="pdf-container">
+                        <canvas id="pdf-canvas"></canvas>
+                        <div id="viobox-overlay" class="viobox-overlay"></div>
+                    </div>
+
+                    <!-- Violation Sidebar -->
+                    <aside class="violation-sidebar">
+                        <h3>Violations</h3>
+                        <div class="violation-stats">
+                            <span class="stat-item extreme">Extreme: <span id="count-extreme">0</span></span>
+                            <span class="stat-item severe">Severe: <span id="count-severe">0</span></span>
+                            <span class="stat-item serious">Serious: <span id="count-serious">0</span></span>
+                            <span class="stat-item minor">Minor: <span id="count-minor">0</span></span>
+                        </div>
+                        <div id="violation-list" class="violation-list"></div>
+                    </aside>
+                </div>
+
+                <!-- PDF Navigation -->
+                <div class="pdf-navigation">
+                    <button id="prev-page">← Previous</button>
+                    <span id="page-info">Page 1 of 1</span>
+                    <button id="next-page">Next →</button>
+                </div>
+            </div>
+
+            <!-- Timeline View -->
+            <div id="timeline-view" class="view-panel" data-view="timeline">
+                <div class="timeline-layout">
+                    <!-- Slideshow Container -->
+                    <div class="slideshow-container">
+                        <div id="slide-content" class="slide-content">
+                            <!-- Slides injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Timeline Controls -->
+                    <div class="timeline-controls">
+                        <button id="prev-slide">← Previous</button>
+                        <button id="play-pause">Play</button>
+                        <button id="next-slide">Next →</button>
+                        <span id="slide-info">Slide 1 of 1</span>
+                    </div>
+
+                    <!-- Timeline Sidebar -->
+                    <aside class="timeline-sidebar">
+                        <h3>Violation Timeline</h3>
+                        <div id="timeline-list" class="timeline-list"></div>
+                    </aside>
+                </div>
+            </div>
+        </main>
+
+        <!-- Hidden File Inputs -->
+        <input type="file" id="csv-input" accept=".csv" style="display: none;">
+        <input type="file" id="pdf-input" accept=".pdf" multiple style="display: none;">
+    </div>
+
+    <!-- Core JavaScript Modules -->
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>

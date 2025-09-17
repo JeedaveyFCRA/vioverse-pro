@@ -1,0 +1,144 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output/
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Production
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Environment files
+.env
+.env*.local
+.env.development
+.env.production
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.DS_Store
+Thumbs.db
+
+# Prisma
+prisma/migrations/dev/
+*.db
+*.db-journal
+.prisma/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Contentlayer
+.contentlayer/
+
+# Storybook
+storybook-static/
+
+# Bundle analyzer
+.next/analyze/
+
+# Testing
+playwright-report/
+playwright/.cache/
+test-results/
+
+# Temporary files
+tmp/
+temp/
+.temp/
+.tmp/
+
+# PDF and CSV data (these should be in data/ folder)
+*.pdf
+*.csv
+!data/samples/*.pdf
+!data/samples/*.csv
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Debug
+.vscode/launch.json
+debug/
+*.stackdump
+
+# Sentry
+.sentryclirc
+
+# Vercel
+.vercel
+
+# Render
+render.yaml.local
+
+# Local data (keep structure but not content)
+data/pdfs/*
+data/csv/*
+!data/pdfs/.gitkeep
+!data/csv/.gitkeep
+
+# Uploads
+uploads/
+public/uploads/
+
+# Logs
+logs/
+*.log
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Build outputs
+.turbo/
+
+# Python (for backend scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/venv/
+backend/env/
+backend/.venv/
+venv/
+env/
+.venv/
+
+# Database dumps
+*.sql
+*.sqlite
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# Lock files (keep package-lock.json)
+yarn.lock
+pnpm-lock.yaml

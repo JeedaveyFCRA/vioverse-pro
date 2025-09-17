@@ -1,0 +1,95 @@
+/*
+ * Core CSS - Minimal reset and base styles only
+ * Function first, beauty later
+ */
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base Typography */
+html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+body {
+    background: #f5f5f5;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Base Elements */
+button {
+    cursor: pointer;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #f0f0f0;
+}
+
+button.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* Severity Colors - Data-driven */
+.extreme {
+    color: #d32f2f;
+}
+
+.severe {
+    color: #f57c00;
+}
+
+.serious {
+    color: #ffa000;
+}
+
+.minor {
+    color: #616161;
+}
+
+/* Viobox Base Styles */
+.viobox {
+    position: absolute;
+    border: 2px solid;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: auto;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.viobox:hover {
+    opacity: 0.8;
+}
+
+.viobox.extreme {
+    border-color: #d32f2f;
+    background: rgba(211, 47, 47, 0.1);
+}
+
+.viobox.severe {
+    border-color: #f57c00;
+    background: rgba(245, 124, 0, 0.1);
+}
+
+.viobox.serious {
+    border-color: #ffa000;
+    background: rgba(255, 160, 0, 0.1);
+}
+
+.viobox.minor {
+    border-color: #616161;
+    background: rgba(97, 97, 97, 0.1);
+}

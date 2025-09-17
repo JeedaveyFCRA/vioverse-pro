@@ -1,0 +1,254 @@
+/*
+ * Layout CSS - Structure and positioning only
+ * No colors or aesthetics
+ */
+
+/* App Container */
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Navigation */
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+    flex-shrink: 0;
+}
+
+.nav-brand {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.nav-views {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-controls {
+    display: flex;
+    gap: 8px;
+}
+
+/* View Container */
+.view-container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+/* View Panels */
+.view-panel {
+    display: none;
+    height: 100%;
+    width: 100%;
+}
+
+.view-panel.active {
+    display: block;
+}
+
+/* Evidence View Layout */
+.evidence-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    height: calc(100% - 50px);
+    gap: 0;
+}
+
+.pdf-container {
+    position: relative;
+    overflow: auto;
+    background: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pdf-canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.viobox-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.viobox-overlay .viobox {
+    pointer-events: auto;
+}
+
+/* Violation Sidebar */
+.violation-sidebar {
+    background: white;
+    border-left: 1px solid #ddd;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.violation-sidebar h3 {
+    margin-bottom: 16px;
+    font-size: 18px;
+}
+
+.violation-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.stat-item {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.violation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.violation-item {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.violation-item:hover {
+    background: #f5f5f5;
+}
+
+/* PDF Navigation */
+.pdf-navigation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 400px;
+    height: 50px;
+    background: white;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Timeline View Layout */
+.timeline-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    grid-template-rows: 1fr auto;
+    height: 100%;
+}
+
+.slideshow-container {
+    grid-row: 1;
+    grid-column: 1;
+    position: relative;
+    overflow: hidden;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.timeline-controls {
+    grid-row: 2;
+    grid-column: 1;
+    height: 60px;
+    background: white;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.timeline-sidebar {
+    grid-row: 1 / -1;
+    grid-column: 2;
+    background: white;
+    border-left: 1px solid #ddd;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.timeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .evidence-layout {
+        grid-template-columns: 1fr 300px;
+    }
+
+    .pdf-navigation {
+        right: 300px;
+    }
+
+    .timeline-layout {
+        grid-template-columns: 1fr 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile: Stack sidebar below */
+    .evidence-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto;
+    }
+
+    .violation-sidebar {
+        grid-row: 2;
+        border-left: none;
+        border-top: 1px solid #ddd;
+        max-height: 40vh;
+    }
+
+    .pdf-navigation {
+        right: 0;
+    }
+
+    .timeline-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto auto;
+    }
+
+    .timeline-sidebar {
+        grid-row: 3;
+        grid-column: 1;
+        border-left: none;
+        border-top: 1px solid #ddd;
+        max-height: 30vh;
+    }
+}
