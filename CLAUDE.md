@@ -1,12 +1,24 @@
-# CLAUDE.md - VIOVERSE CLEAN SITE PROJECT
+# CLAUDE.md - VIOVERSE PRO PROJECT
 
 ## 🔴 CRITICAL PRIORITIES - NEVER VIOLATE
 1. **DATA-DRIVEN EVERYTHING** - No hardcoded values. Every number, text, coordinate comes from CSV/JSON
-2. **RESPONSIVE FIRST** - Must work perfectly on mobile, tablet, and desktop
+2. **RESPONSIVE FIRST** - Must work perfectly on mobile, tablet, and desktop (320px-1920px)
 3. **SEPARATION OF CONCERNS** - Data logic, business logic, and presentation must never mix
 
+## 🚀 PROJECT STATUS - JANUARY 2024
+
+### Current Deployment
+- **GitHub Repository**: https://github.com/JeedaveyFCRA/vioverse-pro
+- **Render Deployment**: https://vioverse-pro.onrender.com (pending build fix)
+- **Local Path**: `/home/avid_arrajeedavey/vioverse-clean-site`
+
+### Build Status
+- ✅ GitHub repository created and code pushed
+- ⚠️ Render build failing due to contentlayer dependency
+- 🔧 Fix required: Remove contentlayer from next.config.mjs
+
 ## Project Overview
-This is a fresh, clean Vioverse website project, completely isolated from the existing codebase. Built on Viobox System v2.0 architecture.
+Enterprise-grade Next.js 14+ TypeScript application for credit report violation analysis. Completely isolated from the existing vioverse-refactor codebase.
 
 ## Project Structure
 ```

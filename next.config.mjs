@@ -1,4 +1,3 @@
-import { withContentlayer } from 'next-contentlayer';
 import { withSentryConfig } from '@sentry/nextjs';
 import bundleAnalyzer from '@next/bundle-analyzer';
 
@@ -226,7 +225,7 @@ const nextConfig = {
   generateEtags: true,
 
   // Page extensions
-  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
 
   // Environment variables schema validation
   env: {
@@ -274,7 +273,5 @@ const sentryWebpackPluginOptions = {
 
 // Export with plugins
 export default withBundleAnalyzer(
-  withContentlayer(
-    withSentryConfig(nextConfig, sentryWebpackPluginOptions)
-  )
+  withSentryConfig(nextConfig, sentryWebpackPluginOptions)
 );
