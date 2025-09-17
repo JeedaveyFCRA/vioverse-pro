@@ -11,14 +11,11 @@ services:
 
     # Build configuration
     buildCommand: |
-      npm install -g pnpm
-      pnpm install
-      pnpm build
-      npx prisma generate
-      npx prisma migrate deploy
+      npm install --legacy-peer-deps
+      npm run build
 
     # Start command for production
-    startCommand: pnpm start
+    startCommand: npm start
 
     # Health check
     healthCheckPath: /api/health
