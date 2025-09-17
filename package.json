@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:production": "npm install --legacy-peer-deps && next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "next start -p ${PORT:-3000}",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "typecheck": "tsc --noEmit",
