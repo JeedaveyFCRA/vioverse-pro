@@ -14,6 +14,6 @@ export type AppConfig = z.infer<typeof ConfigSchema>
 
 export async function getConfig(): Promise<AppConfig> {
   // dynamic import so build tools don't inline JSON
-  const raw = (await import('@/data/config/site.json')).default
+  const raw = (await import('../../data/config/site.json')).default
   return ConfigSchema.parse(raw)
 }
