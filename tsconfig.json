@@ -99,9 +99,7 @@
     "**/*.mjs",
     "**/*.json",
     ".next/types/**/*.ts",
-    "next-env.d.ts",
-    "contentlayer.config.ts",
-    ".contentlayer/generated"
+    "next-env.d.ts"
   ],
   "exclude": [
     "node_modules",
@@ -111,7 +109,6 @@
     "build",
     ".turbo",
     "coverage",
-    ".contentlayer/generated/index.d.ts",
     "storybook-static"
   ]
 }

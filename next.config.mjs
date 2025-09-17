@@ -8,9 +8,6 @@ const nextConfig = {
   // Disable x-powered-by header
   poweredByHeader: false,
 
-  // Type-safe routes
-  typedRoutes: true,
-
   // Image optimization
   images: {
     formats: ['image/avif', 'image/webp'],
