@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:production": "npm install --legacy-peer-deps && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -89,7 +90,11 @@
     "zustand": "^4.4.7",
     "tailwindcss": "^3.4.1",
     "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.33"
+    "postcss": "^8.4.33",
+    "typescript": "^5.3.3",
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",
@@ -106,10 +111,7 @@
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.2",
-    "@types/node": "^20.11.0",
     "@types/papaparse": "^5.3.14",
-    "@types/react": "^18.2.47",
-    "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^6.18.1",
     "@typescript-eslint/parser": "^6.18.1",
     "@vitejs/plugin-react": "^4.2.1",
@@ -135,7 +137,6 @@
     "prisma": "^5.8.0",
     "storybook": "^7.6.7",
     "tsx": "^4.7.0",
-    "typescript": "^5.3.3",
     "vitest": "^1.2.0"
   },
   "engines": {
