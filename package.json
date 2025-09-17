@@ -27,8 +27,7 @@
     "db:studio": "prisma studio",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "analyze": "ANALYZE=true next build",
-    "prepare": "husky install"
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
