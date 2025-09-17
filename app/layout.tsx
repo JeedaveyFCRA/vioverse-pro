@@ -1,16 +1,14 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { getUIConfig } from '@/lib/config';
-import { WebVitals } from '@/components/WebVitals';
+import { getConfig } from '@/app/lib/config';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const config = await getUIConfig();
   return {
-    title: `${config.app.title} - ${config.app.subtitle}`,
-    description: config.app.description,
+    title: 'Vioverse - Credit Report Analysis',
+    description: 'Professional credit report violation analysis system',
   };
 }
 
@@ -22,7 +20,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <WebVitals />
         {children}
       </body>
     </html>
