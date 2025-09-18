@@ -609,7 +609,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pdfFiles = await Promise.all(pdfUrls.map(u => toFile(u, 'application/pdf')));
 
         if (csvFiles.length) {
-          const violations = await evView.csvProcessor.processFiles(csvFiles);
+          const violations = await evView.processCsvFiles(csvFiles);
           evView.violations = violations;
           evView.violationsByPDF = evView.csvProcessor.groupByPDF(violations);
           evView.updateStatistics();
