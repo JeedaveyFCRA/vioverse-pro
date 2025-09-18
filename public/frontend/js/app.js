@@ -171,7 +171,7 @@
             this.processCombinedCsvData();
             document.getElementById('csvCount').textContent = this.loadedCsvCount;
 
-            const message = configLoader.formatMessage(
+            const message = window.VioboxSystem.configLoader.formatMessage(
                 this.config.uitext.messages.successCsvLoad,
                 { count: this.loadedCsvCount, violations: this.allCsvData.length }
             );
@@ -193,7 +193,7 @@
                     // Add bureau info to each row
                     validData.forEach(row => {
                         if (row.pdf_filename) {
-                            row.bureau = configLoader.detectBureauFromFilename(row.pdf_filename);
+                            row.bureau = window.VioboxSystem.configLoader.detectBureauFromFilename(row.pdf_filename);
                         }
                     });
 
@@ -202,7 +202,7 @@
                     resolve();
                 },
                 error: (error) => {
-                    const errorMsg = configLoader.formatMessage(
+                    const errorMsg = window.VioboxSystem.configLoader.formatMessage(
                         this.config.uitext.messages.errorParsingCsv,
                         { error: error.message }
                     );
@@ -227,7 +227,7 @@
                     const pdfDoc = await pdfjsLib.getDocument(typedArray).promise;
                     this.pdfFiles[file.name] = pdfDoc;
                     loadedCount++;
-                    console.log('Loaded PDF:', file.name, 'Bureau:', configLoader.detectBureauFromFilename(file.name));
+                    console.log('Loaded PDF:', file.name, 'Bureau:', window.VioboxSystem.configLoader.detectBureauFromFilename(file.name));
                 } catch (error) {
                     console.error('Error loading PDF:', file.name, error);
                 }
@@ -239,7 +239,7 @@
             document.getElementById('pdfCount').textContent = loadedCount;
             this.updateBureauCounts();
 
-            const message = configLoader.formatMessage(
+            const message = window.VioboxSystem.configLoader.formatMessage(
                 this.config.uitext.messages.successPdfLoad,
                 { count: loadedCount }
             );
@@ -257,7 +257,7 @@
     updateBureauCounts() {
         this.bureauCounts = { TU: 0, EX: 0, EQ: 0 };
         this.pdfFileNames.forEach(name => {
-            const bureau = configLoader.detectBureauFromFilename(name);
+            const bureau = window.VioboxSystem.configLoader.detectBureauFromFilename(name);
             if (bureau in this.bureauCounts) {
                 this.bureauCounts[bureau]++;
             }
@@ -294,7 +294,7 @@
         const missingCsvForPdfs = this.pdfFileNames.filter(name => !csvPdfNames.has(name));
 
         if (missingCsvForPdfs.length > 0) {
-            const bureaus = [...new Set(missingCsvForPdfs.map(configLoader.detectBureauFromFilename))];
+            const bureaus = [...new Set(missingCsvForPdfs.map(name => window.VioboxSystem.configLoader.detectBureauFromFilename(name)))];
             const warning = `${missingCsvForPdfs.length} PDF(s) loaded without CSV data (${bureaus.join(', ')})`;
             document.getElementById('mismatchText').textContent = warning;
             document.getElementById('mismatchWarning').style.display = 'block';
@@ -312,13 +312,13 @@
         });
 
         this.filteredPdfNames = this.pdfFileNames.filter(name => {
-            const bureau = configLoader.detectBureauFromFilename(name);
+            const bureau = window.VioboxSystem.configLoader.detectBureauFromFilename(name);
             return filters[bureau] || false;
         });
 
         // Update filtered CSV data
         this.filteredCsvData = this.allCsvData.filter(row => {
-            const bureau = row.bureau || configLoader.detectBureauFromFilename(row.pdf_filename || '');
+            const bureau = row.bureau || window.VioboxSystem.configLoader.detectBureauFromFilename(row.pdf_filename || '');
             return filters[bureau] || false;
         });
 
@@ -352,7 +352,7 @@
         }
 
         this.currentPdfDoc = this.pdfFiles[pdfName];
-        const bureau = configLoader.detectBureauFromFilename(pdfName);
+        const bureau = window.VioboxSystem.configLoader.detectBureauFromFilename(pdfName);
 
         // Update UI
         document.getElementById('loading').style.display = 'none';
@@ -368,7 +368,7 @@
         // Get violations for this PDF
         const currentViolations = this.getFilteredViolationsForPdf(pdfName);
 
-        const violationText = configLoader.formatMessage(
+        const violationText = window.VioboxSystem.configLoader.formatMessage(
             this.config.uitext.labels.violationsOnPage,
             { count: currentViolations.length }
         );
@@ -383,7 +383,7 @@
 
     getFilteredViolationsForPdf(pdfName) {
         return (this.allViolations[pdfName] || []).filter(v => {
-            const vBureau = v.bureau || configLoader.detectBureauFromFilename(v.pdf_filename || '');
+            const vBureau = v.bureau || window.VioboxSystem.configLoader.detectBureauFromFilename(v.pdf_filename || '');
 
             const filters = {};
             Object.entries(this.config.bureaus.bureaus).forEach(([code, bureau]) => {
@@ -439,7 +439,7 @@
             const y = parseFloat(violation.y) * this.scale;
 
             // Get severity configuration
-            const severity = configLoader.getSeverity(violation.severity);
+            const severity = window.VioboxSystem.configLoader.getSeverity(violation.severity);
 
             // Draw filled rectangle
             ctx.fillStyle = severity.fillColor;
@@ -464,8 +464,8 @@
         listDiv.innerHTML = '';
 
         violations.forEach((violation, index) => {
-            const severity = configLoader.getSeverity(violation.severity);
-            const bureau = configLoader.getBureau(violation.bureau || configLoader.detectBureauFromFilename(violation.pdf_filename || ''));
+            const severity = window.VioboxSystem.configLoader.getSeverity(violation.severity);
+            const bureau = window.VioboxSystem.configLoader.getBureau(violation.bureau || window.VioboxSystem.configLoader.detectBureauFromFilename(violation.pdf_filename || ''));
 
             const div = document.createElement('div');
             div.className = `violation-item ${severity.itemClass}`;
@@ -509,7 +509,7 @@
         });
 
         dataToUse.forEach(v => {
-            const bureau = v.bureau || configLoader.detectBureauFromFilename(v.pdf_filename || '');
+            const bureau = v.bureau || window.VioboxSystem.configLoader.detectBureauFromFilename(v.pdf_filename || '');
             if (bureau in bureauBreakdown) {
                 bureauBreakdown[bureau]++;
             }
