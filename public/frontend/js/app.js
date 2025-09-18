@@ -3,12 +3,18 @@
  * 100% data-driven from JSON configurations
  */
 
-import configLoader from './core/config-loader.js';
+(function() {
+    'use strict';
 
-// Configure PDF.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    // Ensure namespace exists
+    window.VioboxSystem = window.VioboxSystem || {};
 
-class VioboxViewer {
+    // Configure PDF.js
+    if (typeof pdfjsLib !== 'undefined') {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    class VioboxViewer {
     constructor() {
         // Global state
         this.config = {};
@@ -29,7 +35,7 @@ class VioboxViewer {
     async init() {
         try {
             // Load all configurations first
-            this.config = await configLoader.loadAll();
+            this.config = await window.VioboxSystem.configLoader.loadAll();
             console.log('Configuration loaded successfully', this.config);
 
             // Update all UI text from config
@@ -567,8 +573,13 @@ class VioboxViewer {
     }
 }
 
-// Initialize app when DOM is ready
-document.addEventListener('DOMContentLoaded', async () => {
-    const app = new VioboxViewer();
-    await app.init();
-});
+    // Export to global namespace
+    window.VioboxSystem.VioboxViewer = VioboxViewer;
+
+    // Initialize app when DOM is ready
+    document.addEventListener('DOMContentLoaded', async () => {
+        const app = new VioboxViewer();
+        await app.init();
+        window.VioboxApp = app; // Make app accessible globally for debugging
+    });
+})();

@@ -3,11 +3,13 @@
  * Manages PDF display, violation rendering, and user interactions
  */
 
-import { CSVProcessor } from '../core/csv-processor.js';
-import { PDFManager } from '../core/pdf-manager.js';
-import { VioboxRenderer } from '../core/viobox-renderer.js';
+(function() {
+    'use strict';
 
-export class EvidenceView {
+    // Ensure namespace exists
+    window.VioboxSystem = window.VioboxSystem || {};
+
+    class EvidenceView {
     constructor(app) {
         this.app = app;
         this.violations = [];
@@ -20,9 +22,9 @@ export class EvidenceView {
         };
 
         // Initialize core modules with config
-        this.csvProcessor = new CSVProcessor(app.config.bureaus);
-        this.pdfManager = new PDFManager(app.config.defaults.viewport);
-        this.vioboxRenderer = new VioboxRenderer(
+        this.csvProcessor = new window.VioboxSystem.CSVProcessor(app.config.bureaus);
+        this.pdfManager = new window.VioboxSystem.PDFManager(app.config.defaults.viewport);
+        this.vioboxRenderer = new window.VioboxSystem.VioboxRenderer(
             app.config.severity,
             app.config.defaults.canvas
         );
@@ -627,3 +629,7 @@ export class EvidenceView {
         // Reset state
     }
 }
+
+    // Export to global namespace
+    window.VioboxSystem.EvidenceView = EvidenceView;
+})();

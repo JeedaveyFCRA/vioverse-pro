@@ -3,9 +3,13 @@
  * Handles all CSV processing with configurable bureau detection
  */
 
-import { configLoader } from './config-loader.js';
+(function() {
+    'use strict';
 
-export class CSVProcessor {
+    // Ensure namespace exists
+    window.VioboxSystem = window.VioboxSystem || {};
+
+    class CSVProcessor {
     constructor(bureauConfig) {
         this.bureauConfig = bureauConfig;
         this.processedData = [];
@@ -207,3 +211,7 @@ export class CSVProcessor {
         });
     }
 }
+
+    // Export to global namespace
+    window.VioboxSystem.CSVProcessor = CSVProcessor;
+})();

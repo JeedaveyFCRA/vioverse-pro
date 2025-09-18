@@ -3,7 +3,13 @@
  * Uses PDF.js library for PDF processing
  */
 
-export class PDFManager {
+(function() {
+    'use strict';
+
+    // Ensure namespace exists
+    window.VioboxSystem = window.VioboxSystem || {};
+
+    class PDFManager {
     constructor(config = {}) {
         // Configure PDF.js worker
         if (typeof pdfjsLib !== 'undefined') {
@@ -320,3 +326,7 @@ export class PDFManager {
         return Array.from(this.pdfs.keys());
     }
 }
+
+    // Export to global namespace
+    window.VioboxSystem.PDFManager = PDFManager;
+})();

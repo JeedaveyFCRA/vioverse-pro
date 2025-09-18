@@ -3,7 +3,13 @@
  * Fully data-driven with configurable colors and styles
  */
 
-export class VioboxRenderer {
+(function() {
+    'use strict';
+
+    // Ensure namespace exists
+    window.VioboxSystem = window.VioboxSystem || {};
+
+    class VioboxRenderer {
     constructor(severityConfig, canvasConfig) {
         this.severityConfig = severityConfig;
         this.canvasConfig = canvasConfig;
@@ -347,3 +353,7 @@ export class VioboxRenderer {
         if (config.canvasConfig) this.canvasConfig = config.canvasConfig;
     }
 }
+
+    // Export to global namespace
+    window.VioboxSystem.VioboxRenderer = VioboxRenderer;
+})();

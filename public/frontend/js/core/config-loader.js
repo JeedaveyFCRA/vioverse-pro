@@ -244,6 +244,6 @@ class ConfigLoader {
   }
 }
 
-// Export as singleton
-const configLoader = new ConfigLoader();
-export default configLoader;
+// Export to global namespace
+window.VioboxSystem = window.VioboxSystem || {};
+window.VioboxSystem.configLoader = new ConfigLoader();
