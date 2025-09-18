@@ -44,6 +44,9 @@ class VioboxViewer {
             // Bind event handlers
             this.bindEventHandlers();
 
+            // Hook into asset loading progress (non-blocking)
+            this.initAssetProgressIndicators();
+
             console.log('VioBox Viewer initialized with data-driven config');
         } catch (error) {
             console.error('Failed to initialize application:', error);
@@ -564,6 +567,49 @@ class VioboxViewer {
         setTimeout(() => {
             notification.style.display = 'none';
         }, 4000);
+    }
+
+    /**
+     * Initialize asset loading progress indicators
+     * Hooks into the asset-loader events for non-blocking UI updates
+     */
+    initAssetProgressIndicators() {
+        if (!window.APP || !window.APP.events) {
+            return; // Asset loader not available, skip silently
+        }
+
+        const fmt = ({done, total}) => `${done}/${total}`;
+
+        // CSV loading progress
+        window.APP.events.addEventListener('assets:csvProgress', e => {
+            const statusEl = document.getElementById('asset-csv-status');
+            if (statusEl) {
+                statusEl.textContent = `Loading CSVs: ${fmt(e.detail)}`;
+            }
+        });
+
+        // PDF loading progress
+        window.APP.events.addEventListener('assets:pdfProgress', e => {
+            const statusEl = document.getElementById('asset-pdf-status');
+            if (statusEl) {
+                statusEl.textContent = `Caching PDFs: ${fmt(e.detail)}`;
+            }
+        });
+
+        // Assets ready notification
+        window.APP.events.addEventListener('assets:ready', e => {
+            const statusEl = document.getElementById('asset-ready-status');
+            if (statusEl) {
+                statusEl.textContent = `Assets ready (${e.detail.csv} CSVs, ${e.detail.pdfs} PDFs cached)`;
+                // Clear individual progress after 3 seconds
+                setTimeout(() => {
+                    const csvStatus = document.getElementById('asset-csv-status');
+                    const pdfStatus = document.getElementById('asset-pdf-status');
+                    if (csvStatus) csvStatus.textContent = '';
+                    if (pdfStatus) pdfStatus.textContent = '';
+                }, 3000);
+            }
+        });
     }
 }
 

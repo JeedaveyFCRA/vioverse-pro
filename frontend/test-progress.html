@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Loading Progress Test</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 2rem;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .status-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .status-item {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        #asset-ready-status {
+            color: #10b981;
+            font-weight: bold;
+        }
+        h1 {
+            text-align: center;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <h1>Asset Loading Progress Test</h1>
+
+    <div class="status-container">
+        <div class="status-item" role="status" aria-live="polite">
+            <strong>CSV Progress:</strong>
+            <span id="asset-csv-status">Waiting...</span>
+        </div>
+
+        <div class="status-item" role="status" aria-live="polite">
+            <strong>PDF Progress:</strong>
+            <span id="asset-pdf-status">Waiting...</span>
+        </div>
+
+        <div class="status-item" role="status" aria-live="polite">
+            <strong>Overall Status:</strong>
+            <span id="asset-ready-status">Initializing...</span>
+        </div>
+
+        <div class="status-item">
+            <strong>Console Log:</strong>
+            <div id="console-log" style="font-family: monospace; font-size: 0.9em; max-height: 200px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <!-- Asset Loader -->
+    <script src="js/core/asset-loader.js"></script>
+
+    <!-- Progress Hooks -->
+    <script>
+        const logDiv = document.getElementById('console-log');
+        const log = (msg) => {
+            const entry = document.createElement('div');
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!window.APP || !window.APP.events) {
+                log('ERROR: Asset loader not available');
+                return;
+            }
+
+            log('Asset loader detected, setting up listeners...');
+
+            const fmt = ({done, total}) => `${done}/${total}`;
+
+            // CSV loading progress
+            window.APP.events.addEventListener('assets:csvProgress', e => {
+                const msg = `Loading CSVs: ${fmt(e.detail)}`;
+                document.getElementById('asset-csv-status').textContent = msg;
+                log(`CSV Progress: ${fmt(e.detail)}`);
+            });
+
+            // PDF loading progress
+            window.APP.events.addEventListener('assets:pdfProgress', e => {
+                const msg = `Caching PDFs: ${fmt(e.detail)}`;
+                document.getElementById('asset-pdf-status').textContent = msg;
+                log(`PDF Progress: ${fmt(e.detail)}`);
+            });
+
+            // Assets ready
+            window.APP.events.addEventListener('assets:ready', e => {
+                const msg = `✅ Assets ready (${e.detail.csv} CSVs, ${e.detail.pdfs} PDFs cached)`;
+                document.getElementById('asset-ready-status').textContent = msg;
+                log(`READY: ${e.detail.csv} CSVs, ${e.detail.pdfs} PDFs`);
+
+                // Clear progress after 3 seconds
+                setTimeout(() => {
+                    document.getElementById('asset-csv-status').textContent = 'Complete';
+                    document.getElementById('asset-pdf-status').textContent = 'Complete';
+                }, 3000);
+            });
+
+            log('Listeners registered, loading should begin automatically...');
+        });
+    </script>
+</body>
+</html>
