@@ -812,3 +812,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     const app = new VioboxViewer();
     await app.init();
 });
+
+// Preserve FCRA and section symbols in text
+document.addEventListener('DOMContentLoaded', function() {
+    // Find all elements with violation text
+    const observer = new MutationObserver(function() {
+        document.querySelectorAll('.violation-text, .violation-rule').forEach(el => {
+            if (el.textContent.includes('fcra') || el.textContent.includes('FCRA')) {
+                el.innerHTML = el.innerHTML.replace(/fcra/gi, 'FCRA');
+            }
+        });
+    });
+    
+    observer.observe(document.body, { childList: true, subtree: true });
+});

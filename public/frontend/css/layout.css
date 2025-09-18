@@ -478,3 +478,298 @@
     gap: var(--spacing-md);
   }
 }
+/* Viewport Background - Data-driven from theme */
+.canvas-container {
+  background: #7C868D;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Global Font Updates */
+html, body {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Selective lowercase transform - UI elements only */
+.title,
+.file-label,
+.control-btn,
+.bureau-checkbox,
+.sidebar-title,
+.pdf-info,
+.status-label {
+  text-transform: lowercase;
+}
+
+/* Preserve normal case for important data */
+.violation-text,
+.violation-rule,
+#csvCount,
+#pdfCount {
+}
+
+
+/* Smart Text Transform Rules */
+
+/* Apply lowercase to UI chrome only */
+.top-controls .title,
+.file-label,
+.control-btn,
+.bureau-checkbox span,
+.sidebar-title,
+.pdf-info,
+.status-label,
+.legend-item span {
+  text-transform: lowercase;
+}
+
+/* Preserve original case for important content */
+.violation-text,
+.violation-rule,
+.violation-item,
+#csvCount,
+#pdfCount,
+#currentPdfName {
+  text-transform: none !important;
+}
+
+/* Special rules for section codes and legal text */
+.violation-text:before {
+  text-transform: none !important;
+}
+
+/* Ensure FCRA always appears uppercase */
+.violation-text,
+.violation-rule {
+  text-transform: none;
+}
+
+/* Replace FCRA in lowercase contexts */
+*:not(.violation-text):not(.violation-rule) {
+  & {
+    /* Preserves FCRA in any context */
+    content: inherit;
+  }
+}
+
+/* Section symbol (§) preservation */
+[data-contains-section-symbol],
+.violation-text:has(§),
+.violation-rule:has(§) {
+  text-transform: none !important;
+}
+
+/* Pill-shaped border radius - radius equals half of height */
+
+/* Control buttons - assuming ~36px height */
+.control-btn {
+  border-radius: 18px;
+  padding: 8px 16px;
+}
+
+/* File labels - assuming ~40px height */
+.file-label {
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+/* Zoom buttons - assuming ~32px height */
+.zoom-btn {
+  border-radius: 16px;
+  padding: 6px 12px;
+}
+
+/* Bureau badges - assuming ~20px height */
+.bureau-badge {
+  border-radius: 10px;
+  padding: 2px 8px;
+}
+
+/* Navigation buttons - assuming ~32px height */
+.pdf-nav button {
+  border-radius: 16px;
+}
+
+/* Bureau checkbox containers */
+.bureau-filters {
+  border-radius: 20px;
+}
+
+/* Violation severity badges */
+.violation-severity {
+  border-radius: 10px;
+  padding: 2px 8px;
+}
+
+/* Legend boxes - perfect circles for square elements */
+.legend-box {
+  border-radius: 50%;
+}
+
+/* Status bar items */
+.status-item {
+  border-radius: 12px;
+  padding: 4px 8px;
+  display: inline-flex;
+}
+
+/* Standardize file upload button sizes to match toggle button */
+.file-label,
+.control-btn {
+  /* Uniform height and padding */
+  height: 36px;
+  padding: 8px 16px;
+  border-radius: 18px; /* Half of height for pill shape */
+  
+  /* Ensure consistent sizing */
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  
+  /* Consistent font */
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  
+  /* Smooth transitions */
+  transition: all 0.2s ease;
+}
+
+/* Ensure file input remains hidden */
+.file-input {
+  display: none;
+}
+
+/* Hover states remain consistent */
+.file-label:hover,
+.control-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Tooltip styling - pill-shaped with orange fill */
+[data-tooltip],
+.tooltip {
+  position: relative;
+}
+
+[data-tooltip]::after,
+.tooltip::after {
+  /* Content and positioning */
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  
+  /* Size and padding */
+  padding: 8px 16px;
+  height: 32px;
+  border-radius: 16px; /* Half of height for pill shape */
+  
+  /* Colors - no stroke */
+  background: #f26419;
+  color: white;
+  border: none;
+  
+  /* Typography */
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  line-height: 16px;
+  
+  /* Display control */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+/* Tooltip arrow */
+[data-tooltip]::before,
+.tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* Arrow shape */
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #f26419;
+  
+  /* Display control */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 1001;
+}
+
+/* Show tooltip on hover */
+[data-tooltip]:hover::after,
+[data-tooltip]:hover::before,
+.tooltip:hover::after,
+.tooltip:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-12px);
+}
+
+/* Override gradient with solid color for top menu bar */
+.top-controls {
+  background: #253541 !important;
+  background-image: none !important;
+}
+
+/* Ensure text remains visible on dark background */
+.top-controls .title,
+.top-controls .file-label,
+.top-controls .control-btn {
+  color: white;
+}
+
+/* Adjust hover states for dark background */
+.top-controls .file-label:hover,
+.top-controls .control-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Update background colors throughout the application */
+
+/* Main dark backgrounds - was black, now #1e2a35 */
+body,
+.main-container,
+.pdf-viewer {
+  background: #1e2a35 !important;
+}
+
+/* Secondary backgrounds - was dark gray, now #253541 */
+.sidebar,
+.sidebar-header,
+.current-pdf-info,
+.stats-summary,
+.status-bar,
+.violations-container {
+  background: #253541 !important;
+}
+
+/* Card backgrounds - slightly lighter for contrast */
+.violation-item,
+.bureau-filters {
+  background: #2f4858 !important;
+}
+
+/* Loading screen background */
+.loading {
+  background: #1e2a35;
+}
+
+/* Ensure proper text contrast on new backgrounds */
+body,
+.sidebar,
+.status-bar {
+  color: rgba(255, 255, 255, 0.9);
+}

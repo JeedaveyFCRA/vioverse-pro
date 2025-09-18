@@ -31,7 +31,7 @@
 
 /* Base */
 html {
-  font-family: var(--font-sans);
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -64,7 +64,7 @@ a:hover {
 
 /* Buttons */
 button {
-  font-family: var(--font-sans);
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 14px;
   font-weight: 500;
   padding: var(--spacing-md) var(--spacing-lg);
