@@ -581,6 +581,10 @@
         const app = new VioboxViewer();
         await app.init();
         window.VioboxApp = app; // Make app accessible globally for debugging
+
+        // Publish evidence view globally for auto-loader
+        window.vioboxApp = window.vioboxApp || {views:{}};
+        window.vioboxApp.views.evidence = app;
     });
 })();
 // Auto-load CSVs and PDFs when asset list is ready
