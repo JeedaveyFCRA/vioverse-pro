@@ -1,0 +1,128 @@
+{
+  "app": {
+    "title": "Vioverse V3",
+    "subtitle": "Enterprise Credit Report Violation Analysis System",
+    "description": "Enterprise-grade FCRA violation detection and analysis system",
+    "version": "3.0.0",
+    "techStack": "Built with Next.js 14 & TypeScript"
+  },
+  "nav": [
+    "Dashboard",
+    "Evidence",
+    "Timeline",
+    "Reports",
+    "Settings"
+  ],
+  "status": {
+    "title": "System Status",
+    "items": [
+      {
+        "label": "System Architecture",
+        "value": "Ready",
+        "status": "success"
+      },
+      {
+        "label": "TypeScript Configuration",
+        "value": "Complete",
+        "status": "success"
+      },
+      {
+        "label": "Data Schemas",
+        "value": "Configured",
+        "status": "success"
+      },
+      {
+        "label": "Database",
+        "value": "Pending Setup",
+        "status": "warning"
+      },
+      {
+        "label": "Authentication",
+        "value": "Pending Configuration",
+        "status": "warning"
+      }
+    ]
+  },
+  "features": {
+    "title": "Key Features",
+    "items": [
+      {
+        "icon": "📊",
+        "title": "Data-Driven",
+        "description": "100% configurable, zero hardcoding"
+      },
+      {
+        "icon": "🔒",
+        "title": "Enterprise Security",
+        "description": "OWASP ASVS L1 compliant"
+      },
+      {
+        "icon": "♿",
+        "title": "Fully Accessible",
+        "description": "WCAG 2.2 AA compliant"
+      }
+    ]
+  },
+  "labels": {
+    "search": "Search evidence",
+    "upload": "Upload PDF",
+    "filter": "Filter results",
+    "export": "Export data",
+    "save": "Save changes",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Operation successful",
+    "noResults": "No results found",
+    "noData": "No data available"
+  },
+  "violations": {
+    "severities": ["extreme", "severe", "serious", "minor", "unknown"],
+    "bureaus": ["TU", "EQ", "EX", "UNKNOWN"],
+    "messages": {
+      "noViolations": "No Violations Found",
+      "noPdfError": "No PDF or canvas set",
+      "unknownType": "unknown"
+    },
+    "stats": {
+      "total": "Total Violations",
+      "extreme": "Extreme",
+      "severe": "Severe",
+      "serious": "Serious",
+      "minor": "Minor",
+      "byBureau": "By Bureau"
+    }
+  },
+  "pdf": {
+    "defaultFormat": "png",
+    "defaultBackground": "white",
+    "defaultFont": "Arial",
+    "controls": {
+      "toggle": "Toggle View",
+      "previous": "Previous",
+      "next": "Next",
+      "zoomIn": "Zoom In",
+      "zoomOut": "Zoom Out"
+    }
+  },
+  "elements": {
+    "ids": {
+      "pdfCanvas": "pdfCanvas",
+      "toggleBtn": "toggleBtn",
+      "prevBtn": "prevBtn",
+      "nextBtn": "nextBtn",
+      "pdfInfo": "pdfInfo",
+      "currentPdfName": "currentPdfName",
+      "currentViolationCount": "currentViolationCount",
+      "violationList": "violationList",
+      "totalCount": "totalCount",
+      "extremeCount": "extremeCount",
+      "severeCount": "severeCount",
+      "seriousCount": "seriousCount",
+      "filterTU": "filterTU",
+      "filterEX": "filterEX",
+      "filterEQ": "filterEQ"
+    }
+  }
+}

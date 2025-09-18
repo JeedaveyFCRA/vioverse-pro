@@ -1,0 +1,104 @@
+{
+  "site": {
+    "name": "Vioverse",
+    "description": "Enterprise Credit Report Violation Analysis System",
+    "url": "https://vioverse-pro.onrender.com",
+    "author": {
+      "name": "Vioverse Team",
+      "url": "https://vioverse.com",
+      "email": "support@vioverse.com"
+    },
+    "keywords": ["FCRA", "credit report", "violations", "analysis", "compliance"],
+    "language": "en",
+    "themeColor": "#3b82f6"
+  },
+  "api": {
+    "baseUrl": "https://vioverse-pro.onrender.com/api",
+    "timeout": 30000,
+    "retries": 3,
+    "rateLimit": {
+      "requests": 100,
+      "windowMs": 60000
+    },
+    "cache": {
+      "enabled": true,
+      "ttl": 3600000,
+      "maxSize": 100
+    }
+  },
+  "performance": {
+    "lcp": 2500,
+    "fid": 100,
+    "cls": 0.1,
+    "fcp": 1800,
+    "ttfb": 800,
+    "tti": 3800,
+    "tbt": 200,
+    "bundleSize": {
+      "js": 300,
+      "css": 50,
+      "total": 400
+    }
+  },
+  "security": {
+    "csp": {
+      "enabled": true,
+      "directives": {
+        "default-src": ["'self'"],
+        "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+        "style-src": ["'self'", "'unsafe-inline'"],
+        "img-src": ["'self'", "data:", "https:"],
+        "font-src": ["'self'"],
+        "connect-src": ["'self'"]
+      }
+    },
+    "cors": {
+      "enabled": true,
+      "origins": ["http://localhost:3000", "https://vioverse-pro.onrender.com"],
+      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      "credentials": true,
+      "maxAge": 86400
+    },
+    "rateLimit": {
+      "enabled": true,
+      "global": {
+        "requests": 100,
+        "windowMs": 60000
+      }
+    },
+    "auth": {
+      "sessionTimeout": 86400000,
+      "refreshTokenTTL": 604800000,
+      "passwordPolicy": {
+        "minLength": 8,
+        "requireUppercase": true,
+        "requireLowercase": true,
+        "requireNumbers": true,
+        "requireSymbols": true
+      },
+      "mfa": {
+        "enabled": false,
+        "methods": ["totp"]
+      }
+    }
+  },
+  "i18n": {
+    "defaultLocale": "en",
+    "locales": ["en", "es"],
+    "fallbackLocale": "en"
+  },
+  "analytics": {
+    "enabled": true,
+    "providers": ["vercel"]
+  },
+  "seo": {
+    "enableOgImages": true,
+    "twitterCard": "summary_large_image",
+    "jsonLd": true,
+    "sitemap": true,
+    "robots": {
+      "index": true,
+      "follow": true
+    }
+  }
+}
