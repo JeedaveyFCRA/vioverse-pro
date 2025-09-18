@@ -587,7 +587,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const evts = window.APP && APP.events;
   if (!evts) return;
-  evts.addEventListener('assets:ready', async () => {
+  const init = async () => {
     try {
       const evView = window.vioboxApp?.views?.evidence;
       if (!evView) return;
@@ -623,5 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {
       console.error('Auto-init failed', e);
     }
-  }, { once: true });
+  };
+  evts.addEventListener('assets:ready', init, { once: true });
+  if (APP && APP.assets) init();
 });
