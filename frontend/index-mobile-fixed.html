@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- CRITICAL: Enhanced viewport for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <!-- iOS specific -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Android specific -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#667eea">
+
+    <title data-text="titles.main">VIOBOX VIEWER - Mobile Optimized</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="css/core.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <!-- CRITICAL: Mobile fixes -->
+    <link rel="stylesheet" href="css/mobile-fixes.css">
+
+    <!-- External Libraries - Load async for performance -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Main PDF Viewer Area -->
+        <div class="pdf-viewer">
+            <!-- Top Control Bar - Mobile Optimized -->
+            <div class="top-controls">
+                <div class="title" data-text="titles.main">🎯 VIOBOX VIEWER</div>
+
+                <!-- File inputs with larger touch targets -->
+                <input type="file" id="csvFiles" class="file-input" accept=".csv" multiple aria-label="Load CSV files">
+                <label for="csvFiles" class="file-label" data-text="buttons.loadCSV">📊 Load CSV(s)</label>
+
+                <input type="file" id="pdfFiles" class="file-input" accept=".pdf" multiple aria-label="Load PDF files">
+                <label for="pdfFiles" class="file-label" data-text="buttons.loadPDF">📄 Load PDFs</label>
+
+                <!-- Bureau filters - Mobile friendly -->
+                <div class="bureau-filters" role="group" aria-label="Bureau filters">
+                    <!-- Bureau checkboxes will be injected here by app.js -->
+                </div>
+
+                <button class="control-btn" id="toggleBtn" disabled data-text="buttons.toggleBoxesShow" aria-label="Toggle violation boxes">
+                    👁️ Toggle
+                </button>
+
+                <!-- PDF Navigation - Mobile optimized -->
+                <div class="pdf-nav" role="navigation" aria-label="PDF navigation">
+                    <button id="prevBtn" disabled aria-label="Previous PDF">◀</button>
+                    <span class="pdf-info" id="pdfInfo" data-text="messages.noPdfLoaded">No PDFs</span>
+                    <button id="nextBtn" disabled aria-label="Next PDF">▶</button>
+                </div>
+
+                <!-- Zoom controls - Touch friendly -->
+                <div class="zoom-controls" role="group" aria-label="Zoom controls">
+                    <button class="zoom-btn" data-scale="0.5" aria-label="50% zoom">50%</button>
+                    <button class="zoom-btn" data-scale="0.75" aria-label="75% zoom">75%</button>
+                    <button class="zoom-btn" data-scale="1.0" aria-label="100% zoom">100%</button>
+                    <button class="zoom-btn" data-scale="1.5" aria-label="150% zoom">150%</button>
+                </div>
+            </div>
+
+            <!-- Status Bar - Responsive -->
+            <div class="status-bar" role="status" aria-live="polite">
+                <div class="status-item">
+                    <span class="status-label" data-text="labels.csvCount">CSVs:</span>
+                    <span class="status-value" id="csvCount">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label" data-text="labels.pdfCount">PDFs:</span>
+                    <span class="status-value" id="pdfCount">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Memory:</span>
+                    <span class="status-value" id="memoryUsage">0MB</span>
+                </div>
+                <div class="status-item" id="mismatchWarning" style="display: none; color: var(--color-warning);">
+                    ⚠️ <span id="mismatchText"></span>
+                </div>
+            </div>
+
+            <!-- Canvas Container - Mobile optimized -->
+            <div class="canvas-container" id="canvasContainer">
+                <canvas id="pdfCanvas" style="display: none;" aria-label="PDF viewer canvas"></canvas>
+
+                <!-- Loading state -->
+                <div class="loading" id="loading">
+                    <div class="loading-icon">📂</div>
+                    <div data-text="instructions.step1">Load CSV files (TU, EX, and/or EQ)</div>
+                    <div data-text="instructions.step2">Load PDF files from selected bureaus</div>
+                    <div data-text="instructions.step3">Use checkboxes to filter by bureau</div>
+                </div>
+
+                <!-- Error state -->
+                <div class="pdf-error" id="pdfError" style="display: none;">
+                    <div class="error-icon">⚠️</div>
+                    <div class="error-message" id="errorMessage"></div>
+                    <button class="retry-btn" id="retryBtn" onclick="retryLoadPDF()">Retry</button>
+                </div>
+
+                <!-- Loading progress for PDFs -->
+                <div class="pdf-loading" id="pdfLoading" style="display: none;">
+                    <div class="pdf-loading-spinner"></div>
+                    <div class="loading-text">Loading PDF <span id="loadingPdfName"></span>...</div>
+                    <div class="loading-progress">
+                        <span id="loadedCount">0</span> / <span id="totalCount">0</span> PDFs loaded
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar - Mobile responsive -->
+        <div class="sidebar" id="sidebar">
+            <!-- Sidebar Header with Legend -->
+            <div class="sidebar-header">
+                <div class="sidebar-title" data-text="titles.sidebarHeader">Violations</div>
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                    <span>▼</span>
+                </button>
+            </div>
+
+            <!-- Current PDF Info -->
+            <div class="current-pdf-info">
+                <div class="pdf-name" id="currentPdfName">No PDF loaded</div>
+                <div class="violation-count" id="currentViolationCount">0 violations</div>
+            </div>
+
+            <!-- Violations List - Virtualized for performance -->
+            <div class="violations-container" id="violationList">
+                <!-- Violations will be added here -->
+            </div>
+
+            <!-- Show More button for mobile -->
+            <button class="show-all-violations" id="showAllBtn" style="display: none;">
+                Show All Violations
+            </button>
+
+            <!-- Stats Summary -->
+            <div class="stats-summary">
+                <div class="overall-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalCount">0</div>
+                        <div class="stat-label">Total</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="extremeCount" style="color: #ff6b6b;">0</div>
+                        <div class="stat-label">Extreme</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="severeCount" style="color: #ffa94d;">0</div>
+                        <div class="stat-label">Severe</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Notification -->
+    <div class="notification" id="notification" role="alert"></div>
+
+    <!-- Application Scripts - Mobile optimized -->
+    <script type="module">
+        import { ConfigLoader } from './js/core/config-loader.js';
+        import { CSVProcessor } from './js/core/csv-processor.js';
+        import { PDFManagerMobile } from './js/core/pdf-manager-mobile.js';
+        import { VioBoxRenderer } from './js/core/viobox-renderer.js';
+        import { TouchHandler } from './js/core/touch-handler.js';
+
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Load configuration
+            const configLoader = new ConfigLoader();
+            const config = await configLoader.loadAll();
+
+            // Apply theme
+            configLoader.applyTheme(config.theme);
+
+            // Initialize components with mobile optimizations
+            const csvProcessor = new CSVProcessor(config);
+            const pdfManager = new PDFManagerMobile({
+                ...config,
+                maxMemoryMB: 50, // Lower memory limit for mobile
+                chunkSize: 3, // Load 3 PDFs at a time
+                onLoadStart: (filename) => {
+                    document.getElementById('pdfLoading').style.display = 'flex';
+                    document.getElementById('loadingPdfName').textContent = filename;
+                },
+                onLoadComplete: (filename) => {
+                    updateLoadingProgress();
+                },
+                onLoadError: (filename, error) => {
+                    showError(`Failed to load ${filename}: ${error.message}`);
+                },
+                onRenderError: (error) => {
+                    showError(`Render error: ${error.message}`);
+                }
+            });
+
+            const vioBoxRenderer = new VioBoxRenderer(config);
+
+            // Set up canvas
+            const canvas = document.getElementById('pdfCanvas');
+            pdfManager.setCanvas(canvas);
+
+            // Initialize touch support
+            const touchHandler = new TouchHandler(canvas, {
+                initialScale: 1.0,
+                minScale: 0.5,
+                maxScale: 3.0,
+                enableMouseEmulation: true,
+                onZoom: (scale) => {
+                    pdfManager.scale = scale;
+                    pdfManager.renderPage(pdfManager.currentPage);
+                },
+                onSwipe: (direction) => {
+                    if (direction === 'left') {
+                        nextPDF();
+                    } else if (direction === 'right') {
+                        previousPDF();
+                    }
+                }
+            });
+
+            // CSV file handler
+            document.getElementById('csvFiles').addEventListener('change', async (e) => {
+                const files = Array.from(e.target.files);
+                const results = await csvProcessor.processMultiple(files);
+
+                document.getElementById('csvCount').textContent = results.processed;
+                showNotification(`Loaded ${results.processed} CSV files`, 'success');
+
+                updateViolationsList(results.violations);
+                updateStats(results.violations);
+            });
+
+            // PDF file handler with progressive loading
+            document.getElementById('pdfFiles').addEventListener('change', async (e) => {
+                const files = Array.from(e.target.files);
+
+                // Show loading UI
+                document.getElementById('pdfLoading').style.display = 'flex';
+                document.getElementById('totalCount').textContent = files.length;
+
+                // Progressive load
+                const results = await pdfManager.loadPDFsProgressive(files);
+
+                // Update UI
+                updateLoadingProgress();
+
+                // Display first PDF if available
+                if (pdfManager.pdfMetadata.size > 0) {
+                    const firstPdf = Array.from(pdfManager.pdfMetadata.keys())[0];
+                    await pdfManager.displayPDF(firstPdf);
+                    canvas.style.display = 'block';
+                    document.getElementById('loading').style.display = 'none';
+                }
+
+                // Enable controls
+                enableControls();
+            });
+
+            // Navigation handlers
+            document.getElementById('prevBtn').addEventListener('click', previousPDF);
+            document.getElementById('nextBtn').addEventListener('click', nextPDF);
+
+            // Zoom handlers
+            document.querySelectorAll('.zoom-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const scale = parseFloat(btn.dataset.scale);
+                    pdfManager.scale = scale;
+                    pdfManager.renderPage(pdfManager.currentPage);
+                });
+            });
+
+            // Memory monitoring
+            setInterval(() => {
+                const status = pdfManager.getStatus();
+                document.getElementById('memoryUsage').textContent = `${status.memoryUsageMB}MB`;
+
+                // Show warning if memory is high
+                if (parseFloat(status.memoryUsageMB) > 80) {
+                    showNotification('High memory usage detected. Some PDFs may be unloaded.', 'warning');
+                }
+            }, 5000);
+
+            // Helper functions
+            function updateLoadingProgress() {
+                const status = pdfManager.getStatus();
+                document.getElementById('loadedCount').textContent = status.cached;
+
+                if (status.cached >= status.total) {
+                    document.getElementById('pdfLoading').style.display = 'none';
+                }
+            }
+
+            function showError(message) {
+                document.getElementById('errorMessage').textContent = message;
+                document.getElementById('pdfError').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('pdfError').style.display = 'none';
+                }, 5000);
+            }
+
+            function showNotification(message, type = 'info') {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.className = `notification ${type}`;
+                notification.style.display = 'block';
+
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 4000);
+            }
+
+            function enableControls() {
+                document.getElementById('toggleBtn').disabled = false;
+                document.getElementById('prevBtn').disabled = false;
+                document.getElementById('nextBtn').disabled = false;
+            }
+
+            async function previousPDF() {
+                const pdfs = Array.from(pdfManager.pdfMetadata.keys());
+                const currentIndex = pdfs.indexOf(pdfManager.currentPdfName);
+                if (currentIndex > 0) {
+                    await pdfManager.displayPDF(pdfs[currentIndex - 1]);
+                    updatePDFInfo();
+                }
+            }
+
+            async function nextPDF() {
+                const pdfs = Array.from(pdfManager.pdfMetadata.keys());
+                const currentIndex = pdfs.indexOf(pdfManager.currentPdfName);
+                if (currentIndex < pdfs.length - 1) {
+                    await pdfManager.displayPDF(pdfs[currentIndex + 1]);
+                    updatePDFInfo();
+                }
+            }
+
+            function updatePDFInfo() {
+                const pdfs = Array.from(pdfManager.pdfMetadata.keys());
+                const currentIndex = pdfs.indexOf(pdfManager.currentPdfName);
+                document.getElementById('pdfInfo').textContent =
+                    `${currentIndex + 1} / ${pdfs.length}`;
+                document.getElementById('currentPdfName').textContent =
+                    pdfManager.currentPdfName || 'No PDF';
+            }
+
+            function updateViolationsList(violations) {
+                const list = document.getElementById('violationList');
+                list.innerHTML = '';
+
+                // Show only first 50 on mobile
+                const isMobile = window.innerWidth < 768;
+                const toShow = isMobile ? violations.slice(0, 50) : violations;
+
+                toShow.forEach(v => {
+                    const item = document.createElement('div');
+                    item.className = `violation-item ${v.severity}`;
+                    item.innerHTML = `
+                        <div class="violation-header">
+                            <span class="violation-rule">${v.rule_id}</span>
+                            <span class="violation-severity">${v.severity}</span>
+                        </div>
+                        <div class="violation-text">${v.violation_type}</div>
+                    `;
+                    list.appendChild(item);
+                });
+
+                // Show "Show All" button if needed
+                if (isMobile && violations.length > 50) {
+                    document.getElementById('showAllBtn').style.display = 'block';
+                }
+            }
+
+            function updateStats(violations) {
+                const total = violations.length;
+                const extreme = violations.filter(v => v.severity === 'extreme').length;
+                const severe = violations.filter(v => v.severity === 'severe').length;
+
+                document.getElementById('totalCount').textContent = total;
+                document.getElementById('extremeCount').textContent = extreme;
+                document.getElementById('severeCount').textContent = severe;
+                document.getElementById('currentViolationCount').textContent =
+                    `${violations.length} violations`;
+            }
+
+            // Clean up on page unload
+            window.addEventListener('beforeunload', () => {
+                pdfManager.destroy();
+                touchHandler.destroy();
+            });
+        });
+
+        // Global error handler
+        window.addEventListener('error', (e) => {
+            console.error('Global error:', e);
+            const notification = document.getElementById('notification');
+            notification.textContent = 'An error occurred. Please refresh the page.';
+            notification.className = 'notification error';
+            notification.style.display = 'block';
+        });
+
+        // Handle memory pressure
+        if ('memory' in performance) {
+            setInterval(() => {
+                const memory = performance.memory;
+                const usedMB = memory.usedJSHeapSize / (1024 * 1024);
+                const limitMB = memory.jsHeapSizeLimit / (1024 * 1024);
+
+                if (usedMB / limitMB > 0.8) {
+                    console.warn('Memory pressure detected:', (usedMB / limitMB * 100).toFixed(1) + '%');
+                    // Trigger cleanup in PDF manager
+                    if (window.pdfManager) {
+                        window.pdfManager.freeMemory();
+                    }
+                }
+            }, 10000);
+        }
+    </script>
+</body>
+</html>
