@@ -102,6 +102,11 @@ data/csv/*
 !data/pdfs/.gitkeep
 !data/csv/.gitkeep
 
+# Allow test files in public for deployment
+!public/data/csv/eq_violations_detailed_test.csv
+!public/data/csv/ex_violations_detailed_test.csv
+!public/data/csv/tu_violations_detailed_test.csv
+
 # Uploads
 uploads/
 public/uploads/

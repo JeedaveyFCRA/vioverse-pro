@@ -1,0 +1,402 @@
+pdf_filename,rule_id,violation_type,severity,full_text,x,y,width,height,page,column
+AL-EQ-2024-04-25-P57.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2024-04-25-P57.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2024-04-25-P57.pdf,EXT-004,Zero_Balance,Severe,Balance $0,35.0,626.8,252.0,8.02,1,left
+AL-EQ-2024-04-25-P57.pdf,EXT-004,Zero_Amount_Past_Due,Severe,Amount Past Due $0,35.0,646.4,252.0,8.02,1,left
+AL-EQ-2024-04-25-P57.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+AL-EQ-2024-04-25-P57.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,646.4,252.0,8.02,1,right
+AL-EQ-2024-04-25-P57.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+AL-EQ-2024-04-25-P58.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,269.6,90.05,37.11,1,left
+AL-EQ-2024-04-25-P58.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+AL-EQ-2024-08-19-P01.pdf,,No Violations Found,,,,,,,,
+AL-EQ-2024-08-19-P02.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,72.0,393.1,159.79,58.83,1,left
+AL-EQ-2024-08-19-P02.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+AL-EQ-2025-02-10-P51.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-02-10-P51.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-02-10-P51.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+AL-EQ-2025-02-10-P51.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,635.6,252.0,8.02,1,right
+AL-EQ-2025-02-10-P52.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,250.0,90.05,37.11,1,left
+AL-EQ-2025-02-10-P52.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+AL-EQ-2025-03-02-P51.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-03-02-P51.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-03-02-P51.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+AL-EQ-2025-03-02-P51.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,635.6,252.0,8.02,1,right
+AL-EQ-2025-03-02-P52.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,250.0,90.05,37.11,1,left
+AL-EQ-2025-03-02-P52.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+AL-EQ-2025-03-13-P42.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-03-13-P42.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-03-13-P42.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+AL-EQ-2025-03-13-P42.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,635.6,252.0,8.02,1,right
+AL-EQ-2025-03-13-P43.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,250.0,90.05,37.11,1,left
+AL-EQ-2025-03-13-P43.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+AL-EQ-2025-03-20-P1.pdf,,No Violations Found,,,,,,,,
+AL-EQ-2025-03-20-P2.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,72.0,393.1,159.79,58.83,1,left
+AL-EQ-2025-03-20-P2.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+AL-EQ-2025-03-22-P40.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-03-22-P40.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-03-22-P40.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+AL-EQ-2025-03-22-P40.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,635.6,252.0,8.02,1,right
+AL-EQ-2025-03-22-P41.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,250.0,90.05,37.11,1,left
+AL-EQ-2025-03-22-P41.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+AL-EQ-2025-04-02-P51.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-04-02-P51.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-04-02-P51.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+AL-EQ-2025-04-02-P51.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,635.6,252.0,8.02,1,right
+AL-EQ-2025-04-02-P52.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,250.0,90.05,37.11,1,left
+AL-EQ-2025-04-02-P52.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+AL-EQ-2025-04-14-P51.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-04-14-P51.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-04-14-P51.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+AL-EQ-2025-04-14-P51.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,635.6,252.0,8.02,1,right
+AL-EQ-2025-04-14-P52.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,250.0,90.05,37.11,1,left
+AL-EQ-2025-04-14-P52.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+AL-EQ-2025-05-25-P51.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-05-25-P51.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+AL-EQ-2025-05-25-P51.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+AL-EQ-2025-05-25-P51.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,635.6,252.0,8.02,1,right
+AL-EQ-2025-05-25-P52.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,250.0,90.05,37.11,1,left
+AL-EQ-2025-05-25-P52.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+AL-EQ-2025-07-09-P13.pdf,EXT-004,Status_Bankruptcy,Extreme,Loan/Account Type: Auto | Status: Included In Wage Earner Plan,54.23,156.4,251.65,7.96,1,left
+AL-EQ-2025-07-09-P13.pdf,EXT-004,Account_Status_Derogatory,Extreme,Loan/Account Type: Auto | Status: Included In Wage Earner Plan,54.23,156.4,251.65,7.96,1,left
+AL-EQ-2025-07-09-P13.pdf,EXT-004,Zero_Balance,Severe,158 Closed or Paid Account/Zero Balance | Paid on Time 30 Days Past Due 60 Days,59.3,661.5,259.73,51.8,1,left
+AL-EQ-2025-07-09-P13.pdf,EXT-004,Zero_Amount_Past_Due,Severe,Scheduled Payment Amount: Amount Past Due: $0,54.23,197.3,238.02,8.0,1,left
+AL-EQ-2025-07-09-P13.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+AL-EQ-2025-07-09-P13.pdf,SEV-002,Stale_Date_Updated,Severe,Date Reported: 10/25/2018 | Balance: $0,369.23,134.6,157.06,7.95,1,right
+AL-EQ-2025-07-09-P13.pdf,SEV-002,Zero_Balance,Severe,Date Reported: 10/25/2018 | Balance: $0,369.23,134.6,157.06,7.95,1,right
+AL-EQ-2025-08-10-P13.pdf,EXT-004,Status_Bankruptcy,Extreme,Loan/Account Type: Auto | Status: Included In Wage Earner Plan,54.23,156.4,251.65,7.96,1,left
+AL-EQ-2025-08-10-P13.pdf,EXT-004,Account_Status_Derogatory,Extreme,Loan/Account Type: Auto | Status: Included In Wage Earner Plan,54.23,156.4,251.65,7.96,1,left
+AL-EQ-2025-08-10-P13.pdf,EXT-004,Zero_Balance,Severe,158 Closed or Paid Account/Zero Balance | Paid on Time 30 Days Past Due 60 Days,59.3,652.7,259.73,51.86,1,left
+AL-EQ-2025-08-10-P13.pdf,EXT-004,Zero_Amount_Past_Due,Severe,Scheduled Payment Amount: Amount Past Due: $0,54.23,197.3,238.02,8.0,1,left
+AL-EQ-2025-08-10-P13.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+AL-EQ-2025-08-10-P13.pdf,SEV-002,Stale_Date_Updated,Severe,Date Reported: 10/25/2018 | Balance: $0,369.23,134.6,157.06,7.95,1,right
+AL-EQ-2025-08-10-P13.pdf,SEV-002,Zero_Balance,Severe,Date Reported: 10/25/2018 | Balance: $0,369.23,134.6,157.06,7.95,1,right
+BB-EQ-2024-04-25-P20.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BB-EQ-2024-04-25-P20.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BB-EQ-2024-04-25-P20.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+BB-EQ-2024-04-25-P20.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+BB-EQ-2024-08-19-P07.pdf,,No Violations Found,,,,,,,,
+BB-EQ-2024-08-19-P08.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+BB-EQ-2024-08-19-P08.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+BK-EQ-2024-04-25-P16.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BK-EQ-2024-04-25-P16.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BK-EQ-2024-04-25-P16.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+BK-EQ-2024-04-25-P16.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+BK-EQ-2024-04-25-P17.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,348.0,90.05,37.11,1,left
+BK-EQ-2024-04-25-P17.pdf,SER-002,Zero_Balance,Severe,Balance $0,35.0,122.7,252.0,8.0,1,left
+BK-EQ-2024-04-25-P17.pdf,SER-002,Zero_Amount_Past_Due,Severe,Amount Past Due $0,35.0,142.3,252.0,8.0,1,left
+BK-EQ-2024-04-25-P17.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+BK-EQ-2024-08-19-P10.pdf,,No Violations Found,,,,,,,,
+BK-EQ-2024-08-19-P11.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+BK-EQ-2024-08-19-P11.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+BY-EQ-2024-04-25-P34.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BY-EQ-2024-04-25-P34.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BY-EQ-2024-04-25-P34.pdf,EXT-004,Zero_Balance,Severe,Balance $0,35.0,647.8,252.0,7.97,1,left
+BY-EQ-2024-04-25-P34.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+BY-EQ-2024-04-25-P34.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+BY-EQ-2024-04-25-P35.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,289.2,90.05,37.11,1,left
+BY-EQ-2024-04-25-P35.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+BY-EQ-2024-04-25-P35.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,83.5,252.0,8.0,1,right
+BY-EQ-2024-08-19-P04.pdf,,No Violations Found,,,,,,,,
+BY-EQ-2024-08-19-P05.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+BY-EQ-2024-08-19-P05.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+BY-EQ-2025-02-10-P28.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BY-EQ-2025-02-10-P28.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BY-EQ-2025-02-10-P28.pdf,EXT-004,Zero_Balance,Severe,Balance $0,35.0,637.0,252.0,7.97,1,left
+BY-EQ-2025-02-10-P28.pdf,EXT-004,Zero_Amount_Past_Due,Severe,Amount Past Due | Balance $0,35.0,656.6,252.0,27.57,1,left
+BY-EQ-2025-02-10-P28.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+BY-EQ-2025-02-10-P28.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,656.6,252.0,7.97,1,right
+BY-EQ-2025-02-10-P28.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+BY-EQ-2025-02-10-P29.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,269.6,90.05,37.11,1,left
+BY-EQ-2025-02-10-P29.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+BY-EQ-2025-03-02-P28.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BY-EQ-2025-03-02-P28.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BY-EQ-2025-03-02-P28.pdf,EXT-004,Zero_Balance,Severe,Balance $0,35.0,637.0,252.0,7.97,1,left
+BY-EQ-2025-03-02-P28.pdf,EXT-004,Zero_Amount_Past_Due,Severe,Amount Past Due | Balance $0,35.0,656.6,252.0,27.57,1,left
+BY-EQ-2025-03-02-P28.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+BY-EQ-2025-03-02-P28.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,656.6,252.0,7.97,1,right
+BY-EQ-2025-03-02-P28.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+BY-EQ-2025-03-02-P29.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,269.6,90.05,37.11,1,left
+BY-EQ-2025-03-02-P29.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+BY-EQ-2025-03-13-P22.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BY-EQ-2025-03-13-P22.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BY-EQ-2025-03-13-P22.pdf,EXT-004,Zero_Balance,Severe,Balance $0,35.0,637.0,252.0,7.97,1,left
+BY-EQ-2025-03-13-P22.pdf,EXT-004,Zero_Amount_Past_Due,Severe,Amount Past Due | Balance $0,35.0,656.6,252.0,27.57,1,left
+BY-EQ-2025-03-13-P22.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+BY-EQ-2025-03-13-P22.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,656.6,252.0,7.97,1,right
+BY-EQ-2025-03-13-P22.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+BY-EQ-2025-03-13-P23.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,269.6,90.05,37.11,1,left
+BY-EQ-2025-03-13-P23.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+BY-EQ-2025-03-20-P4.pdf,,No Violations Found,,,,,,,,
+BY-EQ-2025-03-20-P5.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+BY-EQ-2025-03-20-P5.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+BY-EQ-2025-03-22-P20.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BY-EQ-2025-03-22-P20.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+BY-EQ-2025-03-22-P20.pdf,EXT-004,Zero_Balance,Severe,Balance $0,35.0,637.0,252.0,7.97,1,left
+BY-EQ-2025-03-22-P20.pdf,EXT-004,Zero_Amount_Past_Due,Severe,Amount Past Due | Balance $0,35.0,656.6,252.0,27.57,1,left
+BY-EQ-2025-03-22-P20.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+BY-EQ-2025-03-22-P20.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,656.6,252.0,7.97,1,right
+BY-EQ-2025-03-22-P20.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+BY-EQ-2025-03-22-P21.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,269.6,90.05,37.11,1,left
+BY-EQ-2025-03-22-P21.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+C1-EQ-2024-04-25-P26.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+C1-EQ-2024-04-25-P26.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+C1-EQ-2024-04-25-P26.pdf,EXT-004,Zero_Balance,Severe,Balance $0,35.0,445.3,252.0,8.0,1,left
+C1-EQ-2024-04-25-P26.pdf,EXT-004,Zero_Amount_Past_Due,Severe,Amount Past Due $0,35.0,464.9,252.0,8.0,1,left
+C1-EQ-2024-04-25-P26.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+C1-EQ-2024-04-25-P26.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,464.9,252.0,8.0,1,right
+C1-EQ-2024-04-25-P26.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+C1-EQ-2024-08-19-P16.pdf,,No Violations Found,,,,,,,,
+C1-EQ-2024-08-19-P17.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+C1-EQ-2024-08-19-P17.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+C2-EQ-2024-04-25-P28.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+C2-EQ-2024-04-25-P28.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+C2-EQ-2024-04-25-P28.pdf,EXT-004,Zero_Balance,Severe,Balance $0,35.0,445.3,252.0,8.0,1,left
+C2-EQ-2024-04-25-P28.pdf,EXT-004,Zero_Amount_Past_Due,Severe,Amount Past Due $0,35.0,464.9,252.0,8.0,1,left
+C2-EQ-2024-04-25-P28.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+C2-EQ-2024-04-25-P28.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,464.9,252.0,8.0,1,right
+C2-EQ-2024-04-25-P28.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+C2-EQ-2024-08-19-P13.pdf,,No Violations Found,,,,,,,,
+C2-EQ-2024-08-19-P14.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+C2-EQ-2024-08-19-P14.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+CN-EQ-2024-08-19-P19.pdf,,No Violations Found,,,,,,,,
+CN-EQ-2024-08-19-P20.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+CN-EQ-2024-08-19-P20.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+CR-EQ-2024-04-25-P18.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+CR-EQ-2024-04-25-P18.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+CR-EQ-2024-04-25-P18.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+CR-EQ-2024-04-25-P18.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+CR-EQ-2024-04-25-P19.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,348.0,90.05,37.11,1,left
+CR-EQ-2024-04-25-P19.pdf,SER-002,Zero_Balance,Severe,Balance $0,35.0,122.7,252.0,8.0,1,left
+CR-EQ-2024-04-25-P19.pdf,SER-002,Zero_Amount_Past_Due,Severe,Amount Past Due $0,35.0,142.3,252.0,8.0,1,left
+CR-EQ-2024-04-25-P19.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+CR-EQ-2024-04-25-P19.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Feb 12, 2024 | Date of Last Payment May 2018",323.0,161.9,252.0,27.6,1,right
+CR-EQ-2025-02-10-P22.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+CR-EQ-2025-02-10-P22.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+CR-EQ-2025-02-10-P22.pdf,EXT-004,Zero_Balance,Severe,calculated by dividing an account's reported balance by its credit limit. | Account Number xxxxxxxxxxxx 2608,35.0,182.7,277.33,28.74,1,left
+CR-EQ-2025-02-10-P22.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+CR-EQ-2025-02-10-P23.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,328.4,90.05,37.11,1,left
+CR-EQ-2025-02-10-P23.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+CR-EQ-2025-02-10-P23.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Feb 12, 2024 | Date of Last Payment May 2018",323.0,142.3,252.0,27.6,1,right
+CR-EQ-2025-03-02-P22.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+CR-EQ-2025-03-02-P22.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+CR-EQ-2025-03-02-P22.pdf,EXT-004,Zero_Balance,Severe,calculated by dividing an account's reported balance by its credit limit. | Account Number xxxxxxxxxxxx 2608,35.0,182.7,277.33,28.74,1,left
+CR-EQ-2025-03-02-P22.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+CR-EQ-2025-03-02-P23.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,328.4,90.05,37.11,1,left
+CR-EQ-2025-03-02-P23.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+CR-EQ-2025-03-02-P23.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Feb 12, 2024 | Date of Last Payment May 2018",323.0,142.3,252.0,27.6,1,right
+CR-EQ-2025-03-13-P16.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+CR-EQ-2025-03-13-P16.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+CR-EQ-2025-03-13-P16.pdf,EXT-004,Zero_Balance,Severe,calculated by dividing an account's reported balance by its credit limit. | Account Number xxxxxxxxxxxx 2608,35.0,182.7,277.33,28.74,1,left
+CR-EQ-2025-03-13-P16.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+CR-EQ-2025-03-13-P17.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,328.4,90.05,37.11,1,left
+CR-EQ-2025-03-13-P17.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+CR-EQ-2025-03-13-P17.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Feb 12, 2024 | Date of Last Payment May 2018",323.0,142.3,252.0,27.6,1,right
+CR-EQ-2025-03-20-P7.pdf,,No Violations Found,,,,,,,,
+CR-EQ-2025-03-20-P8.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+CR-EQ-2025-03-20-P8.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+CR-EQ-2025-03-22-P16.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+CR-EQ-2025-03-22-P16.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+CR-EQ-2025-03-22-P16.pdf,EXT-004,Zero_Balance,Severe,calculated by dividing an account's reported balance by its credit limit. | Account Number xxxxxxxxxxxx 2608,35.0,182.7,277.33,28.74,1,left
+CR-EQ-2025-03-22-P16.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+CR-EQ-2025-03-22-P17.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,328.4,90.05,37.11,1,left
+CR-EQ-2025-03-22-P17.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+CR-EQ-2025-03-22-P17.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Feb 12, 2024 | Date of Last Payment May 2018",323.0,142.3,252.0,27.6,1,right
+DB-EQ-2024-04-25-P30.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+DB-EQ-2024-04-25-P30.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+DB-EQ-2024-04-25-P30.pdf,EXT-004,Zero_Balance,Severe,Balance $0,35.0,647.8,252.0,7.97,1,left
+DB-EQ-2024-04-25-P30.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+DB-EQ-2024-04-25-P30.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+DB-EQ-2024-04-25-P31.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,289.2,90.05,37.11,1,left
+DB-EQ-2024-04-25-P31.pdf,SER-002,Zero_Amount_Past_Due,Severe,Amount Past Due $0,35.0,83.5,252.0,8.0,1,left
+DB-EQ-2024-04-25-P31.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+DB-EQ-2024-04-25-P31.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,83.5,252.0,8.0,1,right
+DB-EQ-2024-08-19-P22.pdf,,No Violations Found,,,,,,,,
+DB-EQ-2024-08-19-P23.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+DB-EQ-2024-08-19-P23.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+DL-EQ-2024-04-25-P50.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,254.7,252.0,8.0,1,left
+DL-EQ-2024-04-25-P50.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,254.7,252.0,8.0,1,left
+DL-EQ-2024-04-25-P50.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+DL-EQ-2024-04-25-P50.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,235.1,252.0,8.0,1,right
+DL-EQ-2024-04-25-P51.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,383.4,90.05,37.11,1,left
+DL-EQ-2024-04-25-P51.pdf,SER-002,Zero_Balance,Severe,Balance $0,35.0,158.1,252.0,8.0,1,left
+DL-EQ-2024-04-25-P51.pdf,SER-002,Zero_Amount_Past_Due,Severe,Amount Past Due $0,35.0,177.7,252.0,8.0,1,left
+DL-EQ-2024-04-25-P51.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+DL-EQ-2024-04-25-P51.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Mar 31, 2024 | Date of Last Payment Apr 2018",323.0,197.3,252.0,27.6,1,right
+DL-EQ-2024-08-19-P25.pdf,,No Violations Found,,,,,,,,
+DL-EQ-2024-08-19-P26.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,72.0,393.1,159.79,58.83,1,left
+DL-EQ-2024-08-19-P26.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+HD-EQ-2024-04-25-P32.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+HD-EQ-2024-04-25-P32.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+HD-EQ-2024-04-25-P32.pdf,EXT-004,Zero_Balance,Severe,Balance $0,35.0,605.7,252.0,7.98,1,left
+HD-EQ-2024-04-25-P32.pdf,EXT-004,Zero_Amount_Past_Due,Severe,Amount Past Due $0,35.0,625.3,252.0,7.98,1,left
+HD-EQ-2024-04-25-P32.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+HD-EQ-2024-04-25-P32.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,625.3,252.0,7.98,1,right
+HD-EQ-2024-04-25-P32.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+HD-EQ-2024-04-25-P33.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,230.4,90.05,37.11,1,left
+HD-EQ-2024-04-25-P33.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+HD-EQ-2024-08-19-P37.pdf,,No Violations Found,,,,,,,,
+HD-EQ-2024-08-19-P38.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+HD-EQ-2024-08-19-P38.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+HD-EQ-2025-02-10-P26.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+HD-EQ-2025-02-10-P26.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+HD-EQ-2025-02-10-P26.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+HD-EQ-2025-02-10-P26.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,614.5,252.0,7.98,1,right
+HD-EQ-2025-02-10-P27.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,230.4,90.05,37.11,1,left
+HD-EQ-2025-02-10-P27.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+HD-EQ-2025-03-02-P26.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+HD-EQ-2025-03-02-P26.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+HD-EQ-2025-03-02-P26.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+HD-EQ-2025-03-02-P26.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,614.5,252.0,7.98,1,right
+HD-EQ-2025-03-02-P27.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,230.4,90.05,37.11,1,left
+HD-EQ-2025-03-02-P27.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+HD-EQ-2025-03-13-P20.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+HD-EQ-2025-03-13-P20.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+HD-EQ-2025-03-13-P20.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+HD-EQ-2025-03-13-P20.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,614.5,252.0,7.98,1,right
+HD-EQ-2025-03-13-P21.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,230.4,90.05,37.11,1,left
+HD-EQ-2025-03-13-P21.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+JP-EQ-2024-04-25-P24.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+JP-EQ-2024-04-25-P24.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+JP-EQ-2024-04-25-P24.pdf,EXT-004,Zero_Balance,Severe,Balance $0,35.0,647.8,252.0,7.97,1,left
+JP-EQ-2024-04-25-P24.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+JP-EQ-2024-04-25-P24.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+JP-EQ-2024-08-19-P28.pdf,,No Violations Found,,,,,,,,
+JP-EQ-2024-08-19-P29.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+JP-EQ-2024-08-19-P29.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+JP-EQ-2025-02-10-P24.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+JP-EQ-2025-02-10-P24.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+JP-EQ-2025-02-10-P24.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+JP-EQ-2025-02-10-P24.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,656.6,252.0,7.97,1,right
+JP-EQ-2025-02-10-P25.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,269.6,90.05,37.11,1,left
+JP-EQ-2025-02-10-P25.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+JP-EQ-2025-03-02-P24.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+JP-EQ-2025-03-02-P24.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+JP-EQ-2025-03-02-P24.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+JP-EQ-2025-03-02-P24.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,656.6,252.0,7.97,1,right
+JP-EQ-2025-03-02-P25.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,269.6,90.05,37.11,1,left
+JP-EQ-2025-03-02-P25.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+JP-EQ-2025-03-13-P18.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+JP-EQ-2025-03-13-P18.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+JP-EQ-2025-03-13-P18.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+JP-EQ-2025-03-13-P18.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,656.6,252.0,7.97,1,right
+JP-EQ-2025-03-13-P19.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,269.6,90.05,37.11,1,left
+JP-EQ-2025-03-13-P19.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+JP-EQ-2025-03-20-P10.pdf,,No Violations Found,,,,,,,,
+JP-EQ-2025-03-20-P11.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+JP-EQ-2025-03-20-P11.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+JP-EQ-2025-03-22-P18.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+JP-EQ-2025-03-22-P18.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+JP-EQ-2025-03-22-P18.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+JP-EQ-2025-03-22-P18.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,656.6,252.0,7.97,1,right
+JP-EQ-2025-03-22-P19.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,269.6,90.05,37.11,1,left
+JP-EQ-2025-03-22-P19.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+JP-EQ-2025-04-02-P49.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,265.5,252.0,8.0,1,left
+JP-EQ-2025-04-02-P49.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,265.5,252.0,8.0,1,left
+JP-EQ-2025-04-02-P49.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+JP-EQ-2025-04-02-P50.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,328.4,90.05,37.11,1,left
+JP-EQ-2025-04-02-P50.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+JP-EQ-2025-04-02-P50.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,122.7,252.0,8.0,1,right
+JP-EQ-2025-04-14-P49.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,265.5,252.0,8.0,1,left
+JP-EQ-2025-04-14-P49.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,265.5,252.0,8.0,1,left
+JP-EQ-2025-04-14-P49.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+JP-EQ-2025-04-14-P50.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,328.4,90.05,37.11,1,left
+JP-EQ-2025-04-14-P50.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+JP-EQ-2025-04-14-P50.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,122.7,252.0,8.0,1,right
+JP-EQ-2025-05-25-P49.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,265.5,252.0,8.0,1,left
+JP-EQ-2025-05-25-P49.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,265.5,252.0,8.0,1,left
+JP-EQ-2025-05-25-P49.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+JP-EQ-2025-05-25-P50.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,328.4,90.05,37.11,1,left
+JP-EQ-2025-05-25-P50.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+JP-EQ-2025-05-25-P50.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,122.7,252.0,8.0,1,right
+MF-EQ-2024-04-25-P67.pdf,SEV-002,Zero_Balance,Severe,Balance $0,35.0,445.3,252.0,8.0,1,left
+MF-EQ-2024-04-25-P67.pdf,SEV-002,Zero_Amount_Past_Due,Severe,Amount Past Due | Balance $0,35.0,464.9,252.0,27.6,1,left
+MF-EQ-2024-04-25-P67.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+MF-EQ-2024-08-19-P31.pdf,,No Violations Found,,,,,,,,
+MF-EQ-2024-08-19-P32.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,72.0,393.1,159.79,58.83,1,left
+MF-EQ-2024-08-19-P32.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+MF-EQ-2025-02-10-P49.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+MF-EQ-2025-02-10-P49.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+MF-EQ-2025-02-10-P49.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+MF-EQ-2025-02-10-P49.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,593.5,252.0,8.03,1,right
+MF-EQ-2025-02-10-P50.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,210.8,90.05,37.11,1,left
+MF-EQ-2025-02-10-P50.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+MF-EQ-2025-03-02-P49.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+MF-EQ-2025-03-02-P49.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+MF-EQ-2025-03-02-P49.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+MF-EQ-2025-03-02-P49.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,593.5,252.0,8.03,1,right
+MF-EQ-2025-03-02-P50.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,210.8,90.05,37.11,1,left
+MF-EQ-2025-03-02-P50.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+MF-EQ-2025-03-13-P40.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+MF-EQ-2025-03-13-P40.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+MF-EQ-2025-03-13-P40.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+MF-EQ-2025-03-13-P40.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,593.5,252.0,8.03,1,right
+MF-EQ-2025-03-13-P41.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,210.8,90.05,37.11,1,left
+MF-EQ-2025-03-13-P41.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+MF-EQ-2025-03-20-P13.pdf,,No Violations Found,,,,,,,,
+MF-EQ-2025-03-20-P14.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,72.0,393.1,159.79,58.83,1,left
+MF-EQ-2025-03-20-P14.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+MF-EQ-2025-03-22-P38.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+MF-EQ-2025-03-22-P38.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+MF-EQ-2025-03-22-P38.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+MF-EQ-2025-03-22-P38.pdf,SEV-002,Stale_Date_Updated,Severe,"Date Reported Oct 25, 2018",323.0,593.5,252.0,8.03,1,right
+MF-EQ-2025-03-22-P39.pdf,SER-002,Remarks_Chapter13,Serious,Comments | Bankruptcy chapter 13,35.0,210.8,90.05,37.11,1,left
+MF-EQ-2025-03-22-P39.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
+MF-EQ-2025-04-02-P47.pdf,SEV-002,Zero_Balance,Severe,Balance $0,35.0,552.8,252.0,7.99,1,left
+MF-EQ-2025-04-02-P47.pdf,SEV-002,Zero_Amount_Past_Due,Severe,Amount Past Due | Balance $0,35.0,572.4,252.0,27.59,1,left
+MF-EQ-2025-04-02-P47.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+MF-EQ-2025-04-02-P48.pdf,,No Violations Found,,,,,,,,
+MF-EQ-2025-04-14-P47.pdf,SEV-002,Zero_Balance,Severe,Balance $0,35.0,552.8,252.0,7.99,1,left
+MF-EQ-2025-04-14-P47.pdf,SEV-002,Zero_Amount_Past_Due,Severe,Amount Past Due | Balance $0,35.0,572.4,252.0,27.59,1,left
+MF-EQ-2025-04-14-P47.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+MF-EQ-2025-04-14-P48.pdf,,No Violations Found,,,,,,,,
+MF-EQ-2025-05-25-P47.pdf,SEV-002,Zero_Balance,Severe,Balance $0,35.0,552.8,252.0,7.99,1,left
+MF-EQ-2025-05-25-P47.pdf,SEV-002,Zero_Amount_Past_Due,Severe,Amount Past Due | Balance $0,35.0,572.4,252.0,27.59,1,left
+MF-EQ-2025-05-25-P47.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+MF-EQ-2025-05-25-P48.pdf,,No Violations Found,,,,,,,,
+PR-EQ-2024-04-25-P78.pdf,PR-EXT-001,PR_Status_Not_Discharged,Extreme,Judgments are a legal status granted by a court that indicates you must pay back an outstanding debt. Judgments stay on your credit | report up to 7 years from the date filed and generally have a negative impact on your credit score.,35.0,541.6,529.78,19.84,1,
+PR-EQ-2024-04-25-P78.pdf,PR-SER-001,PR_Date_Issues,Serious,"Date Filed Oct 25, 2018 Type Individual",35.0,327.5,540.0,8.0,1,
+PR-EQ-2024-04-25-P78.pdf,PR-EXT-001,COMBO_PR-EXT-001_Not_Marked_Discharged,Extreme,Post-Discharge Not Marked Discharged,,,,,1,
+PR-EQ-2024-04-25-P78.pdf,PR-SER-001,COMBO_PR-SER-001_No_Refresh,Serious,No Refresh Within 60 Days After Discharge,,,,,1,
+PR-EQ-2025-02-10-P67.pdf,PR-EXT-001,PR_Status_Not_Discharged,Extreme,Judgments are a legal status granted by a court that indicates you must pay back an outstanding debt. Judgments stay on your credit | report up to 7 years from the date filed and generally have a negative impact on your credit score.,35.0,541.6,529.78,19.84,1,
+PR-EQ-2025-02-10-P67.pdf,PR-SER-001,PR_Date_Issues,Serious,"Date Filed Oct 25, 2018 Type Individual",35.0,327.5,540.0,8.0,1,
+PR-EQ-2025-02-10-P67.pdf,PR-EXT-001,COMBO_PR-EXT-001_Not_Marked_Discharged,Extreme,Post-Discharge Not Marked Discharged,,,,,1,
+PR-EQ-2025-02-10-P67.pdf,PR-SER-001,COMBO_PR-SER-001_No_Refresh,Serious,No Refresh Within 60 Days After Discharge,,,,,1,
+PR-EQ-2025-03-02-P67.pdf,PR-EXT-001,PR_Status_Not_Discharged,Extreme,Judgments are a legal status granted by a court that indicates you must pay back an outstanding debt. Judgments stay on your credit | report up to 7 years from the date filed and generally have a negative impact on your credit score.,35.0,541.6,529.78,19.84,1,
+PR-EQ-2025-03-02-P67.pdf,PR-SER-001,PR_Date_Issues,Serious,"Date Filed Oct 25, 2018 Type Individual",35.0,327.5,540.0,8.0,1,
+PR-EQ-2025-03-02-P67.pdf,PR-EXT-001,COMBO_PR-EXT-001_Not_Marked_Discharged,Extreme,Post-Discharge Not Marked Discharged,,,,,1,
+PR-EQ-2025-03-02-P67.pdf,PR-SER-001,COMBO_PR-SER-001_No_Refresh,Serious,No Refresh Within 60 Days After Discharge,,,,,1,
+PR-EQ-2025-03-13-P58.pdf,PR-EXT-001,PR_Status_Not_Discharged,Extreme,Judgments are a legal status granted by a court that indicates you must pay back an outstanding debt. Judgments stay on your credit | report up to 7 years from the date filed and generally have a negative impact on your credit score.,35.0,541.6,529.78,19.84,1,
+PR-EQ-2025-03-13-P58.pdf,PR-SER-001,PR_Date_Issues,Serious,"Date Filed Oct 25, 2018 Type Individual",35.0,327.5,540.0,8.0,1,
+PR-EQ-2025-03-13-P58.pdf,PR-EXT-001,COMBO_PR-EXT-001_Not_Marked_Discharged,Extreme,Post-Discharge Not Marked Discharged,,,,,1,
+PR-EQ-2025-03-13-P58.pdf,PR-SER-001,COMBO_PR-SER-001_No_Refresh,Serious,No Refresh Within 60 Days After Discharge,,,,,1,
+PR-EQ-2025-03-22-P57.pdf,PR-EXT-001,PR_Status_Not_Discharged,Extreme,Judgments are a legal status granted by a court that indicates you must pay back an outstanding debt. Judgments stay on your credit | report up to 7 years from the date filed and generally have a negative impact on your credit score.,35.0,541.6,529.78,19.84,1,
+PR-EQ-2025-03-22-P57.pdf,PR-SER-001,PR_Date_Issues,Serious,"Date Filed Oct 25, 2018 Type Individual",35.0,327.5,540.0,8.0,1,
+PR-EQ-2025-03-22-P57.pdf,PR-EXT-001,COMBO_PR-EXT-001_Not_Marked_Discharged,Extreme,Post-Discharge Not Marked Discharged,,,,,1,
+PR-EQ-2025-03-22-P57.pdf,PR-SER-001,COMBO_PR-SER-001_No_Refresh,Serious,No Refresh Within 60 Days After Discharge,,,,,1,
+PR-EQ-2025-04-02-P59.pdf,PR-EXT-001,PR_Status_Not_Discharged,Extreme,Judgments are a legal status granted by a court that indicates you must pay back an outstanding debt. Judgments stay on your credit | report up to 7 years from the date filed and generally have a negative impact on your credit score.,35.0,541.6,529.78,19.84,1,
+PR-EQ-2025-04-02-P59.pdf,PR-SER-001,PR_Date_Issues,Serious,"Date Filed Oct 25, 2018 Type Individual",35.0,327.5,540.0,8.0,1,
+PR-EQ-2025-04-02-P59.pdf,PR-EXT-001,COMBO_PR-EXT-001_Not_Marked_Discharged,Extreme,Post-Discharge Not Marked Discharged,,,,,1,
+PR-EQ-2025-04-02-P59.pdf,PR-SER-001,COMBO_PR-SER-001_No_Refresh,Serious,No Refresh Within 60 Days After Discharge,,,,,1,
+PR-EQ-2025-04-14-P59.pdf,PR-EXT-001,PR_Status_Not_Discharged,Extreme,Judgments are a legal status granted by a court that indicates you must pay back an outstanding debt. Judgments stay on your credit | report up to 7 years from the date filed and generally have a negative impact on your credit score.,35.0,541.6,529.78,19.84,1,
+PR-EQ-2025-04-14-P59.pdf,PR-SER-001,PR_Date_Issues,Serious,"Date Filed Oct 25, 2018 Type Individual",35.0,327.5,540.0,8.0,1,
+PR-EQ-2025-04-14-P59.pdf,PR-EXT-001,COMBO_PR-EXT-001_Not_Marked_Discharged,Extreme,Post-Discharge Not Marked Discharged,,,,,1,
+PR-EQ-2025-04-14-P59.pdf,PR-SER-001,COMBO_PR-SER-001_No_Refresh,Serious,No Refresh Within 60 Days After Discharge,,,,,1,
+PR-EQ-2025-05-25-P59.pdf,PR-EXT-001,PR_Status_Not_Discharged,Extreme,Judgments are a legal status granted by a court that indicates you must pay back an outstanding debt. Judgments stay on your credit | report up to 7 years from the date filed and generally have a negative impact on your credit score.,35.0,541.6,529.78,19.84,1,
+PR-EQ-2025-05-25-P59.pdf,PR-SER-001,PR_Date_Issues,Serious,"Date Filed Oct 25, 2018 Type Individual",35.0,327.5,540.0,8.0,1,
+PR-EQ-2025-05-25-P59.pdf,PR-EXT-001,COMBO_PR-EXT-001_Not_Marked_Discharged,Extreme,Post-Discharge Not Marked Discharged,,,,,1,
+PR-EQ-2025-05-25-P59.pdf,PR-SER-001,COMBO_PR-SER-001_No_Refresh,Serious,No Refresh Within 60 Days After Discharge,,,,,1,
+PR-EQ-2025-07-09-P17.pdf,PR-EXT-001,PR_Status_Not_Discharged,Extreme,Current Disposition Date: 02/09/2024 Prior Disposition: Dismissed/Closed CH-13 Filer: Individual | Bankruptcy Filed: 10/25/2018 Date Reported: 02/10/2024 Case or ID Number: 1812245,54.23,344.1,485.64,29.77,1,
+PR-EQ-2025-07-09-P17.pdf,PR-SER-001,PR_Date_Issues,Serious,Bankruptcy Filed: 10/25/2018 Date Reported: 02/10/2024 Case or ID Number: 1812245,54.23,322.3,485.64,7.97,1,
+PR-EQ-2025-07-09-P17.pdf,PR-EXT-001,COMBO_PR-EXT-001_Not_Marked_Discharged,Extreme,Post-Discharge Not Marked Discharged,,,,,1,
+PR-EQ-2025-07-09-P17.pdf,PR-SER-001,COMBO_PR-SER-001_No_Refresh,Serious,No Refresh Within 60 Days After Discharge,,,,,1,
+PR-EQ-2025-08-10-P17.pdf,PR-EXT-001,PR_Status_Not_Discharged,Extreme,Current Disposition Date: 02/09/2024 Prior Disposition: Dismissed/Closed CH-13 Filer: Individual | Bankruptcy Filed: 10/25/2018 Date Reported: 02/10/2024 Case or ID Number: 1812245,54.23,344.1,485.64,29.77,1,
+PR-EQ-2025-08-10-P17.pdf,PR-SER-001,PR_Date_Issues,Serious,Bankruptcy Filed: 10/25/2018 Date Reported: 02/10/2024 Case or ID Number: 1812245,54.23,322.3,485.64,7.97,1,
+PR-EQ-2025-08-10-P17.pdf,PR-EXT-001,COMBO_PR-EXT-001_Not_Marked_Discharged,Extreme,Post-Discharge Not Marked Discharged,,,,,1,
+PR-EQ-2025-08-10-P17.pdf,PR-SER-001,COMBO_PR-SER-001_No_Refresh,Serious,No Refresh Within 60 Days After Discharge,,,,,1,
+SR-EQ-2024-04-25-P22.pdf,EXT-004,Status_Bankruptcy,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+SR-EQ-2024-04-25-P22.pdf,EXT-004,Account_Status_Derogatory,Extreme,Account Status INCLUDED_IN_CHAPTER_13,35.0,202.3,252.0,8.0,1,left
+SR-EQ-2024-04-25-P22.pdf,EXT-004,COMBO_EXT-004_Bankruptcy_Persisting,Extreme,Bankruptcy Status Persisting Post-Discharge,,,,,1,left
+SR-EQ-2024-04-25-P22.pdf,SEV-002,Zero_Balance,Severe,Reported Balance $0,323.0,182.7,252.0,8.0,1,right
+SR-EQ-2024-08-19-P34.pdf,,No Violations Found,,,,,,,,
+SR-EQ-2024-08-19-P35.pdf,SER-002,Remarks_Chapter13,Serious,COMMENTS AND CONTACT | BANKRUPTCY CHAPTER 13,78.0,421.6,159.79,58.83,1,left
+SR-EQ-2024-08-19-P35.pdf,SER-002,COMBO_SER-002_Derogatory_Remarks,Serious,Derogatory Remarks Post-Discharge,,,,,1,left
