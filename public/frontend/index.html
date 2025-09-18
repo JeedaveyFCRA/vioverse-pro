@@ -6,8 +6,8 @@
     <title data-text="titles.main">VIOBOX VIEWER - Multi-Bureau System</title>
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="css/core.css">
-    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="./css/core.css">
+    <link rel="stylesheet" href="./css/layout.css">
 
     <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -132,6 +132,12 @@
     <a href="#pdfCanvas" class="sr-only">Skip to PDF content</a>
 
     <!-- Application JavaScript -->
-    <script type="module" src="js/app.js"></script>
+    <script src="./js/core/config-loader.js"></script>
+    <script src="./js/core/csv-processor.js"></script>
+    <script src="./js/core/pdf-manager.js"></script>
+    <script src="./js/core/viobox-renderer.js"></script>
+    <script src="./js/views/evidence-view.js"></script>
+    <script src="./js/views/timeline-view.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 </html>
