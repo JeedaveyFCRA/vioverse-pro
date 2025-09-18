@@ -6,21 +6,6 @@
 (function() {
     'use strict';
 
-  // ---- CSV Processor Compatibility Shim (A+ Constitution V8) --------------
-  async function processCsvFiles(urls) {
-    const w = window;
-    if (w.csvProcessor?.processFiles) return w.csvProcessor.processFiles(urls);
-    if (typeof w.processCSVFiles === 'function') return w.processCSVFiles(urls);
-    if (typeof w.CSVProcessor === 'function') {
-      const inst = new w.CSVProcessor();
-      if (typeof inst.processFiles === 'function') return inst.processFiles(urls);
-      if (typeof inst.process === 'function') return inst.process(urls);
-    }
-    throw new Error('CSV processor not found');
-  }
-  // -------------------------------------------------------------------------
-
-
     // Ensure namespace exists
     window.VioboxSystem = window.VioboxSystem || {};
 
@@ -624,7 +609,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pdfFiles = await Promise.all(pdfUrls.map(u => toFile(u, 'application/pdf')));
 
         if (csvFiles.length) {
-          const violations = await evView.csvProcessor.processFiles(csvFiles);
+          const violations = await evView.processCsvFiles(csvFiles);
           evView.violations = violations;
           evView.violationsByPDF = evView.csvProcessor.groupByPDF(violations);
           evView.updateStatistics();
