@@ -65,6 +65,17 @@
                 <div class="status-item" id="mismatchWarning" style="display: none; color: var(--color-warning);">
                     ⚠️ <span id="mismatchText"></span>
                 </div>
+
+                <!-- Asset Loading Progress Indicators -->
+                <div class="status-item" role="status" aria-live="polite">
+                    <span id="asset-csv-status" class="status-value"></span>
+                </div>
+                <div class="status-item" role="status" aria-live="polite">
+                    <span id="asset-pdf-status" class="status-value"></span>
+                </div>
+                <div class="status-item" role="status" aria-live="polite">
+                    <span id="asset-ready-status" class="status-value" style="color: var(--color-success);"></span>
+                </div>
             </div>
 
             <!-- Canvas Container -->
@@ -132,6 +143,10 @@
     <a href="#pdfCanvas" class="sr-only">Skip to PDF content</a>
 
     <!-- Application JavaScript -->
+    <!-- Asset Preloader -->
+    <script src="./js/core/asset-loader.js"></script>
+
+    <!-- Core Modules -->
     <script src="./js/core/config-loader.js"></script>
     <script src="./js/core/csv-processor.js"></script>
     <script src="./js/core/pdf-manager.js"></script>
