@@ -583,3 +583,45 @@
         window.VioboxApp = app; // Make app accessible globally for debugging
     });
 })();
+// Auto-load CSVs and PDFs when asset list is ready
+document.addEventListener('DOMContentLoaded', () => {
+  const evts = window.APP && APP.events;
+  if (!evts) return;
+  evts.addEventListener('assets:ready', async () => {
+    try {
+      const evView = window.vioboxApp?.views?.evidence;
+      if (!evView) return;
+
+      const csvUrls = (APP.assets.csv || []).map(a => a.url);
+      const pdfUrls = (APP.assets.pdfs || []).map(a => a.url);
+
+      const toFile = async (u, type) =>
+        new File([await (await fetch(u)).blob()], u.split('/').pop() || 'file', { type });
+
+      const csvFiles = await Promise.all(csvUrls.map(u => toFile(u, 'text/csv')));
+      const pdfFiles = await Promise.all(pdfUrls.map(u => toFile(u, 'application/pdf')));
+
+      if (csvFiles.length) {
+        const violations = await evView.csvProcessor.processFiles(csvFiles);
+        evView.violations = violations;
+        evView.violationsByPDF = evView.csvProcessor.groupByPDF(violations);
+        evView.updateStatistics();
+      }
+      if (pdfFiles.length) {
+        const loaded = await evView.pdfManager.loadPDFs(pdfFiles);
+        evView.pdfFiles = Object.keys(loaded);
+        evView.updateBureauCounts();
+      }
+      evView.applyFilters();
+      if (evView.filteredPdfNames?.length) {
+        evView.currentPdfIndex = 0;
+        await evView.displayCurrentPDF();
+      } else {
+        evView.showEmptyState();
+      }
+      console.log('Auto-init complete from /api/assets');
+    } catch (e) {
+      console.error('Auto-init failed', e);
+    }
+  }, { once: true });
+});
