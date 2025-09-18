@@ -9,10 +9,6 @@
   // ---- CSV Processor Compatibility Shim (A+ Constitution V8) --------------
   async function processCsvFiles(urls) {
     const w = window;
-    // Check evidence view's csvProcessor first
-    if (w.vioboxApp?.views?.evidence?.csvProcessor?.processFiles) {
-      return w.vioboxApp.views.evidence.csvProcessor.processFiles(urls);
-    }
     if (w.csvProcessor?.processFiles) return w.csvProcessor.processFiles(urls);
     if (typeof w.processCSVFiles === 'function') return w.processCSVFiles(urls);
     if (typeof w.CSVProcessor === 'function') {
@@ -21,21 +17,6 @@
       if (typeof inst.process === 'function') return inst.process(urls);
     }
     throw new Error('CSV processor not found');
-  }
-
-  // Bridge: publish evidence view csvProcessor globally if not already
-  function bridgeCsvProcessor() {
-    try {
-      const ev = window.vioboxApp?.views?.evidence;
-      if (ev?.csvProcessor && !window.csvProcessor) {
-        window.csvProcessor = ev.csvProcessor;
-      }
-    } catch (_) {}
-    // Retry after a short delay if views not ready yet
-    setTimeout(bridgeCsvProcessor, 100);
-  }
-  if (typeof window !== 'undefined') {
-    setTimeout(bridgeCsvProcessor, 0);
   }
   // -------------------------------------------------------------------------
 
@@ -643,7 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pdfFiles = await Promise.all(pdfUrls.map(u => toFile(u, 'application/pdf')));
 
         if (csvFiles.length) {
-          const violations = await processCsvFiles(csvFiles);
+          const violations = await evView.csvProcessor.processFiles(csvFiles);
           evView.violations = violations;
           evView.violationsByPDF = evView.csvProcessor.groupByPDF(violations);
           evView.updateStatistics();
