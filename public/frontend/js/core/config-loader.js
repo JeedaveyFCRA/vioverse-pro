@@ -247,3 +247,5 @@ class ConfigLoader {
 // Export to global namespace
 window.VioboxSystem = window.VioboxSystem || {};
 window.VioboxSystem.configLoader = new ConfigLoader();
+// ES6 module export
+export default new ConfigLoader();
