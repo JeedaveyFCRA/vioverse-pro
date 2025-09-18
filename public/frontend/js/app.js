@@ -587,43 +587,51 @@
 document.addEventListener('DOMContentLoaded', () => {
   const evts = window.APP && APP.events;
   if (!evts) return;
-  const init = async () => {
-    try {
+
+  evts.addEventListener('assets:ready', () => {
+    const t = setInterval(async () => {
       const evView = window.vioboxApp?.views?.evidence;
-      if (!evView) return;
+      if (!evView) return;   // wait until views are registered
+      clearInterval(t);
+      // ▼▼ KEEP your EXISTING CSV/PDF AUTO-INIT CODE between these markers ▼▼
+      try {
+        const csvUrls = (APP.assets.csv || []).map(a => a.url);
+        const pdfUrls = (APP.assets.pdfs || []).map(a => a.url);
 
-      const csvUrls = (APP.assets.csv || []).map(a => a.url);
-      const pdfUrls = (APP.assets.pdfs || []).map(a => a.url);
+        const toFile = async (u, type) =>
+          new File([await (await fetch(u)).blob()], u.split('/').pop() || 'file', { type });
 
-      const toFile = async (u, type) =>
-        new File([await (await fetch(u)).blob()], u.split('/').pop() || 'file', { type });
+        const csvFiles = await Promise.all(csvUrls.map(u => toFile(u, 'text/csv')));
+        const pdfFiles = await Promise.all(pdfUrls.map(u => toFile(u, 'application/pdf')));
 
-      const csvFiles = await Promise.all(csvUrls.map(u => toFile(u, 'text/csv')));
-      const pdfFiles = await Promise.all(pdfUrls.map(u => toFile(u, 'application/pdf')));
-
-      if (csvFiles.length) {
-        const violations = await evView.csvProcessor.processFiles(csvFiles);
-        evView.violations = violations;
-        evView.violationsByPDF = evView.csvProcessor.groupByPDF(violations);
-        evView.updateStatistics();
+        if (csvFiles.length) {
+          const violations = await evView.csvProcessor.processFiles(csvFiles);
+          evView.violations = violations;
+          evView.violationsByPDF = evView.csvProcessor.groupByPDF(violations);
+          evView.updateStatistics();
+        }
+        if (pdfFiles.length) {
+          const loaded = await evView.pdfManager.loadPDFs(pdfFiles);
+          evView.pdfFiles = Object.keys(loaded);
+          evView.updateBureauCounts();
+        }
+        evView.applyFilters();
+        if (evView.filteredPdfNames?.length) {
+          evView.currentPdfIndex = 0;
+          await evView.displayCurrentPDF();
+        } else {
+          evView.showEmptyState();
+        }
+        console.log('Auto-init complete from /api/assets');
+      } catch (e) {
+        console.error('Auto-init failed', e);
       }
-      if (pdfFiles.length) {
-        const loaded = await evView.pdfManager.loadPDFs(pdfFiles);
-        evView.pdfFiles = Object.keys(loaded);
-        evView.updateBureauCounts();
-      }
-      evView.applyFilters();
-      if (evView.filteredPdfNames?.length) {
-        evView.currentPdfIndex = 0;
-        await evView.displayCurrentPDF();
-      } else {
-        evView.showEmptyState();
-      }
-      console.log('Auto-init complete from /api/assets');
-    } catch (e) {
-      console.error('Auto-init failed', e);
-    }
-  };
-  evts.addEventListener('assets:ready', init, { once: true });
-  if (APP && APP.assets) init();
+      // ▲▲ KEEP your EXISTING CSV/PDF AUTO-INIT CODE between these markers ▲▲
+    }, 100);
+  }, { once: true });
+
+  // If assets were fetched before listeners attached, re-dispatch the same event
+  if (window.APP && APP.assets) {
+    evts.dispatchEvent(new Event('assets:ready'));
+  }
 });
