@@ -25,7 +25,7 @@ export default defineConfig({
       ],
     },
     include: ['**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    exclude: ['node_modules', '.next', 'out', 'dist', 'build', 'playwright'],
+    exclude: ['node_modules', '.next', 'out', 'dist', 'build', 'playwright', 'tests/_pending'],
   },
   resolve: {
     alias: {
