@@ -1,7 +1,0 @@
-{
-  "bureaus": {
-    "EQ": { "name": "Equifax",   "code": "EQ", "color": "#B80000", "enabled": true, "order": 1 },
-    "EX": { "name": "Experian",  "code": "EX", "color": "#3B00B8", "enabled": true, "order": 2 },
-    "TU": { "name": "TransUnion","code": "TU", "color": "#008A2E", "enabled": true, "order": 3 }
-  }
-}
