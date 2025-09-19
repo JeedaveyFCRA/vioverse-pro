@@ -146,6 +146,9 @@
     <a href="#pdfCanvas" class="sr-only">Skip to PDF content</a>
 
     <!-- Application JavaScript -->
+    <!-- A+ Compliant: Lazy Loading for Mobile Performance -->
+    <script src="./js/core/pdf-lazy-loader.js"></script>
+
     <!-- Asset Preloader -->
     <script src="./js/core/asset-loader.js"></script>
 
@@ -156,6 +159,8 @@
     <script src="./js/core/viobox-renderer.js"></script>
     <script src="./js/views/evidence-view.js"></script>
     <script src="./js/views/timeline-view.js"></script>
-    <script src="./js/app.js" type="module"></script>
+
+    <!-- A+ Compliant: Using mobile-optimized version with lazy loading -->
+    <script src="./js/app-mobile-fixed.js" type="module"></script>
 </body>
 </html>
