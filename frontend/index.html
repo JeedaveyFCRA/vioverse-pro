@@ -175,6 +175,17 @@
 
         // Initialize on DOM ready
         document.addEventListener('DOMContentLoaded', async () => {
+            // Wait for assets to be ready
+            window.APP.events.addEventListener("assets:ready", async (e) => {
+                console.log("Assets ready:", e.detail);
+                // Load CSVs automatically
+                for (const csv of window.APP.assets.csv) {
+                    const response = await fetch(csv.url);
+                    const text = await response.text();
+                    // Process CSV data
+                }
+                // PDFs are cached and ready
+            });
             // Load configuration
             const configLoader = new ConfigLoader();
             const config = await configLoader.loadAll();
