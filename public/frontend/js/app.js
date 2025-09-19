@@ -275,21 +275,88 @@ class VioboxViewer {
             await Promise.all(promises);
         }
 
-        if (loadedCount > 0) {
-            // Store all PDF names but only loaded ones are in pdfFiles
-            this.pdfFileNames = limitedList.map(p => p.url.split('/').pop());
-            this.allPdfNames = pdfList.map(p => p.url.split('/').pop());
+        // Store ALL PDF names and URLs for on-demand loading
+        this.pdfFileNames = pdfList.map(p => p.url.split('/').pop());
+        this.allPdfUrls = {};
+        pdfList.forEach(p => {
+            const name = p.url.split('/').pop();
+            this.allPdfUrls[name] = p.url;
+        });
 
+        if (loadedCount > 0) {
             document.getElementById('pdfCount').textContent = `${loadedCount}/${pdfList.length}`;
             this.updateBureauCounts();
 
-            const message = isMobile
-                ? `Mobile: Loaded ${loadedCount} of ${pdfList.length} PDFs (memory limit)`
-                : `Auto-loaded ${loadedCount} PDF file(s)`;
+            const message = `Pre-loaded ${loadedCount} of ${pdfList.length} PDFs. Others load on-demand.`;
             this.showNotification(message, 'success');
 
             this.enableControls();
         }
+    }
+
+    /**
+     * Load all remaining PDFs that haven't been loaded yet
+     */
+    async loadAllRemainingPdfs() {
+        const unloadedPdfs = this.pdfFileNames.filter(name => !this.pdfFiles[name]);
+
+        if (unloadedPdfs.length === 0) {
+            this.showNotification('All PDFs already loaded', 'info');
+            return;
+        }
+
+        const progressEl = document.getElementById('loadProgress');
+        const loadingEl = document.getElementById('loading');
+
+        if (loadingEl) {
+            loadingEl.style.display = 'flex';
+            loadingEl.innerHTML = `
+                <div class="loading-icon">⏳</div>
+                <div>Loading ${unloadedPdfs.length} remaining PDFs...</div>
+                <div id="loadProgress" style="margin-top: 10px; font-size: 12px;"></div>
+            `;
+        }
+
+        let loadedCount = 0;
+        const batchSize = 5;
+
+        for (let i = 0; i < unloadedPdfs.length; i += batchSize) {
+            const batch = unloadedPdfs.slice(i, Math.min(i + batchSize, unloadedPdfs.length));
+
+            if (progressEl) {
+                progressEl.textContent = `Loading ${i + 1}-${Math.min(i + batchSize, unloadedPdfs.length)} of ${unloadedPdfs.length}`;
+            }
+
+            const promises = batch.map(async (filename) => {
+                const pdfUrl = this.allPdfUrls[filename];
+                if (!pdfUrl) return null;
+
+                try {
+                    const response = await fetch(pdfUrl);
+                    const arrayBuffer = await response.arrayBuffer();
+                    const typedArray = new Uint8Array(arrayBuffer);
+                    const pdfDoc = await pdfjsLib.getDocument(typedArray).promise;
+                    this.pdfFiles[filename] = pdfDoc;
+                    loadedCount++;
+                    return filename;
+                } catch (error) {
+                    console.error(`Error loading PDF ${filename}:`, error);
+                    return null;
+                }
+            });
+
+            await Promise.all(promises);
+        }
+
+        // Update UI
+        const totalLoaded = Object.keys(this.pdfFiles).length;
+        document.getElementById('pdfCount').textContent = `${totalLoaded}/${this.pdfFileNames.length}`;
+
+        if (loadingEl) {
+            loadingEl.style.display = 'none';
+        }
+
+        this.showNotification(`Loaded ${loadedCount} additional PDFs. Total: ${totalLoaded}/${this.pdfFileNames.length}`, 'success');
     }
 
     /**
@@ -411,6 +478,13 @@ class VioboxViewer {
 
         document.getElementById('nextBtn')?.addEventListener('click', () => {
             this.nextPDF();
+        });
+
+        // Load All PDFs button
+        document.getElementById('loadAllBtn')?.addEventListener('click', async () => {
+            if (confirm('Load all remaining PDFs? This may take a while and use significant memory.')) {
+                await this.loadAllRemainingPDFs();
+            }
         });
 
         // Zoom controls
@@ -604,15 +678,54 @@ class VioboxViewer {
         if (this.filteredPdfNames.length === 0) {
             document.getElementById('loading').innerHTML = `
                 <div class="loading-icon">⚠️</div>
-                <div>${this.config.uitext.messages.noMatchingPdfs}</div>
+                <div>${this.config.uitext?.messages?.noMatchingPdfs || 'No matching PDFs'}</div>
             `;
             return;
         }
 
         const pdfName = this.filteredPdfNames[this.currentPdfIndex];
-        if (!pdfName || !this.pdfFiles[pdfName]) {
-            console.error('PDF not found:', pdfName);
+        if (!pdfName) {
+            console.error('PDF name not found at index:', this.currentPdfIndex);
             return;
+        }
+
+        // Load PDF on-demand if not already loaded
+        if (!this.pdfFiles[pdfName]) {
+            const pdfUrl = this.allPdfUrls[pdfName];
+            if (!pdfUrl) {
+                console.error('PDF URL not found for:', pdfName);
+                return;
+            }
+
+            try {
+                // Show loading status
+                document.getElementById('loading').style.display = 'flex';
+                document.getElementById('loading').innerHTML = `
+                    <div class="loading-icon">⏳</div>
+                    <div>Loading ${pdfName}...</div>
+                `;
+
+                const response = await fetch(pdfUrl);
+                const arrayBuffer = await response.arrayBuffer();
+                const typedArray = new Uint8Array(arrayBuffer);
+                const pdfDoc = await pdfjsLib.getDocument(typedArray).promise;
+
+                // Cache the loaded PDF
+                this.pdfFiles[pdfName] = pdfDoc;
+
+                // Update count
+                const loadedCount = Object.keys(this.pdfFiles).length;
+                document.getElementById('pdfCount').textContent = `${loadedCount}/${this.pdfFileNames.length}`;
+
+            } catch (error) {
+                console.error(`Failed to load PDF ${pdfName}:`, error);
+                this.showNotification(`Failed to load ${pdfName}`, 'error');
+                document.getElementById('loading').innerHTML = `
+                    <div class="loading-icon">❌</div>
+                    <div>Failed to load ${pdfName}</div>
+                `;
+                return;
+            }
         }
 
         this.currentPdfDoc = this.pdfFiles[pdfName];
