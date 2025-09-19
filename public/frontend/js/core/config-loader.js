@@ -244,8 +244,11 @@ class ConfigLoader {
   }
 }
 
-// Export to global namespace
+// Export to global namespace for both module and non-module usage
 window.VioboxSystem = window.VioboxSystem || {};
 window.VioboxSystem.configLoader = new ConfigLoader();
-// ES6 module export
-export default new ConfigLoader();
+
+// Only export if running as a module
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = window.VioboxSystem.configLoader;
+}

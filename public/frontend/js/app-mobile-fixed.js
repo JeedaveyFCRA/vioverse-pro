@@ -4,7 +4,8 @@
  * Performance Budget: Max 5 PDFs loaded at once
  */
 
-import configLoader from './core/config-loader.js';
+// Use global configLoader since scripts are loaded as non-modules
+const configLoader = window.VioboxSystem?.configLoader || window.configLoader;
 
 // Configure PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';

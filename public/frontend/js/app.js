@@ -3,7 +3,8 @@
  * Automatically loads assets from /data/csv/ and /data/pdfs/
  */
 
-import configLoader from './core/config-loader.js';
+// Use global configLoader to avoid ES6 module issues
+const configLoader = window.VioboxSystem?.configLoader || window.configLoader;
 
 // Configure PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -210,15 +211,30 @@ class VioboxViewer {
     async autoLoadPDFFiles(pdfList) {
         const progressEl = document.getElementById('loadProgress');
         let loadedCount = 0;
-        
-        // Limit concurrent PDF loading for better performance
-        const batchSize = 5;
-        
-        for (let i = 0; i < pdfList.length; i += batchSize) {
-            const batch = pdfList.slice(i, Math.min(i + batchSize, pdfList.length));
-            
+
+        // A+ Compliant: Detect mobile and limit PDF loading to prevent crashes
+        const isMobile = window.matchMedia('(max-width: 768px)').matches ||
+                         /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        // Mobile: load only first 3 PDFs, Desktop: load first 10
+        const maxPDFs = isMobile ? 3 : 10;
+        const batchSize = isMobile ? 1 : 3;
+
+        // Limit PDF list to prevent memory issues
+        const limitedList = pdfList.slice(0, maxPDFs);
+
+        // Show mobile warning if limiting
+        if (isMobile && pdfList.length > maxPDFs) {
             if (progressEl) {
-                progressEl.textContent = `Loading PDFs ${i + 1}-${Math.min(i + batchSize, pdfList.length)}/${pdfList.length}`;
+                progressEl.textContent = `Mobile mode: Loading first ${maxPDFs} of ${pdfList.length} PDFs...`;
+            }
+        }
+
+        for (let i = 0; i < limitedList.length; i += batchSize) {
+            const batch = limitedList.slice(i, Math.min(i + batchSize, limitedList.length));
+
+            if (progressEl && !isMobile) {
+                progressEl.textContent = `Loading PDFs ${i + 1}-${Math.min(i + batchSize, limitedList.length)}/${limitedList.length}`;
             }
 
             const promises = batch.map(async (pdfInfo) => {
@@ -244,11 +260,16 @@ class VioboxViewer {
         }
 
         if (loadedCount > 0) {
-            this.pdfFileNames = Object.keys(this.pdfFiles);
-            document.getElementById('pdfCount').textContent = loadedCount;
+            // Store all PDF names but only loaded ones are in pdfFiles
+            this.pdfFileNames = limitedList.map(p => p.url.split('/').pop());
+            this.allPdfNames = pdfList.map(p => p.url.split('/').pop());
+
+            document.getElementById('pdfCount').textContent = `${loadedCount}/${pdfList.length}`;
             this.updateBureauCounts();
 
-            const message = `Auto-loaded ${loadedCount} PDF file(s)`;
+            const message = isMobile
+                ? `Mobile: Loaded ${loadedCount} of ${pdfList.length} PDFs (memory limit)`
+                : `Auto-loaded ${loadedCount} PDF file(s)`;
             this.showNotification(message, 'success');
 
             this.enableControls();
