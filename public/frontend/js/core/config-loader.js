@@ -32,16 +32,21 @@ class ConfigLoader {
       this.master = await this.loadConfigFile('master');
 
       // Use config files from master if available, otherwise use defaults
-      const configFiles = this.master?.files?.configFiles ?
-        Object.keys(this.master.files.configFiles).filter(k => k !== 'master') :
-        this.configFiles;
+      let configFiles = this.configFiles;
+      let configNames = this.configFiles;
+
+      if (this.master?.files?.configFiles) {
+        const configObj = this.master.files.configFiles;
+        configNames = Object.keys(configObj).filter(k => k !== 'master');
+        configFiles = configNames.map(key => configObj[key].replace('.json', ''));
+      }
 
       const promises = configFiles.map(file => this.loadConfigFile(file));
       const results = await Promise.all(promises);
 
       // Combine all configs into single object
       results.forEach((data, index) => {
-        const configName = configFiles[index].replace('.config', '').replace('-', '');
+        const configName = configNames[index];
         this.config[configName] = data;
       });
 
