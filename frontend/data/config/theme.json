@@ -1,0 +1,51 @@
+{
+  "name": "vioverse-dark",
+  "mode": "dark",
+  "colors": {
+    "primary": "#667eea",
+    "secondary": "#764ba2",
+    "accent": "#4fc3f7",
+    "background": "#1a1a1a",
+    "foreground": "#ffffff",
+    "muted": "#2a2a2a",
+    "mutedForeground": "#888888",
+    "border": "#333333",
+    "ring": "#667eea",
+    "destructive": "#dc3545",
+    "destructiveForeground": "#ffffff",
+    "warning": "#ff9800",
+    "warningForeground": "#ffffff",
+    "success": "#4caf50",
+    "successForeground": "#ffffff",
+    "info": "#2196f3",
+    "infoForeground": "#ffffff",
+    "canvasBackground": "#1a1a1a",
+    "sidebarBackground": "#1f1f1f",
+    "cardBackground": "#2a2a2a",
+    "statusBarBackground": "#252525",
+    "gradientStart": "#667eea",
+    "gradientEnd": "#764ba2"
+  },
+  "fonts": {
+    "sans": "Inter, system-ui, -apple-system, sans-serif",
+    "serif": "Georgia, serif",
+    "mono": "JetBrains Mono, monospace",
+    "display": "Inter, sans-serif"
+  },
+  "spacing": {
+    "xs": "0.125rem",
+    "sm": "0.25rem",
+    "md": "0.5rem",
+    "lg": "1rem",
+    "xl": "1.5rem",
+    "2xl": "2rem",
+    "3xl": "3rem"
+  },
+  "borderRadius": {
+    "none": "0",
+    "sm": "0.125rem",
+    "md": "0.375rem",
+    "lg": "0.5rem",
+    "full": "9999px"
+  }
+}

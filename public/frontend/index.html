@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-text="titles.main">VIOBOX VIEWER - Multi-Bureau System</title>
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="./css/core.css">
+    <link rel="stylesheet" href="./css/layout.css">
+
+    <!-- Global stub for safe initialization -->
+    <script>window.APP=window.APP||{};APP.events=APP.events||new EventTarget();window.vioboxApp=window.vioboxApp||{views:{}};</script>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Main PDF Viewer Area -->
+        <div class="pdf-viewer">
+            <!-- Top Control Bar -->
+            <div class="top-controls">
+                <div class="title" data-text="titles.main">🎯 VIOBOX VIEWER - Multi-Bureau</div>
+
+                <input type="file" id="csvFiles" class="file-input" accept=".csv" multiple>
+                <label for="csvFiles" class="file-label" data-text="buttons.loadCSV">📊 Load CSV(s)</label>
+
+                <input type="file" id="pdfFiles" class="file-input" accept=".pdf" multiple>
+                <label for="pdfFiles" class="file-label" data-text="buttons.loadPDF">📄 Load PDFs</label>
+
+                <div class="bureau-filters">
+                    <!-- Bureau checkboxes will be injected here by app.js -->
+                </div>
+
+                <button class="control-btn" id="toggleBtn" disabled data-text="buttons.toggleBoxesShow">
+                    👁️ Toggle Boxes
+                </button>
+
+                <div class="pdf-nav">
+                    <button id="prevBtn" disabled>◀</button>
+                    <span class="pdf-info" id="pdfInfo" data-text="messages.noPdfLoaded">No PDFs loaded</span>
+                    <button id="nextBtn" disabled>▶</button>
+                </div>
+
+                <div class="zoom-controls">
+                    <button class="zoom-btn" data-scale="0.75">75%</button>
+                    <button class="zoom-btn" data-scale="1.0">100%</button>
+                    <button class="zoom-btn" data-scale="1.5">150%</button>
+                </div>
+            </div>
+
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="status-label" data-text="labels.csvCount">CSVs Loaded:</span>
+                    <span class="status-value" id="csvCount">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label" data-text="labels.pdfCount">PDFs Loaded:</span>
+                    <span class="status-value" id="pdfCount">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label" data-text="labels.currentBureau">Current Bureau:</span>
+                    <span class="status-value" id="currentBureau">-</span>
+                </div>
+                <div class="status-item" id="mismatchWarning" style="display: none; color: var(--color-warning);">
+                    ⚠️ <span id="mismatchText"></span>
+                </div>
+
+                <!-- Asset Loading Progress Indicators -->
+                <div class="status-item" role="status" aria-live="polite">
+                    <span id="asset-csv-status" class="status-value"></span>
+                </div>
+                <div class="status-item" role="status" aria-live="polite">
+                    <span id="asset-pdf-status" class="status-value"></span>
+                </div>
+                <div class="status-item" role="status" aria-live="polite">
+                    <span id="asset-ready-status" class="status-value" style="color: var(--color-success);"></span>
+                </div>
+            </div>
+
+            <!-- Canvas Container -->
+            <div class="canvas-container">
+                <canvas id="pdfCanvas" style="display: none;"></canvas>
+                <div class="loading" id="loading">
+                    <div class="loading-icon">📂</div>
+                    <div data-text="instructions.step1">Load CSV files (TU, EX, and/or EQ)</div>
+                    <div data-text="instructions.step2">Load PDF files from selected bureaus</div>
+                    <div data-text="instructions.step3">Use checkboxes to filter by bureau</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <!-- Sidebar Header with Legend -->
+            <div class="sidebar-header">
+                <div class="sidebar-title" data-text="titles.sidebarHeader">Violations by Bureau</div>
+                <div class="legend" id="legend">
+                    <!-- Legend items will be injected here by app.js -->
+                </div>
+            </div>
+
+            <!-- Current PDF Info -->
+            <div class="current-pdf-info">
+                <div class="pdf-name" id="currentPdfName" data-text="messages.noPdfLoaded">No PDF loaded</div>
+                <div class="violation-count" id="currentViolationCount">
+                    <span data-text-template="labels.violationsOnPage">0 violations on this page</span>
+                </div>
+            </div>
+
+            <!-- Violations List -->
+            <div class="violations-container" id="violationList">
+                <!-- Violations will be added here dynamically -->
+            </div>
+
+            <!-- Stats Summary -->
+            <div class="stats-summary">
+                <div class="overall-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalCount">0</div>
+                        <div class="stat-label" data-text="labels.totalViolations">Total</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="extremeCount" style="color: var(--severity-extreme-color);">0</div>
+                        <div class="stat-label" data-text="labels.extreme">Extreme</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="severeCount" style="color: var(--severity-severe-color);">0</div>
+                        <div class="stat-label" data-text="labels.severe">Severe</div>
+                    </div>
+                </div>
+                <div class="bureau-stats" id="bureauStats">
+                    <!-- Bureau breakdown will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Skip link for accessibility -->
+    <a href="#pdfCanvas" class="sr-only">Skip to PDF content</a>
+
+    <!-- Application JavaScript -->
+    <!-- Asset Preloader -->
+    <script src="./js/core/asset-loader.js"></script>
+
+    <!-- Core Modules -->
+    <script src="./js/core/config-loader.js"></script>
+    <script src="./js/core/csv-processor.js"></script>
+    <script src="./js/core/pdf-manager.js"></script>
+    <script src="./js/core/viobox-renderer.js"></script>
+    <script src="./js/views/evidence-view.js"></script>
+    <script src="./js/views/timeline-view.js"></script>
+    <script src="./js/app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{
+  "titles": {
+    "main": "VIOBOX VIEWER - Multi-Bureau System",
+    "sidebarHeader": "Violations by Bureau",
+    "currentPdfSection": "Current PDF",
+    "statsSection": "Statistics Summary",
+    "violationsList": "Violation Details"
+  },
+  "buttons": {
+    "loadCSV": "📊 Load CSV(s)",
+    "loadPDF": "📄 Load PDFs",
+    "toggleBoxesShow": "👁️ Toggle Boxes",
+    "toggleBoxesHide": "👁️ Hide Boxes",
+    "previous": "Previous",
+    "next": "Next",
+    "zoomIn": "Zoom In",
+    "zoomOut": "Zoom Out",
+    "zoomReset": "Reset Zoom",
+    "exportData": "Export Data",
+    "clearAll": "Clear All"
+  },
+  "labels": {
+    "csvCount": "CSVs Loaded",
+    "pdfCount": "PDFs Loaded",
+    "currentBureau": "Current Bureau",
+    "currentPage": "Page",
+    "totalPages": "of",
+    "violationsOnPage": "violations on this page",
+    "totalViolations": "Total",
+    "extreme": "Extreme",
+    "severe": "Severe",
+    "serious": "Serious",
+    "minor": "Minor",
+    "bureauBreakdown": "Violations by Bureau"
+  },
+  "messages": {
+    "noPdfLoaded": "No PDF loaded",
+    "noViolations": "No violations found",
+    "loadingPdf": "Loading PDF...",
+    "processingCsv": "Processing CSV data...",
+    "errorLoadingPdf": "Error loading PDF",
+    "errorParsingCsv": "Error parsing CSV",
+    "mismatchWarning": "PDF(s) loaded without CSV data",
+    "noMatchingPdfs": "No PDFs match the selected bureau filters",
+    "successCsvLoad": "Loaded {count} CSV file(s) with {violations} violations",
+    "successPdfLoad": "Loaded {count} PDF file(s)"
+  },
+  "instructions": {
+    "step1": "Load CSV files (TU, EX, and/or EQ)",
+    "step2": "Load PDF files from selected bureaus",
+    "step3": "Use checkboxes to filter by bureau",
+    "step4": "Navigate through PDFs and review violations"
+  },
+  "tooltips": {
+    "zoomControls": "Adjust PDF zoom level",
+    "bureauFilters": "Filter violations by credit bureau",
+    "navigation": "Navigate between loaded PDFs",
+    "violationItem": "Click to highlight on PDF"
+  }
+}

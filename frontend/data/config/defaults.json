@@ -1,0 +1,68 @@
+{
+  "viewport": {
+    "initialScale": 1.0,
+    "minScale": 0.5,
+    "maxScale": 3.0,
+    "scaleStep": 0.25,
+    "presetScales": [0.75, 1.0, 1.5],
+    "fitToWidth": true
+  },
+  "display": {
+    "showVioboxesOnLoad": true,
+    "animateTransitions": true,
+    "highlightOnHover": true,
+    "showRuleLabels": true,
+    "showCoordinates": false,
+    "sidebarPosition": "right",
+    "sidebarWidth": 350,
+    "sidebarCollapsible": true
+  },
+  "filters": {
+    "activeBureausOnLoad": ["TU", "EX", "EQ"],
+    "activeSeveritiesOnLoad": ["extreme", "severe", "serious", "minor"],
+    "persistFilterState": true,
+    "showEmptyBureaus": false,
+    "groupViolationsByType": false
+  },
+  "canvas": {
+    "lineWidth": 2,
+    "labelFontSize": 11,
+    "labelFont": "Arial",
+    "labelPadding": 4,
+    "selectionHighlight": "#FFD700",
+    "hoverOpacity": 0.8
+  },
+  "responsive": {
+    "mobileBreakpoint": 768,
+    "tabletBreakpoint": 1024,
+    "desktopBreakpoint": 1440,
+    "sidebarMobileHeight": "40vh",
+    "sidebarTabletWidth": 300,
+    "sidebarDesktopWidth": 350,
+    "collapseSidebarOnMobile": true,
+    "stackLayoutOnMobile": true
+  },
+  "performance": {
+    "maxVioboxesPerPage": 500,
+    "enableVirtualScrolling": true,
+    "virtualScrollThreshold": 100,
+    "debounceDelay": 300,
+    "lazyLoadPdfs": true,
+    "cacheProcessedData": true
+  },
+  "notifications": {
+    "duration": 4000,
+    "position": "top-center",
+    "showSuccessMessages": true,
+    "showWarningMessages": true,
+    "showErrorMessages": true,
+    "stackNotifications": false
+  },
+  "export": {
+    "includePdfScreenshots": true,
+    "includeStatistics": true,
+    "includeTimestamp": true,
+    "defaultFormat": "csv",
+    "fileNamePattern": "violations_{date}_{time}"
+  }
+}
