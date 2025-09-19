@@ -309,7 +309,8 @@ class VioboxViewer {
         const loadingEl = document.getElementById('loading');
 
         if (loadingEl) {
-            loadingEl.style.display = 'flex';
+            loadingEl.style.visibility = 'visible';
+            loadingEl.style.opacity = '1';
             loadingEl.innerHTML = `
                 <div class="loading-icon">⏳</div>
                 <div>Loading ${unloadedPdfs.length} remaining PDFs...</div>
@@ -353,7 +354,8 @@ class VioboxViewer {
         document.getElementById('pdfCount').textContent = `${totalLoaded}/${this.pdfFileNames.length}`;
 
         if (loadingEl) {
-            loadingEl.style.display = 'none';
+            loadingEl.style.visibility = 'hidden';
+            loadingEl.style.opacity = '0';
         }
 
         this.showNotification(`Loaded ${loadedCount} additional PDFs. Total: ${totalLoaded}/${this.pdfFileNames.length}`, 'success');
@@ -698,12 +700,16 @@ class VioboxViewer {
             }
 
             try {
-                // Show loading status
-                document.getElementById('loading').style.display = 'flex';
-                document.getElementById('loading').innerHTML = `
-                    <div class="loading-icon">⏳</div>
-                    <div>Loading ${pdfName}...</div>
-                `;
+                // Show loading status without causing layout shift
+                const loadingEl = document.getElementById('loading');
+                if (loadingEl) {
+                    loadingEl.style.visibility = 'visible';
+                    loadingEl.style.opacity = '1';
+                    loadingEl.innerHTML = `
+                        <div class="loading-icon">⏳</div>
+                        <div>Loading ${pdfName}...</div>
+                    `;
+                }
 
                 const response = await fetch(pdfUrl);
                 const arrayBuffer = await response.arrayBuffer();
@@ -731,8 +737,12 @@ class VioboxViewer {
         this.currentPdfDoc = this.pdfFiles[pdfName];
         const bureau = configLoader.detectBureauFromFilename(pdfName);
 
-        // Update UI
-        document.getElementById('loading').style.display = 'none';
+        // Update UI - hide loading without layout shift
+        const loadingEl = document.getElementById('loading');
+        if (loadingEl) {
+            loadingEl.style.visibility = 'hidden';
+            loadingEl.style.opacity = '0';
+        }
         document.getElementById('pdfCanvas').style.display = 'block';
         document.getElementById('currentPdfName').textContent = pdfName;
         document.getElementById('currentBureau').textContent = bureau;
