@@ -6,8 +6,8 @@
 // Use global configLoader to avoid ES6 module issues
 const configLoader = window.VioboxSystem?.configLoader || window.configLoader;
 
-// Configure PDF.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+// Will be configured after config loads
+let pdfjsConfigured = false;
 
 class VioboxViewer {
     constructor() {
@@ -33,6 +33,14 @@ class VioboxViewer {
             // Load all configurations first
             this.config = await configLoader.loadAll();
             console.log('Configuration loaded successfully', this.config);
+
+            // Configure PDF.js from config
+            if (!pdfjsConfigured && window.pdfjsLib) {
+                const workerUrl = this.config.master?.cdn?.pdfjs?.workerUrl ||
+                    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+                pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
+                pdfjsConfigured = true;
+            }
 
             // Update all UI text from config
             this.updateUIText();
@@ -116,7 +124,8 @@ class VioboxViewer {
 
         // Fall back to static manifest
         try {
-            const response = await fetch('/data/config/assets.json');
+            const assetPath = this.config.master?.paths?.config || '/data/config';
+            const response = await fetch(`${assetPath}/assets.json`);
             if (response.ok) {
                 return await response.json();
             }
@@ -127,9 +136,9 @@ class VioboxViewer {
         // Use known file list as last resort
         return {
             csv: [
-                { url: '/data/csv/eq_violations_detailed_test.csv' },
-                { url: '/data/csv/ex_violations_detailed_test.csv' },
-                { url: '/data/csv/tu_violations_detailed_test.csv' }
+                ...this.config.master?.files?.defaultCsvFiles?.map(f => ({
+                    url: `${this.config.master?.paths?.csv || '/data/csv'}/${f.filename}`
+                })) || []
             ],
             pdfs: await this.discoverPDFs()
         };
@@ -212,13 +221,20 @@ class VioboxViewer {
         const progressEl = document.getElementById('loadProgress');
         let loadedCount = 0;
 
-        // A+ Compliant: Detect mobile and limit PDF loading to prevent crashes
-        const isMobile = window.matchMedia('(max-width: 768px)').matches ||
-                         /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        // A+ Compliant: Use config-driven values
+        const perfConfig = this.config.master?.performance;
+        const mobileBreakpoint = perfConfig?.mobile?.breakpoint || 768;
+        const isMobile = window.matchMedia(`(max-width: ${mobileBreakpoint}px)`).matches ||
+                         perfConfig?.userAgentPatterns?.some(pattern =>
+                           new RegExp(pattern, 'i').test(navigator.userAgent)
+                         );
 
-        // Mobile: load only first 3 PDFs, Desktop: load first 10
-        const maxPDFs = isMobile ? 3 : 10;
-        const batchSize = isMobile ? 1 : 3;
+        // Get config-driven limits
+        const deviceType = isMobile ? 'mobile' :
+                          window.matchMedia(`(max-width: ${perfConfig?.tablet?.breakpoint || 1024}px)`).matches ? 'tablet' : 'desktop';
+        const deviceConfig = perfConfig?.[deviceType] || {};
+        const maxPDFs = deviceConfig.maxPdfs || 10;
+        const batchSize = deviceConfig.batchSize || 3;
 
         // Limit PDF list to prevent memory issues
         const limitedList = pdfList.slice(0, maxPDFs);
@@ -280,19 +296,12 @@ class VioboxViewer {
      * Discover available PDFs (fallback method)
      */
     async discoverPDFs() {
-        // Return a subset of known PDFs for initial testing
-        // In production, this would come from the server
-        const knownPDFs = [
-            'AL-EQ-2024-04-25-P57.pdf',
-            'AL-EX-2024-04-25-P05.pdf', 
-            'AL-TU-2024-04-25-P07.pdf',
-            'BB-EQ-2024-04-25-P20.pdf',
-            'BB-EX-2024-04-25-P08.pdf',
-            'BB-TU-2024-04-25-P14.pdf'
-        ];
+        // A+ Compliant: Use config-driven PDF list
+        const pdfPath = this.config.master?.paths?.pdfs || '/data/pdfs';
+        const knownPDFs = this.config.master?.fallbacks?.knownPdfSamples || [];
 
         return knownPDFs.map(name => ({
-            url: `/data/pdfs/${name}`
+            url: `${pdfPath}/${name}`
         }));
     }
 

@@ -1,0 +1,147 @@
+{
+  "api": {
+    "endpoints": {
+      "assets": "/api/assets",
+      "health": "/api/health",
+      "config": "/api/config"
+    }
+  },
+  "paths": {
+    "data": "/data",
+    "csv": "/data/csv",
+    "pdfs": "/data/pdfs",
+    "config": "/data/config"
+  },
+  "files": {
+    "defaultCsvFiles": [
+      {
+        "filename": "eq_violations_detailed_test.csv",
+        "bureau": "EQ",
+        "description": "Equifax violations"
+      },
+      {
+        "filename": "ex_violations_detailed_test.csv",
+        "bureau": "EX",
+        "description": "Experian violations"
+      },
+      {
+        "filename": "tu_violations_detailed_test.csv",
+        "bureau": "TU",
+        "description": "TransUnion violations"
+      }
+    ],
+    "configFiles": {
+      "master": "master.json",
+      "assets": "assets.json",
+      "theme": "theme.json",
+      "ui": "ui.json",
+      "uitext": "ui-text.json",
+      "severity": "severity.json",
+      "bureaus": "bureaus.json",
+      "navigation": "navigation.json",
+      "features": "features.json",
+      "breakpoints": "breakpoints.json",
+      "defaults": "defaults.json",
+      "site": "site.json"
+    }
+  },
+  "performance": {
+    "mobile": {
+      "maxPdfs": 3,
+      "batchSize": 1,
+      "maxMemoryMB": 5,
+      "maxConcurrent": 2,
+      "preloadNext": 1,
+      "breakpoint": 768
+    },
+    "tablet": {
+      "maxPdfs": 6,
+      "batchSize": 2,
+      "maxMemoryMB": 8,
+      "maxConcurrent": 3,
+      "preloadNext": 2,
+      "breakpoint": 1024
+    },
+    "desktop": {
+      "maxPdfs": 10,
+      "batchSize": 3,
+      "maxMemoryMB": 10,
+      "maxConcurrent": 5,
+      "preloadNext": 2,
+      "breakpoint": 1920
+    },
+    "userAgentPatterns": [
+      "iPhone",
+      "iPad",
+      "iPod",
+      "Android",
+      "Mobile",
+      "Tablet"
+    ]
+  },
+  "cdn": {
+    "pdfjs": {
+      "version": "3.11.174",
+      "workerUrl": "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js",
+      "libraryUrl": "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
+    },
+    "papaparse": {
+      "version": "5.3.0",
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"
+    }
+  },
+  "ui": {
+    "animations": {
+      "duration": 300,
+      "easing": "ease-in-out"
+    },
+    "notifications": {
+      "duration": 3000,
+      "position": "bottom-right"
+    },
+    "loading": {
+      "showProgress": true,
+      "showSpinner": true
+    }
+  },
+  "defaults": {
+    "scale": 1.0,
+    "showVioboxes": true,
+    "autoLoad": true,
+    "currentPage": 1,
+    "language": "en"
+  },
+  "limits": {
+    "maxFileSize": {
+      "csv": 10485760,
+      "pdf": 52428800
+    },
+    "maxTotalMemory": 104857600,
+    "maxConcurrentRequests": 5,
+    "requestTimeout": 30000
+  },
+  "fallbacks": {
+    "knownPdfSamples": [
+      "AL-EQ-2024-04-25-P57.pdf",
+      "AL-EX-2024-04-25-P05.pdf",
+      "AL-TU-2024-04-25-P07.pdf",
+      "BB-EQ-2024-04-25-P20.pdf",
+      "BB-EX-2024-04-25-P08.pdf",
+      "BB-TU-2024-04-25-P14.pdf"
+    ],
+    "emptyStateMessages": {
+      "noCsv": "No CSV files loaded",
+      "noPdf": "No PDF files loaded",
+      "noViolations": "No violations found"
+    }
+  },
+  "features": {
+    "lazyLoading": true,
+    "autoLoading": true,
+    "mobileOptimization": true,
+    "offlineSupport": false,
+    "analytics": false
+  },
+  "version": "1.0.0",
+  "lastUpdated": "2025-01-18"
+}

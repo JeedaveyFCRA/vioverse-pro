@@ -28,14 +28,25 @@ class ConfigLoader {
    */
   async loadAll() {
     try {
-      const promises = this.configFiles.map(file => this.loadConfigFile(file));
+      // Load master config first to get all settings
+      this.master = await this.loadConfigFile('master');
+
+      // Use config files from master if available, otherwise use defaults
+      const configFiles = this.master?.files?.configFiles ?
+        Object.keys(this.master.files.configFiles).filter(k => k !== 'master') :
+        this.configFiles;
+
+      const promises = configFiles.map(file => this.loadConfigFile(file));
       const results = await Promise.all(promises);
 
       // Combine all configs into single object
       results.forEach((data, index) => {
-        const configName = this.configFiles[index].replace('.config', '').replace('-', '');
+        const configName = configFiles[index].replace('.config', '').replace('-', '');
         this.config[configName] = data;
       });
+
+      // Add master config to combined config
+      this.config.master = this.master;
 
       // Apply theme to CSS custom properties
       this.applyThemeVariables();
