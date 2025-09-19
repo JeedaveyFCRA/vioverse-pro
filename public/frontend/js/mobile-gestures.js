@@ -19,8 +19,8 @@ class MobileGestureHandler {
 
     // Configuration from master.json (will be loaded)
     this.config = {
-      swipeThreshold: 50, // minimum distance for swipe
-      swipeMaxVertical: 100, // max vertical movement for horizontal swipe
+      swipeThreshold: 30, // Lower threshold for easier swipes
+      swipeMaxVertical: 150, // More tolerance for vertical movement
       pinchThreshold: 10, // minimum pinch distance
       doubleTapDelay: 300, // ms for double tap detection
       minScale: 0.5,
@@ -49,6 +49,13 @@ class MobileGestureHandler {
 
     // Add mobile sidebar toggle
     this.createSidebarToggle();
+
+    // Log to confirm gestures are initialized
+    console.log('Mobile gestures initialized:', {
+      swipeEnabled: true,
+      pinchEnabled: true,
+      doubleTapEnabled: true
+    });
   }
 
   handleTouchStart(e) {
@@ -229,11 +236,43 @@ class MobileGestureHandler {
       const sidebar = document.querySelector('.sidebar');
       if (sidebar) {
         sidebar.classList.toggle('active');
+        toggle.classList.toggle('active'); // Move button up when sidebar opens
         toggle.innerHTML = sidebar.classList.contains('active') ? '✕' : '📊';
       }
     });
 
     document.body.appendChild(toggle);
+
+    // Also create nav toggle for mobile
+    this.createNavToggle();
+  }
+
+  createNavToggle() {
+    if (!this.isMobile()) return;
+
+    // Check if toggle already exists
+    if (document.querySelector('.nav-toggle')) return;
+
+    const navToggle = document.createElement('button');
+    navToggle.className = 'nav-toggle';
+    navToggle.innerHTML = '☰';
+    navToggle.setAttribute('aria-label', 'Toggle navigation menu');
+
+    navToggle.addEventListener('click', () => {
+      const topControls = document.querySelector('.top-controls');
+      const pdfViewer = document.querySelector('.pdf-viewer');
+      if (topControls) {
+        topControls.classList.toggle('active');
+        navToggle.innerHTML = topControls.classList.contains('active') ? '✕' : '☰';
+
+        // Adjust PDF viewer padding when nav is shown
+        if (pdfViewer) {
+          pdfViewer.classList.toggle('nav-active');
+        }
+      }
+    });
+
+    document.body.appendChild(navToggle);
   }
 
   isMobile() {

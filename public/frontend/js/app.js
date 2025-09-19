@@ -309,8 +309,7 @@ class VioboxViewer {
         const loadingEl = document.getElementById('loading');
 
         if (loadingEl) {
-            loadingEl.style.visibility = 'visible';
-            loadingEl.style.opacity = '1';
+            loadingEl.classList.add('active');
             loadingEl.innerHTML = `
                 <div class="loading-icon">⏳</div>
                 <div>Loading ${unloadedPdfs.length} remaining PDFs...</div>
@@ -354,8 +353,7 @@ class VioboxViewer {
         document.getElementById('pdfCount').textContent = `${totalLoaded}/${this.pdfFileNames.length}`;
 
         if (loadingEl) {
-            loadingEl.style.visibility = 'hidden';
-            loadingEl.style.opacity = '0';
+            loadingEl.classList.remove('active');
         }
 
         this.showNotification(`Loaded ${loadedCount} additional PDFs. Total: ${totalLoaded}/${this.pdfFileNames.length}`, 'success');
@@ -378,15 +376,9 @@ class VioboxViewer {
      * Show manual load instructions if auto-load fails
      */
     showManualLoadInstructions() {
-        const loadingEl = document.getElementById('loading');
-        if (loadingEl) {
-            loadingEl.innerHTML = `
-                <div class="loading-icon">📂</div>
-                <div>${this.config.uitext?.instructions?.step1 || 'Load CSV files (TU, EX, and/or EQ)'}</div>
-                <div>${this.config.uitext?.instructions?.step2 || 'Load PDF files from selected bureaus'}</div>
-                <div>${this.config.uitext?.instructions?.step3 || 'Use checkboxes to filter by bureau'}</div>
-            `;
-        }
+        // Don't show loading instructions - they cause layout shift
+        // Instructions are already in the UI controls
+        console.log('Manual load mode enabled');
     }
 
     // Keep all existing methods below unchanged...
@@ -678,10 +670,8 @@ class VioboxViewer {
 
     async displayCurrentPdf() {
         if (this.filteredPdfNames.length === 0) {
-            document.getElementById('loading').innerHTML = `
-                <div class="loading-icon">⚠️</div>
-                <div>${this.config.uitext?.messages?.noMatchingPdfs || 'No matching PDFs'}</div>
-            `;
+            // Show warning in notification, not loading box
+            this.showNotification(this.config.uitext?.messages?.noMatchingPdfs || 'No matching PDFs', 'warning');
             return;
         }
 
@@ -700,11 +690,10 @@ class VioboxViewer {
             }
 
             try {
-                // Show loading status without causing layout shift
+                // Show loading status only when actually loading new PDF
                 const loadingEl = document.getElementById('loading');
                 if (loadingEl) {
-                    loadingEl.style.visibility = 'visible';
-                    loadingEl.style.opacity = '1';
+                    loadingEl.classList.add('active');
                     loadingEl.innerHTML = `
                         <div class="loading-icon">⏳</div>
                         <div>Loading ${pdfName}...</div>
@@ -726,10 +715,7 @@ class VioboxViewer {
             } catch (error) {
                 console.error(`Failed to load PDF ${pdfName}:`, error);
                 this.showNotification(`Failed to load ${pdfName}`, 'error');
-                document.getElementById('loading').innerHTML = `
-                    <div class="loading-icon">❌</div>
-                    <div>Failed to load ${pdfName}</div>
-                `;
+                // Don't show error in loading box - already showing notification
                 return;
             }
         }
@@ -737,11 +723,10 @@ class VioboxViewer {
         this.currentPdfDoc = this.pdfFiles[pdfName];
         const bureau = configLoader.detectBureauFromFilename(pdfName);
 
-        // Update UI - hide loading without layout shift
+        // Update UI - hide loading completely
         const loadingEl = document.getElementById('loading');
         if (loadingEl) {
-            loadingEl.style.visibility = 'hidden';
-            loadingEl.style.opacity = '0';
+            loadingEl.classList.remove('active');
         }
         document.getElementById('pdfCanvas').style.display = 'block';
         document.getElementById('currentPdfName').textContent = pdfName;

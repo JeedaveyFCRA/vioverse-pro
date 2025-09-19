@@ -20,8 +20,16 @@
   min-width: 200px;
   text-align: center;
   transition: opacity 0.2s ease, visibility 0.2s ease;
-  visibility: hidden;
-  opacity: 0;
+  visibility: hidden !important; /* Never show by default */
+  opacity: 0 !important;
+  display: none !important; /* Extra safety */
+}
+
+/* Only show when explicitly loading */
+.loading.active {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Animation for toast/gesture feedback */
@@ -54,8 +62,12 @@
 
 /* Base Mobile Styles (320px - 767px) */
 @media (max-width: 767px) {
-  /* Minimize top controls on mobile */
+  /* Minimize top controls on mobile - make it collapsible */
   .top-controls {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     padding: 8px;
     gap: 8px;
     flex-wrap: nowrap;
@@ -63,6 +75,22 @@
     -webkit-overflow-scrolling: touch;
     min-height: 50px;
     max-height: 50px;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    z-index: 200;
+  }
+
+  .top-controls.active {
+    transform: translateY(0);
+  }
+
+  /* PDF viewer adjusts when nav is hidden */
+  .pdf-viewer {
+    padding-top: 0;
+  }
+
+  .pdf-viewer.nav-active {
+    padding-top: 50px;
   }
 
   /* Hide title on mobile to save space */
@@ -104,14 +132,9 @@
     display: none;
   }
 
-  /* Compact PDF navigation */
+  /* Hide PDF navigation buttons on mobile - use swipe instead */
   .pdf-nav {
-    gap: 5px;
-  }
-
-  .pdf-nav button {
-    padding: 8px;
-    font-size: 16px;
+    display: none !important;
   }
 
   .pdf-info {
@@ -168,11 +191,40 @@
     color: white;
     border: none;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    z-index: 499;
+    z-index: 501; /* Higher than sidebar to stay on top */
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-toggle.active {
+    transform: translateY(-45vh); /* Move up when sidebar is open */
+  }
+
+  /* Top nav toggle button (hamburger menu) */
+  .nav-toggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    z-index: 201;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  @media (max-width: 767px) {
+    .nav-toggle {
+      display: flex;
+    }
   }
 
   /* Main container uses full height */
