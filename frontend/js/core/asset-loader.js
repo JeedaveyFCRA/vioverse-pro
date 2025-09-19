@@ -14,10 +14,10 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     // fire & forget — do not block UI
-    preloadAll().catch(() => {/* silent; health over perfection */});
+    // preloadAll() - DISABLED FOR MOBILE CRASH.catch(() => {/* silent; health over perfection */});
   });
 
-  async function preloadAll() {
+  async function // preloadAll() - DISABLED FOR MOBILE CRASH {
     const assets = await fetchAssetIndex();
     window.APP.assets = assets;
 
