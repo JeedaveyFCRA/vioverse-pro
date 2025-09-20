@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIOVERSE Professional - Credit Report Analysis System</title>
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="./css/core.css">
+    <link rel="stylesheet" href="./css/layout-pro.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Global Initialization -->
+    <script>window.APP=window.APP||{};APP.events=APP.events||new EventTarget();</script>
+
+    <!-- A+ Compliant Config Loader - Must load before CSS applies -->
+    <script src="./js/config-loader.js"></script>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <!-- Main Application Container -->
+    <div class="app-container">
+
+        <!-- Top Navigation Bar -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <button class="panel-toggle" data-panel="page-navigator" aria-label="Toggle Page Navigator">
+                    <i data-lucide="layers"></i>
+                </button>
+            </div>
+
+            <div class="top-bar-center">
+                <div class="brand">
+                    <span class="brand-text">vioverse</span>
+                </div>
+
+                <div class="panel-controls">
+                    <button class="panel-toggle active" data-panel="pages" aria-label="Pages Panel">
+                        <i data-lucide="file-text"></i>
+                    </button>
+                    <button class="panel-toggle" data-panel="details" aria-label="Details Panel">
+                        <i data-lucide="list"></i>
+                    </button>
+                    <button class="panel-toggle" data-panel="save" aria-label="Save Panel">
+                        <i data-lucide="save"></i>
+                    </button>
+                    <button class="panel-toggle" data-panel="print" aria-label="Print Panel">
+                        <i data-lucide="printer"></i>
+                    </button>
+                    <button class="panel-toggle" data-panel="notes" aria-label="Notes Panel">
+                        <i data-lucide="message-square"></i>
+                    </button>
+                    <button class="panel-toggle" data-panel="filter" aria-label="Filter Panel">
+                        <i data-lucide="filter"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="top-bar-right">
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="zoomOut" title="Zoom Out (-)">
+                        <i data-lucide="zoom-out"></i>
+                    </button>
+                    <span class="zoom-level" id="zoomLevel">100%</span>
+                    <button class="zoom-btn" id="zoomIn" title="Zoom In (+)">
+                        <i data-lucide="zoom-in"></i>
+                    </button>
+                </div>
+                <div class="violation-counter">
+                    <span class="violation-label">violations:</span>
+                    <span class="violation-count" id="violationCount">0</span>
+                </div>
+                <button class="info-button" aria-label="Violation Information">
+                    <i data-lucide="info"></i>
+                </button>
+                <div class="bureau-indicator">
+                    <span class="bureau-label">bureau:</span>
+                    <span class="bureau-name" id="currentBureauName">-</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+
+            <!-- Left Sidebar - Page Navigator -->
+            <aside class="left-sidebar" id="leftSidebar">
+                <div class="sidebar-section page-navigator">
+                    <div class="section-header">
+                        <span class="section-title">page navigator</span>
+                        <button class="section-toggle" aria-label="Toggle Navigator">
+                            <i data-lucide="circle"></i>
+                        </button>
+                    </div>
+
+                    <!-- Bureau Selector -->
+                    <div class="bureau-selector">
+                        <span class="selector-label">select bureau:</span>
+                        <div class="bureau-buttons">
+                            <button class="bureau-btn" data-bureau="EQ">eq</button>
+                            <button class="bureau-btn" data-bureau="EX">ex</button>
+                            <button class="bureau-btn" data-bureau="TU">tu</button>
+                        </div>
+                    </div>
+
+                    <!-- Report Date Selector -->
+                    <div class="date-selector">
+                        <span class="selector-label">select a credit report date:</span>
+                        <div class="date-grid" id="dateGrid">
+                            <!-- Date buttons will be dynamically inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Page Info -->
+                    <div class="page-info">
+                        <span class="page-label">page:</span>
+                        <span class="page-current" id="currentPage">-</span>
+                        <span class="page-separator">of</span>
+                        <span class="page-total" id="totalPages">-</span>
+                    </div>
+
+                    <!-- Creditor Info -->
+                    <div class="creditor-info">
+                        <span class="creditor-label">creditor:</span>
+                        <span class="creditor-name" id="creditorName">loading...</span>
+                    </div>
+
+                    <!-- Page Grid Visualization -->
+                    <div class="page-grid" id="pageGrid">
+                        <!-- Pages will be dynamically generated -->
+                        <!-- Example structure for pages with violations (orange) and current page (red) -->
+                    </div>
+                </div>
+
+                <!-- Save Controller Section -->
+                <div class="sidebar-section save-controller">
+                    <div class="section-header">
+                        <span class="section-title">save controller</span>
+                        <button class="section-close" aria-label="Close Save Controller">
+                            <i data-lucide="x"></i>
+                        </button>
+                    </div>
+
+                    <div class="save-status">
+                        <span class="status-label">current:</span>
+                        <span class="status-value">Unsaved Session</span>
+                    </div>
+
+                    <div class="save-actions">
+                        <button class="save-btn primary">
+                            <i data-lucide="plus"></i>
+                            <span>new</span>
+                        </button>
+                        <button class="save-btn">
+                            <i data-lucide="upload"></i>
+                            <span>load session</span>
+                        </button>
+                        <button class="save-btn">
+                            <i data-lucide="save"></i>
+                            <span>save as</span>
+                        </button>
+                        <button class="save-btn">
+                            <i data-lucide="check"></i>
+                            <span>mark complete</span>
+                        </button>
+                        <button class="save-btn">
+                            <i data-lucide="download"></i>
+                            <span>export session</span>
+                        </button>
+                        <button class="save-btn">
+                            <i data-lucide="upload"></i>
+                            <span>import session</span>
+                        </button>
+                        <button class="save-btn">
+                            <i data-lucide="copy"></i>
+                            <span>duplicate</span>
+                        </button>
+                        <button class="save-btn">
+                            <i data-lucide="trash-2"></i>
+                            <span>clear</span>
+                        </button>
+                    </div>
+
+                </div>
+            </aside>
+
+            <!-- Center - PDF Viewer Area -->
+            <main class="pdf-viewer-area">
+                <div class="pdf-canvas-container" id="pdfContainer">
+                    <canvas id="pdfCanvas"></canvas>
+                    <!-- VioBoxes will be overlaid here -->
+                    <div class="viobox-overlay" id="vioboxOverlay"></div>
+                </div>
+
+                <!-- Loading State -->
+                <div class="loading-state" id="loadingState" style="display: none;">
+                    <div class="loading-spinner">
+                        <i data-lucide="loader-2"></i>
+                    </div>
+                    <p>Loading PDF...</p>
+                </div>
+            </main>
+
+            <!-- Right Sidebar - Violation Details -->
+            <aside class="right-sidebar" id="rightSidebar">
+                <div class="sidebar-section violation-details">
+                    <div class="section-header">
+                        <span class="section-title">Violation Details</span>
+                        <button class="section-toggle" aria-label="Toggle Details">
+                            <i data-lucide="chevron-down"></i>
+                        </button>
+                    </div>
+
+                    <!-- Violation List -->
+                    <div class="violation-list" id="violationList">
+                        <!-- Individual violations will be listed here -->
+                        <div class="violation-item extreme">
+                            <div class="violation-header">
+                                <i data-lucide="alert-circle"></i>
+                                <span class="violation-type">INSR5-4(y)(1)(A), INSR4(D), INSR5(a)(1)</span>
+                            </div>
+                            <div class="violation-description">
+                                Maintains "Included in Bankruptcy" status 550 days post-discharge. Legal requirement: "Discharged through Chapter 13." False active status misleads creditors and suppresses credit scores. Continued misreporting proves willful violations.
+                            </div>
+                        </div>
+
+                        <div class="violation-item severe">
+                            <div class="violation-header">
+                                <i data-lucide="alert-triangle"></i>
+                                <span class="violation-type">INSR1-5(a)(1)(A), INSR2-5(a)(1)(A), INSR3</span>
+                            </div>
+                            <div class="violation-description">
+                                Status frozen October 2018—5.5 years before February 9, 2024 discharge. No updates during bankruptcy or after discharge. Violates duty to provide current information. Five-year neglect with monthly reporting creates 60+ separate violations.
+                            </div>
+                        </div>
+
+                        <div class="violation-item warning">
+                            <div class="violation-header">
+                                <i data-lucide="alert-triangle"></i>
+                                <span class="violation-type">INSR4-5(a)(1), INSR4(D)</span>
+                            </div>
+                            <div class="violation-description">
+                                Balance field blank/dash instead of required $0 or "N/A" post-discharge. Ambiguous reporting prevents accurate evaluation. Missing data violates completeness requirements. Pattern repeated across multiple reports.
+                            </div>
+                        </div>
+
+                        <div class="violation-item">
+                            <div class="violation-header">
+                                <i data-lucide="alert-triangle"></i>
+                                <span class="violation-type">INSR5-5(a)(6), INSR5(b), INSR5(a)(3)</span>
+                            </div>
+                            <div class="violation-description">
+                                No balance update data provided, concealing when changes occurred. Missing timestamps prevent verification of reporting timeline. Violates transparency and completeness requirements. Obscures evidence of systematic failures.
+                            </div>
+                        </div>
+
+                        <div class="violation-item">
+                            <div class="violation-header">
+                                <i data-lucide="alert-circle"></i>
+                                <span class="violation-type">INSR5-5(a)(2), INSR14-5(a)(1), INSR5</span>
+                            </div>
+                            <div class="violation-description">
+                                Recent payment field blank post-discharge. Should show last pre-bankruptcy payment or "N/A." Missing payment history obscures account timeline. Violates completeness and accuracy requirements.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./js/viobox-system.js"></script>
+    <script src="./js/app-pro-complete.js"></script>
+    <script>
+        // Initialize Lucide icons when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>
