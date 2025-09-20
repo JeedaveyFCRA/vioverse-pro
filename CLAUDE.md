@@ -1,13 +1,54 @@
 # CLAUDE.md - VIOVERSE PRO PROJECT
 
-## 🎯 LATEST UPDATE: September 20, 2025 - ALL SYSTEMS OPERATIONAL
+## 🎯 LATEST UPDATE: September 20, 2025 - CRITICAL FIXES APPLIED
 
 ## 🔴 CRITICAL PRIORITIES - NEVER VIOLATE
 1. **DATA-DRIVEN EVERYTHING** - No hardcoded values. Every number, text, coordinate comes from master.json
 2. **RESPONSIVE FIRST** - Works perfectly on mobile, tablet, and desktop (320px-1920px)
 3. **SEPARATION OF CONCERNS** - Data logic, business logic, and presentation must never mix
 
-## 🚀 PROJECT STATUS - SEPTEMBER 19, 2025
+## 🔧 CRITICAL FIXES - SEPTEMBER 20, 2025
+
+### ✅ NULL REFERENCE ERRORS FIXED
+**Problem**: PDFs were failing to load with "Cannot read properties of null" errors
+**Solution**: Added comprehensive null checks in `viobox-system.js`:
+- `violation.severity` → defaults to 'serious' if null
+- `violation.violationType` → defaults to empty string
+- `violation.fullText` → defaults to empty string
+- `violation.ruleId` → defaults to 'N/A'
+- `violation.bureau` → defaults to 'Unknown'
+- `violation.page` → defaults to 1
+
+### ✅ BUREAU/DATE SWITCHING AUTO-LOAD
+**Problem**: Users had to manually click page boxes after switching bureaus/dates
+**Solution**: Updated `app-pro-complete.js`:
+- `updateBureau()` now auto-loads first violation page
+- `updateDate()` properly clears display when no violations
+- Both functions handle edge cases and clear canvas when needed
+
+### ✅ PATH FIXES FOR ALL CONFIGURATIONS
+**Problem**: Config files were using wrong relative paths (`../data/` instead of `./data/`)
+**Solution**: Fixed all fetch paths in:
+- `config-loader.js`
+- `app-pro-complete.js`
+- `viobox-system.js`
+- `evidence-view.html`
+
+### ✅ LUCIDE ICON INITIALIZATION
+**Problem**: Zoom control icons (+/-) were not displaying
+**Solution**: Minimal fix in `index-pro.html`:
+- Single delayed re-initialization after 500ms
+- No interference with app initialization
+- Reverted complex changes that broke functionality
+
+### ✅ PDF.JS CONFIGURATION
+**Problem**: Duplicate worker configuration and incorrect pdfjsLib reference
+**Solution**:
+- Single worker configuration at top of `app-pro-complete.js`
+- Removed `window['pdfjs-dist/build/pdf']` reference
+- Simplified initialization sequence
+
+## 🚀 PROJECT STATUS - SEPTEMBER 20, 2025
 
 ### ✅ A+ COMPLIANCE ACHIEVED (100% Data-Driven)
 - **All CSS values**: Loaded from `ui-config.json`
