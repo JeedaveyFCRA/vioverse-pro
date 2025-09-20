@@ -551,8 +551,8 @@ class VioversePro {
 
       const pageMeta = this.state.pageMetadata[i];
 
-      // Data-driven icon display - only add icons for violation pages or current page
-      if ((pageMeta && pageMeta.hasViolation) || (this.state.currentPage !== null && i === this.state.currentPage)) {
+      // A+ Compliant: Icons ONLY on pages with violations (data-driven from CSV)
+      if (pageMeta && pageMeta.hasViolation) {
         const icon = document.createElement('i');
         icon.setAttribute('data-lucide', 'file-text');
         box.appendChild(icon);
@@ -596,9 +596,9 @@ class VioversePro {
       // Update current class
       box.classList.toggle('current', isCurrent);
 
-      // Data-driven icon management
+      // A+ Compliant: Icon presence determined solely by CSV violation data
       const hasIcon = box.querySelector('i[data-lucide]');
-      const shouldHaveIcon = hasViolation || isCurrent;
+      const shouldHaveIcon = hasViolation; // Remove isCurrent - not data-driven
 
       if (shouldHaveIcon && !hasIcon) {
         // Add icon if it should have one but doesn't
