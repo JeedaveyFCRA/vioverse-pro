@@ -3,6 +3,11 @@
  * Combines page navigation with VioBox rendering from CSV data
  */
 
+// Configure PDF.js worker
+if (typeof pdfjsLib !== 'undefined') {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
+
 class VioversePro {
   constructor() {
     this.state = {
@@ -656,9 +661,6 @@ class VioversePro {
     }
 
     try {
-      const pdfjsLib = window['pdfjs-dist/build/pdf'];
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
       const loadingTask = pdfjsLib.getDocument(pdfPath);
       const pdf = await loadingTask.promise;
       const page = await pdf.getPage(1);
@@ -889,13 +891,8 @@ class VioversePro {
 
 // Initialize app AFTER config loader completes
 async function initializeApp() {
-  // Ensure config is loaded first (A+ data-driven requirement)
-  if (!window.configLoader) {
-    window.configLoader = new ConfigLoader();
-    await window.configLoader.init();
-  }
-
-  // Now initialize the app with config loaded
+  // Config loader self-initializes, just create the app
+  console.log('Initializing VioversePro app...');
   new VioversePro();
 }
 

@@ -285,6 +285,13 @@
             if (window.lucide) {
                 window.lucide.createIcons();
             }
+
+            // Re-initialize icons after a short delay to catch any that were missed
+            setTimeout(() => {
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            }, 500);
         });
     </script>
 </body>

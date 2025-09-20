@@ -199,7 +199,7 @@ class VioBoxSystem {
   createVioBox(violation, scale, index) {
     const box = document.createElement('div');
     box.className = 'viobox';
-    box.dataset.severity = violation.severity;
+    box.dataset.severity = violation.severity || 'serious';
     box.dataset.index = index;
 
     // Apply scaled coordinates (CSV values are the truth)
@@ -217,8 +217,8 @@ class VioBoxSystem {
     const paddedWidth = scaledWidth + padding;
     const paddedHeight = scaledHeight + padding;
 
-    // Get severity colors (handle case sensitivity)
-    const severityKey = violation.severity.toLowerCase();
+    // Get severity colors (handle case sensitivity and null values)
+    const severityKey = violation.severity ? violation.severity.toLowerCase() : 'serious';
     const colors = this.severityColors[severityKey] || this.severityColors.serious || {
       border: '#fbbf24',
       background: 'rgba(251, 191, 36, 0.15)',
@@ -270,18 +270,20 @@ class VioBoxSystem {
     tooltip.id = 'viobox-tooltip';
     tooltip.className = 'viobox-tooltip';
 
-    // Build tooltip content
+    // Build tooltip content (with null checks for severity)
+    const severityClass = violation.severity ? violation.severity.toLowerCase() : 'serious';
+    const severityText = violation.severity || 'serious';
     tooltip.innerHTML = `
-      <div class="tooltip-header ${violation.severity.toLowerCase()}">
-        <span class="severity-badge">${violation.severity}</span>
-        <span class="rule-id">${violation.ruleId}</span>
+      <div class="tooltip-header ${severityClass}">
+        <span class="severity-badge">${severityText}</span>
+        <span class="rule-id">${violation.ruleId || 'N/A'}</span>
       </div>
       <div class="tooltip-content">
-        <div class="violation-type">${violation.violationType.replace(/_/g, ' ')}</div>
-        <div class="violation-text">${violation.fullText}</div>
+        <div class="violation-type">${(violation.violationType || '').replace(/_/g, ' ')}</div>
+        <div class="violation-text">${violation.fullText || ''}</div>
         <div class="tooltip-meta">
-          <span>Bureau: ${violation.bureau}</span>
-          <span>Page: ${violation.page}</span>
+          <span>Bureau: ${violation.bureau || 'Unknown'}</span>
+          <span>Page: ${violation.page || 1}</span>
         </div>
       </div>
     `;
