@@ -1,0 +1,134 @@
+{
+  "document_id": "VW-ALT-BOA-2023-12-24-01",
+  "version": "4.0",
+  "created_date": "2025-09-04",
+  "source_file": "bank-of-america-charge-off-reporting-dec-2023.md",
+  "document_type": "CREDIT_ALERT",
+  "temporal_period": "VW",
+  "creditor_code": "BOA",
+  "activity_date": "2023-12-24",
+  "sequence": "01",
+  
+  "document_metadata": {
+    "title": "Bank of America Charge-Off Alert - Vulnerability Window Attack",
+    "alert_source": "Experian",
+    "alert_date": "Likely January 17, 2024 (part of coordinated alert delivery)",
+    "activity_date": "2023-12-24",
+    "primary_purpose": "Document Bank of America charge-off during DS2830 vulnerability window"
+  },
+  
+  "legal_framework": {
+    "primary_statutes": ["15 U.S.C. §1681s-2(a)", "15 U.S.C. §1681n"],
+    "violation_types": [
+      "CHARGE_OFF_DURING_ACTIVE_BANKRUPTCY",
+      "VULNERABILITY_WINDOW_EXPLOITATION",
+      "COORDINATED_ATTACK_PARTICIPATION"
+    ],
+    "fcra_sections": {
+      "1681s-2(a)": "Furnishers' duty to provide accurate information",
+      "1681n": "Civil liability for willful noncompliance"
+    }
+  },
+  
+  "creditor_details": {
+    "creditor_name": "Bank of America",
+    "creditor_code": "BOA",
+    "contact_address": "Po Box 982238, El Paso, TX 79998-2238",
+    "contact_phone": "(800) 421-2110",
+    "reporting_bureau": "Experian"
+  },
+  
+  "violation_details": {
+    "flagged_status": "Charge-Off",
+    "activity_code": "Grid Code L (ChargeOff)",
+    "balance_date": "2023-12-24",
+    "reported_balance": "$7,270.00",
+    "violation_timing": "During DS2830 vulnerability window (pre-discharge)"
+  },
+  
+  "timeline_context": [
+    {
+      "date": "2023-12-20", 
+      "event": "JPMorgan begins premeditated attack (21 days before case closure)",
+      "significance": "Start of coordinated creditor assault"
+    },
+    {
+      "date": "2023-12-24",
+      "event": "Bank of America reports charge-off",
+      "significance": "4 days into coordinated attack period"
+    },
+    {
+      "date": "2024-01-10",
+      "event": "Case closed with discharge WITHHELD",
+      "significance": "Consumer left vulnerable during administrative processing"
+    },
+    {
+      "date": "2024-01-17",
+      "event": "Alert likely delivered as part of 10-alert coordinated bomb",
+      "significance": "Maximum impact during vulnerability window"
+    },
+    {
+      "date": "2024-02-09",
+      "event": "Discharge finally granted",
+      "significance": "End of vulnerability window"
+    }
+  ],
+  
+  "vulnerability_window_analysis": {
+    "premeditated_setup": "December 20, 2023 - JPMorgan leads coordinated attack",
+    "boa_participation": "December 24, 2023 - BOA reports charge-off 4 days into attack",
+    "case_closure": "January 10, 2024 - Case closed without discharge as planned",
+    "alert_delivery": "January 17, 2024 - Coordinated alert bomb during vulnerable period",
+    "discharge_delay": "February 9, 2024 - 30-day vulnerability window exploited"
+  },
+  
+  "coordinated_attack_indicators": [
+    "Timing during DS2830 vulnerability window",
+    "Part of 10-creditor coordinated alert delivery on January 17, 2024",
+    "Charge-off timing aligns with JPMorgan-led premeditated attack",
+    "Activity date (December 24) falls within 21-day premeditated period"
+  ],
+  
+  "fcra_violations": [
+    {
+      "violation": "CHARGE_OFF_DURING_ACTIVE_BANKRUPTCY",
+      "fcra_section": "15 U.S.C. §1681s-2(a)",
+      "description": "Charged off account during active Chapter 13 bankruptcy case",
+      "harm_caused": "False representation of account status during legal protection period"
+    },
+    {
+      "violation": "VULNERABILITY_WINDOW_EXPLOITATION",
+      "fcra_section": "15 U.S.C. §1681n",
+      "description": "Participated in coordinated attack during DS2830 administrative vulnerability",
+      "harm_caused": "Systematic exploitation of consumer during unprotected period"
+    },
+    {
+      "violation": "COORDINATED_FURNISHING_VIOLATIONS",
+      "fcra_section": "15 U.S.C. §1681s-2(a)",
+      "description": "Coordinated with other creditors to maximize harm during vulnerable period",
+      "harm_caused": "Amplified negative impact through systematic coordination"
+    }
+  ],
+  
+  "strategic_significance": {
+    "attack_coordination": "Part of documented 10-creditor coordinated assault",
+    "timing_precision": "Activity during precise vulnerability window",
+    "willfulness_evidence": "Participation in systematic consumer exploitation",
+    "pattern_contribution": "Adds to coordinated attack pattern evidence"
+  },
+  
+  "legal_implications": {
+    "premeditation_evidence": "Timing shows advance planning and coordination",
+    "willfulness_indicators": "Systematic exploitation during vulnerable period",
+    "conspiracy_elements": "Coordinated timing with other creditors suggests communication",
+    "damages_amplification": "Contributed to 107-point credit score drop"
+  },
+  
+  "vioripple_metadata": {
+    "impact_score": 86,
+    "legal_strength": "HIGH", 
+    "evidence_quality": "COORDINATED_ATTACK_EVIDENCE",
+    "damage_quantification": "VULNERABILITY_WINDOW_EXPLOITATION",
+    "strategic_value": "PREMEDITATION_PROOF"
+  }
+}

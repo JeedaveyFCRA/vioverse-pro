@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The VIOVERSE Story - 563 Days of Automated Financial Assassination</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Slide Container */
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 40px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Slide Backgrounds */
+        .slide-0 { background: linear-gradient(135deg, #0f0f0f, #1a1a2e); }
+        .slide-1 { background: linear-gradient(135deg, #8B0000, #000); }
+        .slide-2 { background: linear-gradient(135deg, #FF4500, #8B0000); }
+        .slide-3 { background: linear-gradient(135deg, #000, #8B0000); }
+        .slide-4 { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+        .slide-5 { background: linear-gradient(135deg, #8B0000, #FF4500); }
+
+        /* Title Styles */
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .slide-title {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .slide-subtitle {
+            font-size: 24px;
+            color: #ccc;
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        /* Key Stats */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff0000;
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.3);
+        }
+
+        .stat-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        /* Timeline */
+        .timeline {
+            max-width: 1000px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #ff0000, transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff0000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        /* Evidence Display */
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .evidence-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ff0000;
+        }
+
+        .evidence-type {
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .evidence-detail {
+            color: #ccc;
+            margin: 5px 0;
+        }
+
+        /* Score Chart */
+        .score-chart {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .score-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 300px;
+            margin: 30px 0;
+        }
+
+        .score-bar {
+            flex: 1;
+            max-width: 100px;
+            background: linear-gradient(180deg, #ff0000, #ff6b6b);
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            margin: 0 10px;
+        }
+
+        .score-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 12px;
+        }
+
+        .score-value {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Creditor Attack Map */
+        .attack-map {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 15px;
+            border: 2px solid #ff0000;
+        }
+
+        .attack-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .creditor-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .creditor-item {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff0000;
+        }
+
+        .creditor-name {
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 5px;
+        }
+
+        .attack-duration {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        /* Call to Action */
+        .cta {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), transparent);
+        }
+
+        .cta-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .cta-subtitle {
+            font-size: 20px;
+            color: #ccc;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff0000, #ff6b6b);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.3);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide-title { font-size: 32px; }
+            .slide-subtitle { font-size: 18px; }
+            .stat-value { font-size: 32px; }
+            .timeline::before { left: 20px; }
+            .timeline-item { flex-direction: column !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav">
+        <button class="nav-btn" onclick="previousSlide()">◀ Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next ▶</button>
+    </div>
+
+    <!-- SLIDE 0: 60 PAYMENTS. PERFECT. -->
+    <div class="slide slide-0 visible">
+        <span class="slide-number">SLIDE 0</span>
+        <h1 class="slide-title">60 PAYMENTS. PERFECT.</h1>
+        <p class="slide-subtitle">
+            Five years. Sixty payments. Never missed. Never late.<br>
+            Freedom: February 9, 2024.<br>
+            But 72 hours later—thirteen creditors attacked.<br>
+            <strong>This is that story.</strong>
+        </p>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="stat-value">60</div>
+                <div class="stat-label">Perfect Payments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Years Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">13</div>
+                <div class="stat-label">Creditors Attacked</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">72hrs</div>
+                <div class="stat-label">Until Attack</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 1: BANKRUPTCY DISCHARGE -->
+    <div class="slide slide-1">
+        <span class="slide-number">SLIDE 1</span>
+        <h1 class="slide-title">BANKRUPTCY DISCHARGE</h1>
+        <p class="slide-subtitle">
+            February 9th. Judge signs discharge.<br>
+            But 25 days earlier, I missed a deadline by 5 days.<br>
+            Case dismissed. Creditors attacked.<br>
+            Case reopened February 8th. Discharged February 9th.<br>
+            <strong>They never stopped attacking.</strong>
+        </p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Jan 10</div>
+                <div class="timeline-content">
+                    <h3>DS2830 Deadline</h3>
+                    <p>Critical form due</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Jan 15</div>
+                <div class="timeline-content">
+                    <h3>Form Sent - 5 Days Late</h3>
+                    <p>Case automatically dismissed</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Feb 8</div>
+                <div class="timeline-content">
+                    <h3>Case Reopened</h3>
+                    <p>Protection restored</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Feb 9</div>
+                <div class="timeline-content">
+                    <h3>DISCHARGE GRANTED</h3>
+                    <p>Freedom... or so I thought</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2.5: 5 DAYS LATE = DISMISSED -->
+    <div class="slide slide-2">
+        <span class="slide-number">SLIDE 2.5</span>
+        <h1 class="slide-title">5 DAYS LATE = DISMISSED</h1>
+        <p class="slide-subtitle">
+            January 10: DS2830 deadline.<br>
+            January 15: I send the form. Five days late.<br>
+            Case dismissed. Automatic stay lifted.<br>
+            Creditors legally unleashed.<br>
+            For 30 days, they could attack.<br>
+            But when case reopened February 8th, they should've stopped.<br>
+            <strong>They didn't. For 563 days.</strong>
+        </p>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Days Late</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">30</div>
+                <div class="stat-label">Days Vulnerable</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">563</div>
+                <div class="stat-label">Days They Attacked</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">13</div>
+                <div class="stat-label">Creditors</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3.5: THE COORDINATED STRIKE -->
+    <div class="slide slide-3">
+        <span class="slide-number">SLIDE 3.5</span>
+        <h1 class="slide-title">THE COORDINATED STRIKE</h1>
+        <p class="slide-subtitle">
+            9:41 AM. Best Egg alert hits my phone.<br>
+            Four creditors reporting simultaneously.<br>
+            <strong>Not coincidence. Coordination.</strong>
+        </p>
+        <div class="attack-map">
+            <div class="attack-header">
+                <h2>January 17, 2024 - 9:41 AM</h2>
+                <p>The Simultaneous Attack</p>
+            </div>
+            <div class="creditor-list">
+                <div class="creditor-item">
+                    <div class="creditor-name">JP Morgan</div>
+                    <div class="attack-duration">Damaging Activity Reported</div>
+                </div>
+                <div class="creditor-item">
+                    <div class="creditor-name">Discover</div>
+                    <div class="attack-duration">Damaging Activity Reported</div>
+                </div>
+                <div class="creditor-item">
+                    <div class="creditor-name">Sears</div>
+                    <div class="attack-duration">Payment Overdue Alert</div>
+                </div>
+                <div class="creditor-item">
+                    <div class="creditor-name">Best Buy</div>
+                    <div class="attack-duration">Payment Overdue Alert</div>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 30px; font-size: 20px; color: #ff6b6b;">
+            They all saw 'DISMISSED' in their systems.<br>
+            Attack mode: <strong>ACTIVATED</strong>
+        </p>
+    </div>
+
+    <!-- SLIDE 5: TRANSUNION: -107. EXPERIAN: -41. -->
+    <div class="slide slide-4">
+        <span class="slide-number">SLIDE 5</span>
+        <h1 class="slide-title">TRANSUNION: -107. EXPERIAN: -41.</h1>
+        <div class="score-chart">
+            <h3 style="text-align: center; margin-bottom: 20px;">The Score Assassination</h3>
+            <div class="score-bars">
+                <div class="score-bar" style="height: 80%;">
+                    <div class="score-value">684</div>
+                    <div class="score-label">TU Before</div>
+                </div>
+                <div class="score-bar" style="height: 50%; background: red;">
+                    <div class="score-value">577</div>
+                    <div class="score-label">TU After (-107)</div>
+                </div>
+                <div class="score-bar" style="height: 70%;">
+                    <div class="score-value">637</div>
+                    <div class="score-label">EX Before</div>
+                </div>
+                <div class="score-bar" style="height: 60%; background: orange;">
+                    <div class="score-value">596</div>
+                    <div class="score-label">EX After (-41)</div>
+                </div>
+            </div>
+        </div>
+        <p class="slide-subtitle">
+            Same me. Same debts. Same discharge coming.<br>
+            Why the difference?<br>
+            TransUnion believed every lie instantly.<br>
+            <strong>This proves it wasn't real. It was automated assassination.</strong>
+        </p>
+    </div>
+
+    <!-- SLIDE 16.75: 50 POINTS IN 13 DAYS -->
+    <div class="slide slide-5">
+        <span class="slide-number">SLIDE 16.75</span>
+        <h1 class="slide-title">50 POINTS IN 13 DAYS</h1>
+        <p class="slide-subtitle">
+            August 24: TransUnion 652. Ally still lying.<br>
+            September 5: Their 7-year window expires.<br>
+            September 7: TransUnion 702.<br>
+            <strong>FIFTY POINTS in thirteen days.</strong>
+        </p>
+        <div class="evidence-grid">
+            <div class="evidence-card">
+                <div class="evidence-type">BEFORE REMOVAL</div>
+                <div class="evidence-detail">Date: August 24, 2025</div>
+                <div class="evidence-detail">Score: 652</div>
+                <div class="evidence-detail">Ally Status: "Wage Earner Plan"</div>
+                <div class="evidence-detail">563 days of false reporting</div>
+            </div>
+            <div class="evidence-card">
+                <div class="evidence-type">AFTER REMOVAL</div>
+                <div class="evidence-detail">Date: September 7, 2025</div>
+                <div class="evidence-detail">Score: 702</div>
+                <div class="evidence-detail">Ally Status: REMOVED</div>
+                <div class="evidence-detail">3 derogatory accounts gone</div>
+            </div>
+            <div class="evidence-card">
+                <div class="evidence-type">THE PROOF</div>
+                <div class="evidence-detail">One creditor = 50 points</div>
+                <div class="evidence-detail">563 days of suppression</div>
+                <div class="evidence-detail">Mathematical causation</div>
+                <div class="evidence-detail">100% intentional harm</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="slide cta">
+        <h1 class="cta-title">VIOVERSE RISES</h1>
+        <p class="cta-subtitle">
+            They had automation. I built annihilation.<br>
+            VioVerse: Every violation tracked. Every pattern exposed.<br>
+            Every creditor caught.<br>
+            <strong>What destroyed me in 72 hours, now destroys them in court.</strong>
+        </p>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="stat-value">412</div>
+                <div class="stat-label">Violations Documented</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">13</div>
+                <div class="stat-label">Creditors Liable</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">563</div>
+                <div class="stat-label">Days of Harm</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">$8-12M</div>
+                <div class="stat-label">Damages Range</div>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <button class="btn" onclick="viewDashboard()">View Attorney Dashboard</button>
+            <button class="btn" onclick="viewEvidence()">View Evidence</button>
+            <button class="btn" onclick="viewCausation()">View Causation Chain</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        // Navigation functions
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('visible', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Touch gestures for mobile
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) nextSlide();
+                else previousSlide();
+            }
+        });
+
+        // View functions
+        function viewDashboard() {
+            window.location.href = 'attorney-dashboard.html';
+        }
+
+        function viewEvidence() {
+            window.location.href = 'evidence-view.html';
+        }
+
+        function viewCausation() {
+            window.location.href = 'causation-chain.html';
+        }
+
+        // Auto-advance slides (optional)
+        // setInterval(nextSlide, 10000); // Advance every 10 seconds
+    </script>
+</body>
+</html>

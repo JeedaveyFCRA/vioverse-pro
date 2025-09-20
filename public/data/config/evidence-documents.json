@@ -1,0 +1,179 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-09-20",
+    "description": "A+ compliant evidence document manifest - 100% data-driven configuration",
+    "responsive": true,
+    "dataSource": "external"
+  },
+  "config": {
+    "basePath": "../assets/evidence/evidence/",
+    "imageFormats": ["png", "jpg", "jpeg", "pdf"],
+    "defaultCategory": "bankruptcy",
+    "pageTransition": "150ms ease",
+    "zoomLevels": {
+      "min": 50,
+      "max": 200,
+      "step": 25,
+      "default": 100
+    },
+    "grid": {
+      "columnsDesktop": 10,
+      "columnsTablet": 8,
+      "columnsMobile": 5,
+      "maxCells": 100
+    }
+  },
+  "categories": {
+    "denials": {
+      "label": "Credit Denials",
+      "icon": "x-circle",
+      "color": "#ff6b35",
+      "documents": []
+    },
+    "alerts": {
+      "label": "Damaging Alerts",
+      "icon": "alert-triangle",
+      "color": "#f97316",
+      "documents": []
+    },
+    "emotional": {
+      "label": "Emotional Impact",
+      "icon": "heart",
+      "color": "#ec4899",
+      "documents": []
+    },
+    "timeline": {
+      "label": "Timeline Triggers",
+      "icon": "clock",
+      "color": "#3b82f6",
+      "documents": []
+    },
+    "bankruptcy": {
+      "label": "Bankruptcy Documents",
+      "icon": "file-text",
+      "color": "#10b981",
+      "documents": [
+        {
+          "id": "discharge-order-2024",
+          "name": "Order of Discharge - February 9, 2024",
+          "shortName": "Discharge Order",
+          "date": "2024-02-09",
+          "type": "legal",
+          "significance": "extreme",
+          "pages": [
+            {
+              "number": 1,
+              "filename": "order-of-discharge-february-9-2024-P1.png",
+              "title": "Order of Discharge - Page 1",
+              "description": "United States Bankruptcy Court - Order of Discharge cover page",
+              "keywords": ["discharge", "chapter 13", "court order", "February 9, 2024"],
+              "violations": ["Post-discharge reporting", "Failure to update status"],
+              "legalSignificance": "Primary evidence of bankruptcy discharge date"
+            },
+            {
+              "number": 2,
+              "filename": "order-of-discharge-february-9-2024-P2.png",
+              "title": "Order of Discharge - Page 2",
+              "description": "Explanation of discharge and creditor obligations",
+              "keywords": ["creditor prohibition", "collection ban", "discharge injunction"],
+              "violations": ["Continued collection attempts", "False reporting"],
+              "legalSignificance": "Details creditor legal obligations post-discharge"
+            },
+            {
+              "number": 3,
+              "filename": "order-of-discharge-february-9-2024-P3.png",
+              "title": "Order of Discharge - Page 3",
+              "description": "Types of debts discharged",
+              "keywords": ["discharged debts", "creditor list", "debt elimination"],
+              "violations": ["Reporting discharged debts as active"],
+              "legalSignificance": "Specifies which debts are eliminated"
+            },
+            {
+              "number": 4,
+              "filename": "order-of-discharge-february-9-2024-P4.png",
+              "title": "Order of Discharge - Page 4",
+              "description": "Legal effect of discharge and warnings",
+              "keywords": ["legal effect", "permanent injunction", "contempt of court"],
+              "violations": ["Contempt of court", "Willful violations"],
+              "legalSignificance": "Warning about contempt penalties for violations"
+            },
+            {
+              "number": 5,
+              "filename": "order-of-discharge-february-9-2024-P5.png",
+              "title": "Order of Discharge - Page 5",
+              "description": "Court signature and official seal",
+              "keywords": ["court seal", "judge signature", "official order"],
+              "violations": ["Ignoring court order"],
+              "legalSignificance": "Official authentication of discharge order"
+            }
+          ],
+          "metadata": {
+            "court": "United States Bankruptcy Court",
+            "caseNumber": "18-12245",
+            "chapter": "13",
+            "judge": "Bankruptcy Judge",
+            "filingDate": "2024-02-09",
+            "effectiveDate": "2024-02-09"
+          },
+          "analysis": {
+            "totalViolations": 412,
+            "violationPeriod": "562 days",
+            "damagesEstimate": "$8-12M",
+            "fcraViolations": [
+              "15 USC 1681s-2(a)(1)(A) - Duty to provide accurate information",
+              "15 USC 1681e(b) - Failure to follow reasonable procedures",
+              "15 USC 1681i - Failure to reinvestigate disputed information"
+            ]
+          }
+        },
+        {
+          "id": "ds2830-filing",
+          "name": "DS2830 Domestic Support Filing",
+          "shortName": "DS2830 Filing",
+          "date": "2024-02-08",
+          "type": "legal",
+          "significance": "extreme",
+          "pages": [],
+          "metadata": {
+            "description": "Filed one day before discharge - critical timing evidence"
+          }
+        }
+      ]
+    },
+    "additional": {
+      "label": "Additional Evidence",
+      "icon": "folder-plus",
+      "color": "#6366f1",
+      "documents": []
+    }
+  },
+  "responsiveBreakpoints": {
+    "mobile": {
+      "maxWidth": 767,
+      "gridColumns": 5,
+      "sidebarBehavior": "overlay",
+      "fontSize": "14px"
+    },
+    "tablet": {
+      "minWidth": 768,
+      "maxWidth": 1023,
+      "gridColumns": 8,
+      "sidebarBehavior": "fixed",
+      "fontSize": "15px"
+    },
+    "desktop": {
+      "minWidth": 1024,
+      "gridColumns": 10,
+      "sidebarBehavior": "fixed",
+      "fontSize": "16px"
+    }
+  },
+  "accessibility": {
+    "keyboardNavigation": true,
+    "ariaLabels": true,
+    "focusIndicators": true,
+    "highContrast": false,
+    "reduceMotion": false
+  }
+}

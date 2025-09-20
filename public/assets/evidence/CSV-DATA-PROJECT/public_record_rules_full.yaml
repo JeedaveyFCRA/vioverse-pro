@@ -1,0 +1,172 @@
+# =====================
+# public_record_rules_full_FIXED.yaml
+# =====================
+# Full-spectrum ruleset for Public Records:
+# Minor + Moderate + Serious + Severe + Extreme
+# FIXED: Correct field names matching CSV + All litigation rules included
+#
+# CSV Fields: date_filed, date_updated, status, disposition, prior_disposition
+# =====================
+
+rules:
+
+  # ---------- EXTREME (From Litigation) ----------
+  - id: PR-EXT-001
+    name: "Post-Discharge Not Marked Discharged"
+    severity: Extreme
+    statutes: ["§1681e(b)"]
+    explain: "On/after discharge, record not clearly marked Discharged."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - not_any_contains_glob:
+            pattern: "(?i)status|disposition|prior_disposition"
+            keywords_from: discharged_keywords
+
+  - id: PR-EXT-002
+    name: "Post-Discharge Misclassification as Dismissed/Closed"
+    severity: Extreme
+    statutes: ["§1681e(b)"]
+    explain: "On/after discharge, record uses dismissal/closure phrasing that contradicts a discharge."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - any_contains_glob:
+            pattern: "(?i)status|disposition|prior_disposition"
+            keywords_from: misclassification_keywords
+
+  - id: PR-EXT-003
+    name: "Liability/Amount Reported After Discharge"
+    severity: Extreme
+    statutes: ["§1681e(b)"]
+    explain: "Positive liability amount reported after discharge."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - { field: liability_amount, op: ">", value: 0 }
+
+  # ---------- SEVERE (From Litigation) ----------
+  - id: PR-SEV-001
+    name: "Removal Window Exceeds 10 Years from Filing"
+    severity: Severe
+    statutes: ["§1681c(a)(1)"]
+    explain: "Estimated removal date exceeds 10 years from filing date."
+    when:
+      all:
+        - { field: date_filed, op: "exists", value: true }
+        - { field: estimated_removal_date, op: "exists", value: true }
+        - { op: "gt_years_from", field: estimated_removal_date, ref_field: date_filed, years: 10 }
+
+  - id: PR-SEV-002
+    name: "Frozen/Stale Public Record Not Updated Post-Discharge"
+    severity: Severe
+    statutes: ["§1681e(b)"]
+    explain: "On/after discharge, last update predates discharge and record not clearly Discharged."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - { field: date_updated, op: "<", value: "{{discharge_date}}" }
+        - not_any_contains_glob:
+            pattern: "(?i)status|disposition|prior_disposition"
+            keywords_from: discharged_keywords
+
+  - id: PR-SEV-003
+    name: "Inconsistent Discharge Dating"
+    severity: Severe
+    statutes: ["§1681e(b)"]
+    explain: "Disposition says Discharged but the recorded dates conflict."
+    when:
+      all:
+        - any_contains:
+            fields: ["disposition"]
+            keywords:
+              - "discharged"
+        - any:
+            - { field: date_resolved, op: "<", value: "{{discharge_date}}" }
+            - { field: current_disposition_date, op: "!=", value: "{{discharge_date}}" }
+
+  # ---------- SERIOUS (From Litigation) ----------
+  - id: PR-SER-001
+    name: "No Refresh Within 60 Days After Discharge"
+    severity: Serious
+    statutes: ["§1681e(b)"]
+    explain: "No update to public record within 60 days after discharge."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date_plus_60}}" }
+        - { field: date_updated, op: "<", value: "{{discharge_date}}", allow_missing: true }
+
+  - id: PR-SER-002
+    name: "Missing Disposition While Reporting Public Record Post-Discharge"
+    severity: Serious
+    statutes: ["§1681e(b)"]
+    explain: "On/after discharge, key disposition/status data missing."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - any:
+            - { field: disposition, op: "not_exists", value: true }
+            - { field: status, op: "not_exists", value: true }
+
+  # ---------- MODERATE (Full Mode Only) ----------
+  - id: PR-MOD-001
+    name: "No Update in >12 Months"
+    severity: Moderate
+    statutes: ["§1681e(b)"]
+    explain: "Public record has not been updated in over 12 months."
+    when:
+      all:
+        - { field: date_updated, op: "exists", value: true }
+        - { field: report_date, op: "exists", value: true }
+        - { op: "date_diff_gt_days", field: report_date, ref_field: date_updated, days: 365 }
+
+  - id: PR-MOD-002
+    name: "Near-Obsolete Filing (7-10 Years Old)"
+    severity: Moderate
+    statutes: ["§1681c"]
+    explain: "Filing date approaching 10-year obsolescence limit."
+    when:
+      all:
+        - { field: date_filed, op: "exists", value: true }
+        - { op: "gt_years_from", field: report_date, ref_field: date_filed, years: 7 }
+
+  - id: PR-MOD-003
+    name: "Missing Court Information"
+    severity: Moderate
+    statutes: ["§1681g(a)(1)"]
+    explain: "Court name or number missing (moderate completeness issue)."
+    when:
+      any:
+        - { field: court_name, op: "not_exists", value: true }
+        - { field: court_number, op: "not_exists", value: true }
+
+  # ---------- MINOR (Full Mode Only) ----------
+  - id: PR-MIN-001
+    name: "Missing Filing Date"
+    severity: Minor
+    statutes: []
+    explain: "Filing date is blank."
+    when:
+      - { field: date_filed, op: "not_exists", value: true }
+
+  - id: PR-MIN-002
+    name: "Cosmetic Month-Only Dates"
+    severity: Minor
+    statutes: []
+    explain: "Dates reported as YYYY-MM or MM/YYYY."
+    when:
+      any:
+        - { field: date_filed, op: "month_only", value: true }
+        - { field: report_date, op: "month_only", value: true }
+        - { field: estimated_removal_date, op: "month_only", value: true }
+        - { field: date_updated, op: "month_only", value: true }
+
+  - id: PR-MIN-003
+    name: "Missing Reference/Case Number"
+    severity: Minor
+    statutes: []
+    explain: "Reference or case number field is blank (minor completeness issue)."
+    when:
+      all:
+        - { field: reference_number, op: "not_exists", value: true }
+        - { field: case_number, op: "not_exists", value: true }

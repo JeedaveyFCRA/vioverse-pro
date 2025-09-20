@@ -1,0 +1,101 @@
+{
+  "creditorCodes": {
+    "AL": {
+      "code": "AL",
+      "name": "Ally Financial",
+      "displayName": "ally financial",
+      "accountTypes": ["Auto Loan", "Personal Loan"],
+      "severity": "extreme"
+    },
+    "BB": {
+      "code": "BB",
+      "name": "Citibank / Best Buy",
+      "displayName": "best buy",
+      "accountTypes": ["Store Card", "Credit Card"],
+      "severity": "severe"
+    },
+    "BK": {
+      "code": "BK",
+      "name": "Bank of America",
+      "displayName": "bank of america",
+      "accountTypes": ["Credit Card", "Personal Loan"],
+      "severity": "severe"
+    },
+    "BY": {
+      "code": "BY",
+      "name": "Barclays Bank",
+      "displayName": "barclays",
+      "accountTypes": ["Credit Card"],
+      "severity": "severe"
+    },
+    "C1": {
+      "code": "C1",
+      "name": "Citizens Bank",
+      "displayName": "citizens bank (account 1)",
+      "accountTypes": ["Personal Loan", "Credit Line"],
+      "severity": "severe"
+    },
+    "C2": {
+      "code": "C2",
+      "name": "Citizens Bank",
+      "displayName": "citizens bank (account 2)",
+      "accountTypes": ["Personal Loan", "Credit Line"],
+      "severity": "severe"
+    },
+    "CR": {
+      "code": "CR",
+      "name": "Cornerstone Community FCU",
+      "displayName": "cornerstone fcu",
+      "accountTypes": ["Credit Union Account"],
+      "severity": "warning"
+    },
+    "DB": {
+      "code": "DB",
+      "name": "Discover Bank",
+      "displayName": "discover card",
+      "accountTypes": ["Credit Card"],
+      "severity": "extreme"
+    },
+    "DL": {
+      "code": "DL",
+      "name": "Discover Personal Loans",
+      "displayName": "discover loans",
+      "accountTypes": ["Personal Loan"],
+      "severity": "severe"
+    },
+    "HD": {
+      "code": "HD",
+      "name": "THD Bank / TD Auto",
+      "displayName": "home depot",
+      "accountTypes": ["Store Card"],
+      "severity": "warning"
+    },
+    "JP": {
+      "code": "JP",
+      "name": "JPMCB",
+      "displayName": "chase",
+      "accountTypes": ["Credit Card", "Banking"],
+      "severity": "extreme"
+    },
+    "MF": {
+      "code": "MF",
+      "name": "Mariner Finance",
+      "displayName": "mariner finance",
+      "accountTypes": ["Personal Loan"],
+      "severity": "severe"
+    },
+    "SR": {
+      "code": "SR",
+      "name": "Citibank / Sears",
+      "displayName": "sears",
+      "accountTypes": ["Store Card"],
+      "severity": "warning"
+    }
+  },
+  "defaultCreditor": {
+    "code": "NA",
+    "name": "Not Available",
+    "displayName": "no violations on this page",
+    "severity": "none"
+  }
+}

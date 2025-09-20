@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "case_version": "v4",
+  "id": "VW-ALT-JP-2023-12-20-01", 
+  "doc_type": "ALT",
+  "title": "JP Morgan Chase Double Charge-Off: Pattern Leader in Coordinated Attack",
+  "source": {
+    "source_filename": "jpmcb-duplicate-charge-off-reporting-dec-2023-jan-2024.md",
+    "source_path": "/assets/evidence-for-json/",
+    "sha256": "d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6",
+    "extraction_method": "manual_parse"
+  },
+  "temporal": {
+    "temporal_classification": "VW",
+    "activity_date": "2023-12-20",
+    "provenance": {
+      "alert_delivery_date": "2024-01-17",
+      "excluded_from_violation_logic": true
+    }
+  },
+  "entities": {
+    "creditor_codes": ["JP"],
+    "bureaus": ["EX"], 
+    "consumers": ["David Marra"]
+  },
+  "claims": [
+    {
+      "violations": [
+        {
+          "statute": "15 U.S.C. §1681e(b)",
+          "severity": "SEVERE",
+          "description": "Pattern leader - first creditor to attack on Dec 20, 2023",
+          "harm_estimate": {
+            "amount_point": 5000,
+            "rationale": "Willful violation, initiated coordinated attack pattern"
+          }
+        },
+        {
+          "statute": "15 U.S.C. §1681s-2(a)(1)(A)",
+          "severity": "SEVERE",
+          "description": "Double charge-off reporting same debt twice",
+          "harm_estimate": {
+            "amount_point": 5000,
+            "rationale": "Willful double reporting of same debt"
+          }
+        }
+      ]
+    }
+  ],
+  "double_reporting": {
+    "first_report": {
+      "date": "2023-12-20",
+      "balance": 742.00,
+      "status": "Charge-Off"
+    },
+    "second_report": {
+      "date": "2024-01-19", 
+      "balance": 742.00,
+      "status": "Charge-Off"
+    },
+    "days_between": 30
+  },
+  "pattern_significance": {
+    "attack_pattern_leader": true,
+    "first_creditor_date": "2023-12-20",
+    "coordinated_attack_start": "2023-12-20"
+  },
+  "special_handling": "COORDINATED_ATTACK_LEADER",
+  "golden_evidence": true,
+  "golden_rationale": "First creditor in coordinated attack, appears on ALL 9 TransUnion reports",
+  "confidence_score": 1.0,
+  "litigation_readiness_score": 95,
+  "notes": "Pattern leader - initiated premeditated attack 51 days before discharge",
+  "created_at": "2025-09-04T20:55:30.000000",
+  "updated_at": "2025-09-04T20:55:30.000000"
+}

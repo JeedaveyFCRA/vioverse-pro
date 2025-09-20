@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "case_version": "v4",
+  "id": "PD-VML-RKT-2025-03-04-01",
+  "doc_type": "VML",
+  "title": "Lawrence Young Rocket Mortgage Voicemail - Credit Conditions Confirmation",
+  "source": {
+    "source_filename": "Lawrence-Young-Voicemail-Transcript.md",
+    "source_path": "/assets/evidence-for-json/",
+    "sha256": "pending_calculation",
+    "extraction_method": "manual_transcription"
+  },
+  "temporal": {
+    "temporal_classification": "PD",
+    "activity_date": "2025-03-04",
+    "provenance": {
+      "alert_delivery_date": null,
+      "excluded_from_violation_logic": false
+    }
+  },
+  "entities": {
+    "creditor_codes": [],
+    "bureaus": [],
+    "consumers": ["David Marra"],
+    "representatives": ["Lawrence Young"]
+  },
+  "claims": [
+    {
+      "violations": [
+        {
+          "statute": "15 U.S.C. §1681m(a)",
+          "description": "Failure to provide adverse action notice with specific credit requirements",
+          "severity": "SERIOUS",
+          "harm_estimate": {
+            "amount_point": 25000,
+            "rationale": "Blocked refinance worth $25,000 in savings"
+          }
+        }
+      ]
+    }
+  ],
+  "evidence": {
+    "voicemail_details": {
+      "date": "2025-03-04",
+      "time": "4:42 PM",
+      "duration": "approximately 30 seconds",
+      "callback_number": "313-545-0225",
+      "representative": "Lawrence Young",
+      "company": "Rocket Mortgage"
+    },
+    "followup_call": {
+      "same_day": true,
+      "duration": "approximately 15 minutes",
+      "key_confirmations": [
+        "Score must be above 640",
+        "Alternative: Pay down $10,000 in personal debt",
+        "These conditions despite bankruptcy discharge on 2024-02-09"
+      ]
+    }
+  },
+  "references": {
+    "source_evidence_ids": [],
+    "related_ids": [
+      "PD-DNL-RKT-2024-04-21-01",
+      "PD-COR-RKT-2025-04-02-01"
+    ],
+    "corroborates": ["PD-COR-RKT-2025-04-02-01"],
+    "contradicts": [],
+    "triggers": []
+  },
+  "validation": {
+    "record_checks": [
+      {"check": "required_fields", "status": "PASS"},
+      {"check": "date_plausibility", "status": "PASS"},
+      {"check": "post_discharge_violation", "status": "PASS", "note": "389 days post-discharge"}
+    ],
+    "cross_doc_checks": []
+  },
+  "confidence_score": 0.95,
+  "litigation_readiness_score": 85,
+  "notes": "Direct evidence of impossible credit conditions post-bankruptcy. Representative confirmed specific requirements that violate discharged status.",
+  "created_at": "2025-09-04T18:30:00Z",
+  "updated_at": "2025-09-04T18:30:00Z"
+}

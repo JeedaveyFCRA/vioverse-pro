@@ -1,0 +1,139 @@
+{
+  "document_id": "PR-CRT-GRB-2023-11-16-01",
+  "version": "4.0",
+  "created_date": "2025-09-04",
+  "source_file": "domestic-support-obligation-form-2830.md",
+  "document_type": "COURT_DOCUMENT",
+  "temporal_period": "PR",
+  "creditor_code": "GRB",
+  "activity_date": "2023-11-16",
+  "sequence": "01",
+  
+  "document_metadata": {
+    "title": "DS2830 Domestic Support Obligation Form - Critical Deadline Notice",
+    "law_firm": "Peter D. Grubea, Joseph E. DeMarco Attorneys at Law",
+    "document_date": "2023-11-16",
+    "case_number": "18-122245",
+    "court": "United States Bankruptcy Court, Western District of New York",
+    "primary_purpose": "Attorney warning about mandatory DS2830 form to prevent case closure without discharge"
+  },
+  
+  "legal_framework": {
+    "primary_statutes": ["11 U.S.C. §1328", "11 U.S.C. §522(q)"],
+    "violation_types": [
+      "DS2830_LATE_FILING_SETUP",
+      "DISCHARGE_VULNERABILITY_CREATION",
+      "ADMINISTRATIVE_EXPLOITATION_ENABLEMENT"
+    ],
+    "bankruptcy_sections": {
+      "1328": "Chapter 13 discharge requirements",
+      "522(q)": "Homestead exemption limitations"
+    }
+  },
+  
+  "attorney_details": {
+    "primary_attorney": "Peter D. Grubea",
+    "secondary_attorney": "Joseph E. DeMarco",
+    "firm_name": "Grubea Law",
+    "contact": {
+      "phone": "716-853-1366",
+      "fax": "716-853-1378",
+      "address": "336 Harris Hill Road, Second Floor, Williamsville, NY 14221",
+      "email": "info@grubealaw.com",
+      "website": "www.grubealaw.com"
+    }
+  },
+  
+  "case_details": {
+    "debtor": "David Marra",
+    "case_number": "18-122245",
+    "chapter": "Chapter 13",
+    "court": "Western District of New York",
+    "debtor_address": "437 18th Street, Niagara Falls, NY 14303"
+  },
+  
+  "timeline_context": [
+    {
+      "date": "2023-11-16", 
+      "event": "Attorney sends urgent DS2830 deadline notice",
+      "significance": "Warning that failure to file will result in case closure without discharge"
+    },
+    {
+      "date": "2024-01-10",
+      "event": "Case closed with discharge WITHHELD",
+      "significance": "Exactly what attorney warned would happen - DS2830 filed too late"
+    },
+    {
+      "date": "2024-01-15",
+      "event": "DS2830 finally submitted (5 days after closure)",
+      "significance": "Late filing created 30-day vulnerability window"
+    },
+    {
+      "date": "2024-02-09",
+      "event": "Discharge finally granted",
+      "significance": "30-day delay enabled coordinated creditor attacks"
+    }
+  ],
+  
+  "ds2830_requirements": {
+    "form_name": "Chapter 13 Debtor's Certifications Regarding Domestic Support Obligations and Section 522(q)",
+    "mandatory_for": "ALL Chapter 13 cases, whether or not debtor has ever owed alimony or child support",
+    "certification_options": [
+      "Owed no domestic support obligation when filing and none required since",
+      "Have been required to pay domestic support and have paid all amounts due"
+    ],
+    "section_522q_certification": "Regarding homestead exemption claims",
+    "penalty_for_perjury": "Information must be true and correct under penalty of perjury"
+  },
+  
+  "consequences_warned": {
+    "immediate": "Case closure without discharge of debts",
+    "reopening_costs": {
+      "court_fees": "$235",
+      "legal_fees": "$500",
+      "total": "$735"
+    },
+    "vulnerability_created": "Consumer left unprotected during reopening process",
+    "creditor_opportunity": "Window for coordinated attacks during administrative processing"
+  },
+  
+  "attorney_warnings": [
+    "Urgent notice regarding bankruptcy discharge",
+    "Required of ALL Chapter 13 cases regardless of support obligations",
+    "Failure to file results in case closure WITHOUT discharge",
+    "Can only obtain discharge by re-opening case with additional fees",
+    "Requests immediate attention from debtor"
+  ],
+  
+  "vulnerability_window_setup": {
+    "attorney_warning_date": "2023-11-16",
+    "apparent_non_compliance": "DS2830 not filed by January 10, 2024 deadline",
+    "case_closure": "2024-01-10 (without discharge)",
+    "late_filing": "2024-01-15 (5 days too late)",
+    "vulnerability_duration": "30 days (January 10 - February 9, 2024)",
+    "creditor_exploitation": "January 17, 2024 - 10 negative items appeared during vulnerable period"
+  },
+  
+  "strategic_significance": {
+    "evidence_strength": "VERY_HIGH",
+    "administrative_setup": "Documents the administrative requirement that created vulnerability",
+    "attorney_forewarning": "Proves consequences were clearly communicated in advance",
+    "creditor_opportunity": "Shows exact window when consumer had no discharge protection",
+    "willfulness_enabler": "Created conditions that allowed coordinated creditor attacks"
+  },
+  
+  "legal_implications": {
+    "discharge_protection": "Consumer has FCRA protection only when discharge is granted, not when case is merely open",
+    "vulnerability_window": "30-day period when consumer was legally unprotected from creditor reporting",
+    "administrative_exploitation": "Creditors exploited administrative delay for coordinated attack",
+    "pattern_establishment": "Sets up timeline showing creditor knowledge and coordination"
+  },
+  
+  "vioripple_metadata": {
+    "impact_score": 95,
+    "legal_strength": "SMOKING_GUN", 
+    "evidence_quality": "FOUNDATIONAL_DOCUMENT",
+    "damage_quantification": "VULNERABILITY_WINDOW_CREATION",
+    "strategic_value": "TIMELINE_CORNERSTONE"
+  }
+}

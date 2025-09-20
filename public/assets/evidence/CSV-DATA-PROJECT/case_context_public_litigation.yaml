@@ -1,0 +1,35 @@
+# ==============================
+# case_context_public_litigation.yaml
+# ==============================
+# Litigation-hardened context for PUBLIC RECORDS only.
+
+discharge_date: "2024-02-09"
+
+# Terms that indicate a proper post-discharge disposition/status.
+# (Case-insensitive substring match)
+discharged_keywords:
+  - "discharged"
+  - "chapter 13 bankruptcy discharged"
+  - "discharged ch-13"
+
+# Terms that *misclassify* a discharge (useful to flag extreme/severe)
+misclassification_keywords:
+  - "dismissed"
+  - "closed without discharge"
+  - "closed no discharge"
+  - "case closed"
+
+# Acceptable date formats (best-effort; engine also has fallbacks)
+date_formats:
+  - "%Y-%m-%d"
+  - "%Y-%m"
+  - "%m/%d/%Y"
+  - "%b %d, %Y"
+  - "%b %Y"
+
+# Cross-bureau settings if you later extend the engine for public-record cross-bureau checks
+cross_bureau:
+  account_key_strategy:
+    - ["reference_number"]
+    - ["case_number"]
+    - ["bureau","reference_number"]

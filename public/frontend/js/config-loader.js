@@ -12,7 +12,7 @@ class ConfigLoader {
   async init() {
     try {
       // Load UI configuration
-      const response = await fetch('../data/config/ui-config.json');
+      const response = await fetch('./data/config/ui-config.json');
       this.config = await response.json();
 
       // Inject CSS variables from config

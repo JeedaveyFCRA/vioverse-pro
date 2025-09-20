@@ -1,0 +1,62 @@
+/**
+ * VioBox Alignment Fix - Ensures proper scaling and positioning
+ */
+
+/* Container must be inline-block to shrink-wrap canvas */
+.pdf-canvas-container {
+  position: relative;
+  display: inline-block; /* Critical: shrink to canvas size */
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto; /* Center the container */
+}
+
+/* Canvas should be block to get proper dimensions */
+#pdfCanvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Overlay must match canvas exactly */
+.viobox-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;  /* Match canvas width */
+  height: 100%; /* Match canvas height */
+  pointer-events: none; /* Allow clicks through to canvas */
+}
+
+/* VioBoxes must have pointer events */
+.viobox {
+  pointer-events: auto !important; /* Re-enable clicks on boxes */
+  position: absolute;
+  box-sizing: border-box; /* Include border in width/height */
+  transform-origin: top left; /* Scale from top-left corner */
+}
+
+/* Ensure the PDF viewer area centers content */
+.pdf-viewer-area {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  overflow: auto;
+}
+
+/* Fix for zoom scaling */
+.pdf-canvas-container.zoomed {
+  transform-origin: center center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pdf-viewer-area {
+    padding: 10px;
+  }
+
+  .pdf-canvas-container {
+    width: 100%;
+  }
+}

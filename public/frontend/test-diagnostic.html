@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VioBox System Diagnostic</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+        }
+        .diagnostic {
+            background: #2a2a2a;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .status { margin: 10px 0; }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+        .warning { color: #fbbf24; }
+        pre {
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #764ba2;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <h1>VioBox System Diagnostic</h1>
+
+    <div class="diagnostic">
+        <h2>1. Configuration Files Check</h2>
+        <div id="config-status"></div>
+    </div>
+
+    <div class="diagnostic">
+        <h2>2. CSV Data Check</h2>
+        <div id="csv-status"></div>
+    </div>
+
+    <div class="diagnostic">
+        <h2>3. VioBox System Check</h2>
+        <div id="viobox-status"></div>
+    </div>
+
+    <div class="diagnostic">
+        <h2>4. Test Actions</h2>
+        <button onclick="testLoadVioBoxSystem()">Load VioBox System</button>
+        <button onclick="testCSVDirect()">Test CSV Direct Load</button>
+        <button onclick="testConfigLoad()">Test Config Load</button>
+    </div>
+
+    <div class="diagnostic">
+        <h2>Console Output</h2>
+        <pre id="console-output"></pre>
+    </div>
+
+    <!-- Load the VioBox System -->
+    <script src="./js/viobox-system.js"></script>
+
+    <script>
+        const log = (message, type = 'info') => {
+            const output = document.getElementById('console-output');
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? 'color: #f87171' :
+                         type === 'success' ? 'color: #4ade80' :
+                         type === 'warning' ? 'color: #fbbf24' : 'color: #fff';
+            output.innerHTML += `<span style="${color}">[${timestamp}] ${message}</span>\n`;
+            console.log(`[${type}] ${message}`);
+        };
+
+        async function checkConfiguration() {
+            const configDiv = document.getElementById('config-status');
+            const configs = [
+                './data/config/ui-config.json',
+                './data/config/theme.json',
+                './data/config/severity.json',
+                './data/config/viobox-padding.json',
+                './data/config/creditors.json'
+            ];
+
+            for (const config of configs) {
+                try {
+                    const response = await fetch(config);
+                    if (response.ok) {
+                        const data = await response.json();
+                        configDiv.innerHTML += `<div class="status success">✅ ${config} - Loaded (${JSON.stringify(data).length} bytes)</div>`;
+                        log(`Config loaded: ${config}`, 'success');
+                    } else {
+                        configDiv.innerHTML += `<div class="status error">❌ ${config} - HTTP ${response.status}</div>`;
+                        log(`Config failed: ${config} - ${response.status}`, 'error');
+                    }
+                } catch (error) {
+                    configDiv.innerHTML += `<div class="status error">❌ ${config} - ${error.message}</div>`;
+                    log(`Config error: ${config} - ${error.message}`, 'error');
+                }
+            }
+        }
+
+        async function checkCSVFiles() {
+            const csvDiv = document.getElementById('csv-status');
+            const csvFiles = [
+                { bureau: 'EQ', file: './data/csv/eq_violations_detailed_test.csv' },
+                { bureau: 'EX', file: './data/csv/ex_violations_detailed_test.csv' },
+                { bureau: 'TU', file: './data/csv/tu_violations_detailed_test.csv' }
+            ];
+
+            for (const { bureau, file } of csvFiles) {
+                try {
+                    const response = await fetch(file);
+                    if (response.ok) {
+                        const text = await response.text();
+                        const parsed = Papa.parse(text, {
+                            header: true,
+                            dynamicTyping: true,
+                            skipEmptyLines: true
+                        });
+                        csvDiv.innerHTML += `<div class="status success">✅ ${bureau}: ${parsed.data.length} violations found</div>`;
+                        log(`CSV loaded: ${bureau} - ${parsed.data.length} violations`, 'success');
+
+                        // Show sample violation
+                        if (parsed.data.length > 0) {
+                            const sample = parsed.data[0];
+                            log(`Sample violation: ${JSON.stringify(sample).substring(0, 200)}...`, 'info');
+                        }
+                    } else {
+                        csvDiv.innerHTML += `<div class="status error">❌ ${bureau}: HTTP ${response.status}</div>`;
+                        log(`CSV failed: ${bureau} - ${response.status}`, 'error');
+                    }
+                } catch (error) {
+                    csvDiv.innerHTML += `<div class="status error">❌ ${bureau}: ${error.message}</div>`;
+                    log(`CSV error: ${bureau} - ${error.message}`, 'error');
+                }
+            }
+        }
+
+        async function testLoadVioBoxSystem() {
+            log('Testing VioBox System initialization...', 'info');
+            const statusDiv = document.getElementById('viobox-status');
+
+            try {
+                const viobox = new VioBoxSystem();
+                await viobox.init();
+
+                statusDiv.innerHTML = `
+                    <div class="status success">✅ VioBox System initialized</div>
+                    <div class="status">Total violations: ${viobox.getTotalViolations()}</div>
+                    <div class="status">EQ violations: ${viobox.violations.EQ.length}</div>
+                    <div class="status">EX violations: ${viobox.violations.EX.length}</div>
+                    <div class="status">TU violations: ${viobox.violations.TU.length}</div>
+                    <div class="status">VioBox padding: ${viobox.vioboxPadding}px</div>
+                `;
+
+                log(`VioBox System loaded successfully with ${viobox.getTotalViolations()} violations`, 'success');
+
+                // Check for specific dates
+                const dates = ['2024-04-25', '2024-08-19', '2025-02-10'];
+                dates.forEach(date => {
+                    const violations = Object.values(viobox.violations).flat()
+                        .filter(v => v.pdfFile && v.pdfFile.includes(date));
+                    log(`Violations for ${date}: ${violations.length}`, 'info');
+                });
+
+            } catch (error) {
+                statusDiv.innerHTML = `<div class="status error">❌ Error: ${error.message}</div>`;
+                log(`VioBox System error: ${error.message}`, 'error');
+                console.error(error);
+            }
+        }
+
+        async function testCSVDirect() {
+            log('Testing direct CSV load...', 'info');
+            try {
+                const response = await fetch('./data/csv/eq_violations_detailed_test.csv');
+                const text = await response.text();
+                const lines = text.split('\n');
+                log(`CSV lines: ${lines.length}`, 'info');
+                log(`First line: ${lines[0]}`, 'info');
+                log(`Sample data line: ${lines[1]}`, 'info');
+            } catch (error) {
+                log(`Direct CSV test failed: ${error.message}`, 'error');
+            }
+        }
+
+        async function testConfigLoad() {
+            log('Testing config loader...', 'info');
+            try {
+                const script = document.createElement('script');
+                script.src = './js/config-loader.js';
+                document.head.appendChild(script);
+
+                setTimeout(() => {
+                    if (window.configLoader) {
+                        log('Config loader available', 'success');
+                        if (window.configLoader.config) {
+                            log(`Config data: ${JSON.stringify(window.configLoader.config).substring(0, 200)}...`, 'info');
+                        }
+                    } else {
+                        log('Config loader not found', 'error');
+                    }
+                }, 1000);
+            } catch (error) {
+                log(`Config loader test failed: ${error.message}`, 'error');
+            }
+        }
+
+        // Run initial checks
+        window.addEventListener('DOMContentLoaded', async () => {
+            log('Starting diagnostic checks...', 'info');
+            await checkConfiguration();
+            await checkCSVFiles();
+            log('Initial checks complete', 'success');
+        });
+    </script>
+</body>
+</html>

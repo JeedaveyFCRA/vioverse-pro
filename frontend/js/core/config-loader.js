@@ -242,6 +242,82 @@ class ConfigLoader {
   formatMessage(template, values) {
     return template.replace(/{(\w+)}/g, (match, key) => values[key] || match);
   }
+
+  /**
+   * Get font string for canvas context
+   * @param {string} type - Font type (label, body, heading)
+   * @param {number} scale - Scale factor
+   * @returns {string} Font string for canvas context
+   */
+  getCanvasFont(type = 'body', scale = 1) {
+    const fontSize = this.config.theme?.canvas?.fontSize?.[type] ||
+                    this.config.theme?.fontSize?.[type] || '16px';
+    const fontWeight = this.config.theme?.canvas?.fontWeight?.normal || 'normal';
+    const fontFamily = this.config.theme?.fonts?.sans || 'Inter, sans-serif';
+
+    // Parse font size and apply scale
+    const baseFontSize = parseFloat(fontSize) || 16;
+    return `${fontWeight} ${baseFontSize * scale}px ${fontFamily.split(',')[0].trim()}`;
+  }
+
+  /**
+   * Get VioBox label font
+   * @param {number} scale - Scale factor
+   * @returns {string} Font string for VioBox labels
+   */
+  getVioBoxLabelFont(scale = 1) {
+    const fontSize = this.config.theme?.canvas?.fontSize?.label ||
+                    this.config.theme?.fontSize?.vioboxLabel || '11px';
+    const fontWeight = this.config.theme?.canvas?.fontWeight?.bold ||
+                      this.config.theme?.fontWeight?.bold || 'bold';
+    const fontFamily = (this.config.theme?.fonts?.sans || 'Arial').split(',')[0].trim();
+
+    const baseFontSize = parseFloat(fontSize) || 11;
+    return `${fontWeight} ${baseFontSize * scale}px ${fontFamily}`;
+  }
+
+  /**
+   * Get tooltip styles
+   * @returns {Object} Tooltip style configuration
+   */
+  getTooltipStyles() {
+    const theme = this.config.theme;
+    return {
+      maxWidth: theme?.tooltip?.maxWidth || '300px',
+      padding: theme?.tooltip?.padding || '12px',
+      borderWidth: theme?.tooltip?.borderWidth || '1px',
+      borderRadius: theme?.tooltip?.borderRadius || '6px',
+      fontSize: theme?.tooltip?.fontSize || '12px',
+      backgroundColor: theme?.tooltip?.backgroundColor || '#1a1a1a',
+      borderColor: theme?.tooltip?.borderColor || '#333',
+      textColor: theme?.tooltip?.textColor || '#fff',
+      boxShadow: theme?.shadows?.tooltip || '0 4px 24px rgba(0, 0, 0, 0.8)'
+    };
+  }
+
+  /**
+   * Get border style
+   * @param {string} thickness - Border thickness (thin, medium, thick)
+   * @returns {string} Border value
+   */
+  getBorder(thickness = 'medium') {
+    const borders = this.config.theme?.borders;
+    const width = borders?.[thickness] || '2px';
+    const style = borders?.style?.solid || 'solid';
+    return `${width} ${style}`;
+  }
+
+  /**
+   * Get grid configuration
+   * @returns {Object} Grid configuration
+   */
+  getGridConfig() {
+    return {
+      padding: this.config.theme?.grid?.padding || '20px',
+      gap: this.config.theme?.grid?.gap || '10px',
+      headerOffset: this.config.theme?.grid?.headerOffset || '120px'
+    };
+  }
 }
 
 // Export to global namespace for both module and non-module usage

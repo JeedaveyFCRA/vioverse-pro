@@ -1,0 +1,61 @@
+# ==============================
+# case_context_litigation.yaml
+# ==============================
+# Litigation-hardened context for detect_violations.py
+# Only anchors and normalizers that matter for Serious/Severe/Extreme rules.
+# Adjust values to match your exact wording if needed.
+
+discharge_date: "2024-02-09"
+
+# Optional protected windows you may want to up-weight for emphasis (UI/reporting only)
+protected_windows:
+  - { start: "2024-02-09", end: "2024-04-30" }
+
+# Strings that indicate derogatory status/remarks (case-insensitive matched downstream)
+derog_statuses:
+  - "charge-off"
+  - "charge off"
+  - "collection"
+  - "late"
+  - "30 days late"
+  - "60 days late"
+  - "90 days late"
+  - "account closed by credit grantor"
+  - "included in bankruptcy"
+  - "included in chapter 13"
+  - "bankruptcy"
+  - "chapter 13"
+
+# Normalization rules to harmonize bureau phrasing before rule evaluation
+status_normalization:
+  - { pattern: "(?i)included in (chapter\s*13|bankruptcy)", replace: "Included in Bankruptcy" }
+  - { pattern: "(?i)account closed by credit grantor", replace: "Closed by Creditor" }
+
+remarks_normalization:
+  - { pattern: "(?i)charge[- ]?off", replace: "Charge-Off" }
+  - { pattern: "(?i)30\s*days\s*late", replace: "30 days late" }
+  - { pattern: "(?i)60\s*days\s*late", replace: "60 days late" }
+  - { pattern: "(?i)90\s*days\s*late", replace: "90 days late" }
+
+# Cross-bureau comparison settings (used by rules with cross_bureau: ...)
+cross_bureau:
+  # how to form an account identity across bureaus; first successful tuple is used
+  account_key_strategy:
+    - ["creditor_code", "account_last4"]
+    - ["creditor_code", "creditor_full_name"]
+  # numeric tolerance for balance mismatches (absolute dollars) for SEV-XB-002
+  balance_tolerance: 25
+
+# Escalation knobs (used by some engines; safe defaults here)
+escalation:
+  repeat_months_threshold: 2
+  cross_bureau_threshold: 2
+  protected_window_bump: 1
+
+# Date parsing hints (optional; most engines have sane defaults)
+date_formats:
+  - "%Y-%m-%d"
+  - "%Y/%m/%d"
+  - "%m/%d/%Y"
+  - "%Y-%m"
+  - "%m/%Y"

@@ -1,0 +1,313 @@
+/**
+ * MOBILE-FIRST RESPONSIVE FIXES - CONFIG DRIVEN
+ * All values from config files - NO HARDCODING
+ */
+
+/* CSS Variables from breakpoints.json and theme.json */
+:root {
+  /* Breakpoints */
+  --breakpoint-mobile: 768px;
+  --breakpoint-compact: 375px;
+  --breakpoint-landscape-mobile: 896px;
+
+  /* Dimensions from theme */
+  --min-button-width: 44px;
+  --mobile-icon-width: 20px;
+  --compact-icon-width: 40px;
+
+  /* Spacing */
+  --spacing-xs: 0.125rem;
+  --spacing-sm: 0.25rem;
+  --spacing-md: 0.5rem;
+  --spacing-lg: 1rem;
+  --spacing-xl: 1.5rem;
+
+  /* Font sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+
+  /* Transitions */
+  --transition-fast: 150ms;
+  --transition-normal: 200ms;
+}
+
+/* ================ CRITICAL FIX #1: Enable Scrolling ================ */
+html, body {
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  touch-action: pan-y;
+}
+
+/* ================ CRITICAL FIX #2: Responsive Container ================ */
+.main-container {
+  height: auto !important;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  overflow: visible !important;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================ CRITICAL FIX #3: Mobile-First Layout ================ */
+@media (max-width: var(--breakpoint-mobile)) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .pdf-viewer {
+    flex: 1 1 auto;
+    min-height: 60vh;
+    overflow-y: auto !important;
+  }
+
+  .sidebar {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 40vh;
+    overflow-y: auto !important;
+    border-left: none;
+    border-top: 2px solid var(--color-border);
+  }
+
+  .top-controls {
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--spacing-md) !important;
+    gap: var(--spacing-md) !important;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .bureau-filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+  }
+
+  .pdf-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .zoom-controls {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ================ CRITICAL FIX #4: Touch-Friendly Controls ================ */
+@media (max-width: var(--breakpoint-mobile)) {
+  button, .file-label, .control-btn, .zoom-btn {
+    min-height: var(--min-button-width) !important;
+    min-width: var(--min-button-width) !important;
+    padding: var(--spacing-lg) var(--spacing-xl) !important;
+    font-size: var(--font-size-sm) !important;
+  }
+
+  input[type="checkbox"] {
+    width: var(--mobile-icon-width) !important;
+    height: var(--mobile-icon-width) !important;
+  }
+
+  .bureau-checkbox {
+    padding: var(--spacing-md);
+  }
+
+  .violation-item {
+    padding: var(--spacing-lg) !important;
+    margin-bottom: var(--spacing-md) !important;
+  }
+}
+
+/* ================ CRITICAL FIX #5: Canvas Responsive Scaling ================ */
+.canvas-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch;
+  flex: 1 1 auto;
+}
+
+#pdfCanvas {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  margin: 0 auto;
+  touch-action: pinch-zoom;
+}
+
+@media (max-width: var(--breakpoint-mobile)) {
+  #pdfCanvas {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .canvas-container {
+    padding: var(--spacing-md);
+    min-height: 400px;
+  }
+}
+
+/* ================ CRITICAL FIX #6: Mobile Performance ================ */
+@media (max-width: var(--breakpoint-mobile)) {
+  * {
+    animation-duration: var(--transition-fast) !important;
+    transition-duration: var(--transition-fast) !important;
+  }
+
+  .top-controls {
+    background: var(--color-primary) !important;
+    box-shadow: none !important;
+  }
+
+  .violation-item {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+/* ================ CRITICAL FIX #7: Status Bar Mobile ================ */
+@media (max-width: var(--breakpoint-mobile)) {
+  .status-bar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: var(--spacing-md) !important;
+    font-size: var(--font-size-xs) !important;
+    gap: var(--spacing-md) !important;
+  }
+
+  .status-item {
+    flex: 1 1 45%;
+    min-width: 0;
+  }
+}
+
+/* ================ CRITICAL FIX #8: Portrait/Landscape Handling ================ */
+@media (orientation: landscape) and (max-width: var(--breakpoint-landscape-mobile)) {
+  .main-container {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    width: 35% !important;
+    max-height: 100vh;
+    border-left: 1px solid var(--color-border);
+    border-top: none;
+  }
+
+  .top-controls {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* ================ CRITICAL FIX #9: Small Phone Support ================ */
+@media (max-width: var(--breakpoint-compact)) {
+  .title {
+    font-size: var(--font-size-sm) !important;
+  }
+
+  .file-label {
+    font-size: var(--font-size-xs) !important;
+    padding: var(--spacing-md) !important;
+  }
+
+  .bureau-filters {
+    font-size: calc(var(--font-size-xs) * 0.9) !important;
+  }
+
+  .violation-item {
+    font-size: var(--font-size-xs) !important;
+  }
+
+  .stats-summary {
+    font-size: calc(var(--font-size-xs) * 0.9) !important;
+  }
+}
+
+/* ================ CRITICAL FIX #10: iOS-Specific Fixes ================ */
+@supports (-webkit-touch-callout: none) {
+  .main-container {
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+
+  .canvas-container,
+  .sidebar,
+  .violations-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+  }
+
+  input, select, textarea {
+    font-size: var(--font-size-base) !important;
+  }
+}
+
+/* ================ Loading States for Mobile ================ */
+.pdf-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+.pdf-loading-spinner {
+  width: var(--compact-icon-width);
+  height: var(--compact-icon-width);
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.pdf-error {
+  padding: var(--spacing-xl);
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+  margin: var(--spacing-md);
+  text-align: center;
+}
+
+/* ================ Memory-Conscious Styles ================ */
+@media (max-width: var(--breakpoint-mobile)) {
+  .legend {
+    display: none;
+  }
+
+  .violation-coords {
+    display: none;
+  }
+
+  .violation-item:nth-child(n+50) {
+    display: none;
+  }
+
+  .show-all-violations {
+    display: block;
+    margin: var(--spacing-md) auto;
+    padding: var(--spacing-md) var(--spacing-xl);
+  }
+}

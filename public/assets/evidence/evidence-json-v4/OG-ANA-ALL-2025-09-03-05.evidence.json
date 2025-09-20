@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "id": "OG-ANA-ALL-2025-09-03-05",
+    "title": "Rocket Mortgage Denial - FCRA Damages Memorandum",
+    "doc_type": "CASE_ANALYSIS",
+    "temporal_prefix": "OG",
+    "date_created": "2025-09-03",
+    "days_since_discharge": 571,
+    "ally_violation_days": 571,
+    "analysis_date": "2025-09-03",
+    "excluded_from_violation_logic": true,
+    "source_document": "ROCKET MORTGAGE DENIAL_REVISED.md",
+    "golden_evidence": true,
+    "vio_ripple_score": 96
+  },
+  "content": {
+    "summary": "Concrete, quantifiable harm from FCRA violations resulting in mortgage denial with $277,637 in damages. Features 103-point spousal gap that eliminates all alternative explanations and direct causation evidence.",
+    "baseline_evidence": {
+      "date": "2023-04-19",
+      "transunion_score": 684,
+      "context": "During active Chapter 13 bankruptcy",
+      "significance": "Establishes pre-violation credit trajectory"
+    },
+    "spousal_comparison": {
+      "date": "2024-04-21",
+      "days_post_discharge": 72,
+      "david_score": 600,
+      "daniel_score": 703,
+      "gap": 103,
+      "significance": "Same household control eliminates non-reporting variables"
+    },
+    "causation_timeline": [
+      {"date": "2023-04-19", "event": "Baseline: 684 TU Score", "significance": "Pre-damage credit health during Ch. 13"},
+      {"date": "2024-01-17", "event": "Experian Alert Bomb", "significance": "10 alerts delivered, attacks from Dec 20"},
+      {"date": "2024-02-09", "event": "Discharge Granted", "significance": "All negative reporting became illegal"},
+      {"date": "2024-04-21", "event": "Rocket Application", "significance": "David: 600 EX / Daniel: 703 EX - 103-pt Gap"},
+      {"date": "2024-05-15", "event": "Formal Denial", "significance": "Factor 38: 'Serious Delinquency' - Direct Link"},
+      {"date": "2025-03-18", "event": "Discover Admits Error", "significance": "403-day violation confession - Willfulness"}
+    ],
+    "denial_comparison": {
+      "david_factors": [
+        {"factor": "Factor 38", "description": "Serious delinquency", "significance": "Direct evidence of false data"},
+        {"factor": "Factor 18", "description": "Too many delinquent accounts", "significance": "Multiple creditor violations"},
+        {"factor": "Factor 21", "description": "Too many past due accounts", "significance": "Discharged debts reported as due"}
+      ],
+      "daniel_factors": "Not cited - standard credit factors only",
+      "required_cure": "Pay $10,000 or reach 640 score",
+      "score_barrier": 40
+    },
+    "damages_calculation": {
+      "actual_damages": {
+        "out_of_pocket": 737,
+        "monthly_excess": 11200,
+        "lifetime_refinance_loss": 150000,
+        "total_actual": 161937
+      },
+      "statutory_damages": {
+        "willful_violations": 65000,
+        "discover_enhancement": 50000,
+        "total_statutory": 115000
+      },
+      "total_demand": 276937
+    },
+    "creditor_admissions": [
+      {
+        "source": "Discover",
+        "statement": "we have determined a correction was needed",
+        "date": "2025-03-18",
+        "impact": "403-day willful violation admitted"
+      },
+      {
+        "source": "Jessica Vest (Rocket)",
+        "statement": "we needed your score increase from 600 to 640",
+        "date": "2025-04-02",
+        "impact": "Confirms 40-point suppression barrier"
+      },
+      {
+        "source": "Dufurrena (Rocket)",
+        "statement": "The Discover charge-off thing is unfortunate",
+        "date": "2024-04-23",
+        "impact": "Early recognition of false reporting"
+      },
+      {
+        "source": "Young (Rocket)",
+        "statement": "Confirmed 640 requirement from notes",
+        "date": "2025-03-04",
+        "impact": "Corroborates constructive denial"
+      }
+    ],
+    "fcra_violations": [
+      "15 U.S.C. §1681e(b): CRA failure to ensure maximum accuracy",
+      "15 U.S.C. §1681s-2(a)(1)(A): Furnisher duty to provide accurate information",
+      "15 U.S.C. §1681s-2(a)(2): Duty to correct and update information",
+      "15 U.S.C. §1681m: Adverse action notice requirements",
+      "15 U.S.C. §1681n: Willful noncompliance (proven by 403-day admission)"
+    ],
+    "causation_chain": [
+      "Baseline: 684 score during bankruptcy (April 2023)",
+      "Attack: Mass false reporting event (January 17, 2024)",
+      "Suppression: 600 score at application (April 21, 2024)",
+      "Denial: Factor 38 citation for false delinquencies (May 15, 2024)",
+      "Admission: Discover confesses to error (March 18, 2025)",
+      "Ongoing: 571 days since discharge, violations continue"
+    ],
+    "litigation_strategy": {
+      "primary_targets": [
+        "Discover: 403-day admitted violation = maximum leverage",
+        "JP Morgan: Pattern leader, reported on multiple dates",
+        "Mariner: Double charge-off violator",
+        "CBNA Group: Systematic failure across SEARS/Best Buy/Home Depot"
+      ],
+      "settlement_approach": {
+        "conservative": 161937,
+        "moderate": 276937,
+        "aggressive": "500000+"
+      },
+      "key_evidence": [
+        "103-point spousal gap (eliminates all defenses)",
+        "Factor 38 denial reason (direct causation)",
+        "Discover's written admission (willfulness proven)",
+        "Three Rocket employees confirming impact"
+      ]
+    },
+    "recommendation": {
+      "initial_demand": 350000,
+      "target_settlement": "250000+",
+      "basis": "Textbook FCRA violations with clear causation, quantifiable damages, admissions of guilt, and control group proof"
+    }
+  }
+}

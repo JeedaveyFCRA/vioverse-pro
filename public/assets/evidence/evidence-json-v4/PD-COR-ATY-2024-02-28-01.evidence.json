@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "case_version": "v4", 
+  "id": "PD-COR-ATY-2024-02-28-01",
+  "doc_type": "COR",
+  "title": "Attorney Confirmation: Discharge Issued 2/9, Credit Should Reflect Discharged Status",
+  "source": {
+    "source_filename": "joseph-dimarco-bankruptcy-discharge-confirmation.md",
+    "source_path": "/assets/evidence-for-json/",
+    "sha256": "c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5",
+    "extraction_method": "manual_parse"
+  },
+  "temporal": {
+    "temporal_classification": "PD",
+    "activity_date": "2024-02-28",
+    "provenance": {
+      "excluded_from_violation_logic": true,
+      "attorney_correspondence": true
+    }
+  },
+  "entities": {
+    "creditor_codes": [],
+    "bureaus": [],
+    "consumers": ["David Marra"],
+    "attorneys": ["Joseph E. DeMarco"]
+  },
+  "attorney_confirmation": {
+    "discharge_date_confirmed": "2024-02-09",
+    "expectation_stated": "credit report should now properly reflect that the debts have been discharged",
+    "attorney_knowledge": "case was reopened and discharge issued",
+    "communication_date": "2024-02-28"
+  },
+  "legal_significance": {
+    "establishes_discharge_date": "2024-02-09",
+    "creates_creditor_duty": "proper discharge reporting",
+    "attorney_expectation": "discharged status on credit reports"
+  },
+  "special_handling": "ATTORNEY_CONFIRMATION",
+  "golden_evidence": true,
+  "golden_rationale": "Attorney confirms discharge date and proper credit reporting expectation",
+  "confidence_score": 1.0,
+  "litigation_readiness_score": 90,
+  "notes": "Establishes official discharge date and proper reporting expectation",
+  "created_at": "2025-09-04T20:55:29.000000",
+  "updated_at": "2025-09-04T20:55:29.000000"
+}

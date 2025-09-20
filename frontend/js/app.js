@@ -450,7 +450,14 @@ class VioboxViewer {
             // Add label if rule_id exists
             if (violation.rule_id) {
                 ctx.fillStyle = severity.color;
-                ctx.font = `bold ${11 * this.scale}px Arial`;
+                // Get font config from theme
+                const labelFontSize = this.config?.theme?.canvas?.fontSize?.label || this.config?.theme?.fontSize?.vioboxLabel || '11px';
+                const fontWeight = this.config?.theme?.canvas?.fontWeight?.bold || 'bold';
+                const fontFamily = (this.config?.theme?.fonts?.sans || 'Arial').split(',')[0].trim();
+
+                // Parse font size and apply scale
+                const baseFontSize = parseFloat(labelFontSize) || 11;
+                ctx.font = `${fontWeight} ${baseFontSize * this.scale}px ${fontFamily}`;
                 ctx.fillText(violation.rule_id, x + 4, y - height - 4);
             }
         });

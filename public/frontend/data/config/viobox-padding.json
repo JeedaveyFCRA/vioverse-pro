@@ -1,0 +1,13 @@
+{
+  "vioboxPadding": 8,
+  "_comment": "Padding in pixels to expand VioBoxes for better readability",
+  "_formula": "newX = csvX - (padding/2), newWidth = csvWidth + padding",
+  "_description": "This value expands VioBoxes equally in all directions from their CSV-defined positions",
+  "_advantages": [
+    "Instant updates - change value and refresh",
+    "No code changes required",
+    "Preserves CSV coordinates as source of truth",
+    "Test different values in seconds",
+    "Environment-specific (can have different files for mobile/desktop)"
+  ]
+}

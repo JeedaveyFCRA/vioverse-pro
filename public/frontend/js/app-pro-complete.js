@@ -14,6 +14,7 @@ class VioversePro {
       reportsData: null,
       creditorsData: null,
       uiConfig: null,
+      themeConfig: null,
       pdfDoc: null,
       currentPDF: null,
       baseScale: 1.0,  // Base scale for CSV coordinates
@@ -23,6 +24,7 @@ class VioversePro {
 
     this.elements = {};
     this.vioboxSystem = null;
+    this.currentRenderTask = null;  // Track PDF render task
     this.init();
   }
 
@@ -73,13 +75,15 @@ class VioversePro {
 
   async loadConfigurations() {
     try {
-      const [creditorsResponse, uiConfigResponse] = await Promise.all([
-        fetch('../data/config/creditors.json'),
-        fetch('../data/config/ui-config.json')
+      const [creditorsResponse, uiConfigResponse, themeResponse] = await Promise.all([
+        fetch('./data/config/creditors.json'),
+        fetch('./data/config/ui-config.json'),
+        fetch('./data/config/theme.json')
       ]);
 
       this.state.creditorsData = await creditorsResponse.json();
       this.state.uiConfig = await uiConfigResponse.json();
+      this.state.themeConfig = await themeResponse.json();
 
       // Build reports data from CSV violations instead of pre-made JSON
       this.buildReportsDataFromCSV();
@@ -298,19 +302,44 @@ class VioversePro {
     }
 
     // Default fallbacks (data-driven - no page if no violations)
-    firstBureau = firstBureau || 'EX';
-    firstDate = firstDate || '2024-04-25';
+    if (!firstBureau || !firstDate) {
+      // Get first available date from the data
+      const availableDates = Object.keys(this.state.reportsData.reports || {});
+      if (availableDates.length > 0) {
+        firstDate = firstDate || availableDates[0];
+        const report = this.state.reportsData.reports[firstDate];
+        const availableBureaus = Object.keys(report?.bureaus || {});
+        firstBureau = firstBureau || availableBureaus[0] || 'EX';
+      } else {
+        // No data at all - use safe defaults
+        firstBureau = 'EX';
+        firstDate = Object.keys(this.state.reportsData.reports || {})[0] || '2025-02-10';
+      }
+    }
     // firstPage remains null if no violations found (data-driven)
 
     console.log(`📍 Initializing with ${firstBureau} - ${firstDate} - Page ${firstPage || 'none'}`);
 
-    // Set initial state
-    this.updateBureau(firstBureau);
-    this.updateDate(firstDate);
-    // Only navigate to a page if we found violations (data-driven)
+    // Set initial state - updateDate will auto-load the first violation page
+    this.state.currentBureau = firstBureau;
+    this.state.currentDate = firstDate;
+
+    // Update UI elements
+    this.elements.bureauButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.bureau === firstBureau);
+    });
+    this.elements.currentBureauName.textContent = firstBureau.toLowerCase();
+
+    // Update grids and auto-load
+    this.updateDateGrid();
+    this.updatePageGrid();
+
+    // Auto-load first violation page if available
     if (firstPage !== null) {
+      console.log(`🚀 Initial load: navigating to page ${firstPage}`);
       this.navigateToPage(firstPage);
     } else {
+      console.log(`⚠️ No violations found on initial load`);
       this.elements.currentPage.textContent = '-';
     }
   }
@@ -363,6 +392,20 @@ class VioversePro {
     if (this.elements.zoomOut) {
       this.elements.zoomOut.addEventListener('click', () => this.zoomOut());
     }
+
+    // Window resize handler to maintain alignment
+    window.addEventListener('resize', () => {
+      if (this.state.currentPDF && window.VioBoxAlignmentHelper) {
+        // Debounce the resize handler
+        clearTimeout(this.resizeTimeout);
+        this.resizeTimeout = setTimeout(() => {
+          window.VioBoxAlignmentHelper.syncOverlayToCanvas(
+            this.elements.pdfCanvas,
+            this.elements.vioboxOverlay
+          );
+        }, 100);
+      }
+    });
   }
 
   updateBureau(bureau) {
@@ -381,6 +424,25 @@ class VioversePro {
 
     // Update page grid
     this.updatePageGrid();
+
+    // Auto-load first violation page when switching bureaus
+    if (this.state.currentDate) {
+      const bureauData = this.state.reportsData.reports[this.state.currentDate]?.bureaus[this.state.currentBureau];
+      if (bureauData && bureauData.violationPages && bureauData.violationPages.length > 0) {
+        console.log(`🎯 Auto-loading first violation page: ${bureauData.violationPages[0]} for ${bureau}`);
+        this.navigateToPage(bureauData.violationPages[0]);
+      } else {
+        // No violations for this bureau/date combo - clear the display
+        console.log(`⚠️ No violations found for ${bureau} on ${this.state.currentDate}`);
+        this.state.currentPage = null;
+        this.elements.currentPage.textContent = '-';
+        // Clear the PDF canvas
+        const ctx = this.elements.pdfCanvas.getContext('2d');
+        ctx.clearRect(0, 0, this.elements.pdfCanvas.width, this.elements.pdfCanvas.height);
+        // Clear VioBoxes
+        this.vioboxSystem.clearVioBoxes();
+      }
+    }
   }
 
   updateDateGrid() {
@@ -428,12 +490,19 @@ class VioversePro {
 
     // Auto-load first violation page (data-driven)
     const bureauData = this.state.reportsData.reports[date]?.bureaus[this.state.currentBureau];
-    if (bureauData && bureauData.violationPages.length > 0) {
+    if (bureauData && bureauData.violationPages && bureauData.violationPages.length > 0) {
+      console.log(`📅 Auto-loading first violation page: ${bureauData.violationPages[0]} for date ${date}`);
       this.navigateToPage(bureauData.violationPages[0]);
     } else {
-      // No violations - don't select any page (data-driven)
+      // No violations - clear the display
+      console.log(`⚠️ No violations found for ${this.state.currentBureau} on ${date}`);
       this.state.currentPage = null;
       this.elements.currentPage.textContent = '-';
+      // Clear the PDF canvas
+      const ctx = this.elements.pdfCanvas.getContext('2d');
+      ctx.clearRect(0, 0, this.elements.pdfCanvas.width, this.elements.pdfCanvas.height);
+      // Clear VioBoxes
+      this.vioboxSystem.clearVioBoxes();
     }
   }
 
@@ -442,7 +511,9 @@ class VioversePro {
     const bureauData = reportData?.bureaus[this.state.currentBureau];
 
     if (!bureauData) {
-      this.elements.pageGrid.innerHTML = '<div style="color: #808080; text-align: center; padding: 20px; grid-column: 1/-1;">No data available</div>';
+      const padding = this.state.themeConfig?.grid?.padding || '20px';
+      const textColor = this.state.themeConfig?.colors?.mutedForeground || '#808080';
+      this.elements.pageGrid.innerHTML = `<div style="color: ${textColor}; text-align: center; padding: ${padding}; grid-column: 1/-1;">No data available</div>`;
       return;
     }
 
@@ -568,7 +639,7 @@ class VioversePro {
   }
 
   async loadPDF(pdfFilename) {
-    const pdfPath = `../data/pdfs/${pdfFilename}`;
+    const pdfPath = `./data/pdfs/${pdfFilename}`;
     console.log(`📄 Loading PDF: ${pdfFilename}`);
 
     // Cancel any existing render task to prevent canvas conflict
@@ -579,6 +650,9 @@ class VioversePro {
         // Ignore cancellation errors
       }
       this.currentRenderTask = null;
+
+      // Wait a bit to ensure canvas is fully released
+      await new Promise(resolve => setTimeout(resolve, 50));
     }
 
     try {
@@ -602,12 +676,31 @@ class VioversePro {
       canvas.width = viewport.width;
       canvas.height = viewport.height;
 
+      // CRITICAL: Sync overlay dimensions with canvas using helper
+      if (window.VioBoxAlignmentHelper) {
+        window.VioBoxAlignmentHelper.syncOverlayToCanvas(canvas, this.elements.vioboxOverlay);
+      } else {
+        // Fallback if helper not loaded
+        const overlay = this.elements.vioboxOverlay;
+        overlay.style.width = `${viewport.width}px`;
+        overlay.style.height = `${viewport.height}px`;
+      }
+
       const renderContext = {
         canvasContext: context,
         viewport: viewport
       };
 
-      // Store render task to cancel if needed
+      // Cancel any existing render task
+      if (this.currentRenderTask) {
+        try {
+          this.currentRenderTask.cancel();
+        } catch (e) {
+          // Task may already be complete
+        }
+      }
+
+      // Store and execute new render task
       this.currentRenderTask = page.render(renderContext);
       await this.currentRenderTask.promise;
       canvas.style.display = 'block';
@@ -617,6 +710,11 @@ class VioversePro {
 
       // Render vioboxes from CSV data at same scale
       this.vioboxSystem.renderVioBoxes(this.elements.vioboxOverlay, pdfFilename, scale);
+
+      // Sync overlay alignment with canvas
+      if (window.VioBoxAlignmentHelper) {
+        window.VioBoxAlignmentHelper.syncOverlayToCanvas(canvas, this.elements.vioboxOverlay);
+      }
 
       console.log(`✅ PDF loaded with ${this.vioboxSystem.getViolationsForPDF(pdfFilename).length} violations`);
 
@@ -628,6 +726,11 @@ class VioversePro {
 
   showPagePlaceholder(pageNum, pageMeta, errorMsg = null) {
     const canvas = this.elements.pdfCanvas;
+
+    // Don't show error message on initial load
+    if (errorMsg && this.state.currentPage === null) {
+      errorMsg = null;
+    }
     const ctx = canvas.getContext('2d');
 
     canvas.width = 612;
@@ -637,7 +740,10 @@ class VioversePro {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = '#808080';
-    ctx.font = 'bold 24px Inter, sans-serif';
+    const headingSize = this.state.themeConfig?.canvas?.fontSize?.heading || '24px';
+    const fontFamily = this.state.themeConfig?.fonts?.sans || 'Inter, sans-serif';
+    const fontWeight = this.state.themeConfig?.canvas?.fontWeight?.bold || 'bold';
+    ctx.font = `${fontWeight} ${headingSize} ${fontFamily}`;
     ctx.textAlign = 'center';
 
     if (errorMsg) {
@@ -646,7 +752,8 @@ class VioversePro {
       ctx.fillText('No Violations on This Page', canvas.width/2, 100);
     }
 
-    ctx.font = '16px Inter, sans-serif';
+    const bodySize = this.state.themeConfig?.canvas?.fontSize?.body || '16px';
+    ctx.font = `${bodySize} ${fontFamily}`;
     ctx.fillStyle = '#b0b0b0';
 
     const bureau = this.state.currentBureau;
@@ -723,7 +830,15 @@ class VioversePro {
 
     // Re-render current PDF with new zoom
     if (this.state.currentPDF) {
-      this.loadPDF(this.state.currentPDF);
+      this.loadPDF(this.state.currentPDF).then(() => {
+        // Sync overlay after PDF render completes
+        if (window.VioBoxAlignmentHelper) {
+          window.VioBoxAlignmentHelper.syncOverlayToCanvas(
+            this.elements.pdfCanvas,
+            this.elements.vioboxOverlay
+          );
+        }
+      });
     }
   }
 
@@ -733,7 +848,15 @@ class VioversePro {
 
     // Re-render current PDF with new zoom
     if (this.state.currentPDF) {
-      this.loadPDF(this.state.currentPDF);
+      this.loadPDF(this.state.currentPDF).then(() => {
+        // Sync overlay after PDF render completes
+        if (window.VioBoxAlignmentHelper) {
+          window.VioBoxAlignmentHelper.syncOverlayToCanvas(
+            this.elements.pdfCanvas,
+            this.elements.vioboxOverlay
+          );
+        }
+      });
     }
   }
 
@@ -743,7 +866,15 @@ class VioversePro {
 
     // Re-render current PDF
     if (this.state.currentPDF) {
-      this.loadPDF(this.state.currentPDF);
+      this.loadPDF(this.state.currentPDF).then(() => {
+        // Sync overlay after PDF render completes
+        if (window.VioBoxAlignmentHelper) {
+          window.VioBoxAlignmentHelper.syncOverlayToCanvas(
+            this.elements.pdfCanvas,
+            this.elements.vioboxOverlay
+          );
+        }
+      });
     }
   }
 

@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "id": "OG-ANA-ALL-2025-09-03-04",
+    "title": "Creditor Drop-Off Analysis & Credit Score Correlation",
+    "doc_type": "CASE_ANALYSIS",
+    "temporal_prefix": "OG",
+    "date_created": "2025-09-03",
+    "days_since_discharge": 571,
+    "ally_violation_days": 571,
+    "analysis_date": "2025-09-03",
+    "excluded_from_violation_logic": true,
+    "source_document": "CREDITOR DROP-OFF ANALYSIS REWRITE-FOR-FLOW.md",
+    "golden_evidence": false,
+    "vio_ripple_score": 92
+  },
+  "content": {
+    "summary": "Mathematical proof of FCRA violations through statistical correlation analysis. Evidence includes 87% inverse correlation between false reports and credit scores, 61-point disparity between credit bureaus reporting identical data, and 571 days of ongoing violations by Ally Financial.",
+    "key_findings": [
+      "87% inverse correlation coefficient (r = -0.87) between false reports and Experian FICO score",
+      "Each creditor removed resulted in average 8.7-point score recovery",
+      "61-point disparity between Experian (713) and TransUnion (652) despite identical data",
+      "TransUnion score remains 32 points below pre-attack baseline after 571 days",
+      "February 2025 mass exodus - 7-8 creditors stopped reporting simultaneously",
+      "Ally Financial continues false reporting 571 days post-discharge with internal contradictions"
+    ],
+    "statistical_analysis": {
+      "experian_correlation": {
+        "coefficient": -0.87,
+        "meaning": "87% of credit score variation explained by number of false reports",
+        "recovery_rate": "8.7 points per creditor removed"
+      },
+      "bureau_disparity": {
+        "experian_score": 713,
+        "transunion_score": 652,
+        "gap": 61,
+        "baseline_comparison": "TransUnion 32 points below 684 baseline"
+      },
+      "recovery_timeline": [
+        {"date": "2024-04-21", "score": 600, "creditors": 13, "points_from_baseline": 0},
+        {"date": "2024-11-22", "score": 659, "creditors": 2, "points_from_baseline": 59},
+        {"date": "2025-06-22", "score": 680, "creditors": 2, "points_from_baseline": 80},
+        {"date": "2025-07-20", "score": 705, "creditors": 2, "points_from_baseline": 105},
+        {"date": "2025-08-17", "score": 713, "creditors": "0-1", "points_from_baseline": 113}
+      ]
+    },
+    "mathematical_impossibilities": [
+      "Sears, Best Buy, Home Depot: 90-day delinquencies on zero dollar balances",
+      "JPMorgan and Mariner: double charge-offs on same debts",
+      "Discover: balance manipulation from $0 to $23,816 overnight",
+      "Cornerstone: reported discharge 233 days before it occurred"
+    ],
+    "ally_financial_violation": {
+      "days_ongoing": 571,
+      "start_date": "2024-02-09",
+      "false_status": "wage earner plan",
+      "correct_status": "discharged in bankruptcy",
+      "proof_of_willfulness": "Reports both 'wage earner plan' and Code 281 'Bankruptcy Completed' - logical impossibility",
+      "language_modification": "July 2025 after 516 days proves active review without correction"
+    },
+    "february_2025_exodus": {
+      "pattern": "7-8 creditors simultaneously stopped reporting",
+      "significance": "Reported false delinquencies until maximum legal duration (7-year limit)",
+      "willfulness_proof": "Chose to let 7-year clock expire rather than correct false reporting",
+      "creditors_involved": [
+        "JPMorgan Chase (double charge-off violator)",
+        "Discover (admitted 403-day violation)",
+        "Mariner Finance (double charge-off violator)",
+        "Sears, Best Buy, Home Depot ($0 balance violators)",
+        "Bank of America, Barclays",
+        "Citizens Bank, Citizens, Cornerstone FCU"
+      ]
+    },
+    "damages_calculation": {
+      "actual_damages": {
+        "lost_debt_consolidation": 11900,
+        "lifetime_refinance_loss": 150000,
+        "lost_consolidation_opportunities": 25000,
+        "out_of_pocket_costs": 737,
+        "total": 186637
+      },
+      "statutory_damages": {
+        "8_creditors_willful": "40000-200000",
+        "3_credit_bureaus": "15000-75000",
+        "ally_enhanced": "100000-500000"
+      },
+      "valuation_range": {
+        "conservative": 744637,
+        "moderate": 1744637,
+        "aggressive": 2994637
+      }
+    },
+    "fcra_violations": [
+      "15 U.S.C. §1681e(b) - TransUnion failure to ensure maximum accuracy (61-point disparity)",
+      "15 U.S.C. §1681s-2(a) - Creditor duty to provide accurate information",
+      "15 U.S.C. §1681n - Willful noncompliance (ongoing 571-day violation)"
+    ],
+    "litigation_strategy": {
+      "documentary_evidence": [
+        "Mathematical correlation charts proving causation",
+        "Discover's March 18, 2025 written admission of 403-day violation",
+        "103-point spousal gap on joint application",
+        "Ally's internal contradiction in same report",
+        "Three Rocket Mortgage professional witness statements"
+      ],
+      "discovery_priorities": [
+        "Ally's Metro 2 furnishing files February 2024 to present",
+        "Documentation of February 2025 cessation decisions",
+        "TransUnion explanation for 61-point Experian disparity",
+        "Bureau validation procedures allowing contradictory data"
+      ],
+      "settlement_positioning": {
+        "opening_demand": 4500000,
+        "realistic_range": "1500000-2500000",
+        "absolute_floor": 1000000
+      }
+    },
+    "causal_chain": [
+      "April 19, 2023: Pre-violation baseline (684 TransUnion)",
+      "January 17, 2024: Mass false reporting attack (10 alerts)",
+      "February 9, 2024: Discharge granted - all negative reporting illegal",
+      "April 21, 2024: 103-point spousal gap demonstrates causation",
+      "February 2025: Mass exodus proves willfulness",
+      "August 2025: 61-point bureau disparity proves ongoing harm"
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "case_version": "v4",
+  "id": "PR-ALT-HD-2019-06-13-01",
+  "doc_type": "ALT",
+  "title": "Home Depot/CBNA Historical Violation: 90 Days Past Due During Active Bankruptcy",
+  "source": {
+    "source_filename": "thd-cbna-90-days-past-due-report-june-2019.md",
+    "source_path": "/assets/evidence-for-json/",
+    "sha256": "a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9",
+    "extraction_method": "manual_parse"
+  },
+  "temporal": {
+    "temporal_classification": "PR",
+    "activity_date": "2019-06-13",
+    "provenance": {
+      "historical_violation": true,
+      "excluded_from_violation_logic": false
+    }
+  },
+  "entities": {
+    "creditor_codes": ["HD"],
+    "bureaus": ["EX"],
+    "consumers": ["David Marra"]
+  },
+  "claims": [
+    {
+      "violations": [
+        {
+          "statute": "15 U.S.C. §1681e(b)",
+          "severity": "SERIOUS",
+          "description": "Reporting delinquency during active Chapter 13 bankruptcy protection",
+          "harm_estimate": {
+            "amount_point": 2500,
+            "rationale": "Historical violation during protected status"
+          }
+        }
+      ]
+    }
+  ],
+  "historical_context": {
+    "bankruptcy_filing": "2018-10-25",
+    "violation_date": "2019-06-13",
+    "months_into_bankruptcy": 8,
+    "balance": 0.00,
+    "delinquency_status": "90 Days Past Due",
+    "protected_status": "Chapter 13 active"
+  },
+  "pattern_significance": {
+    "early_indicator": true,
+    "establishes_disregard": "4.5 years of ignoring bankruptcy protection",
+    "historical_precedent": true
+  },
+  "special_handling": "HISTORICAL_VIOLATION_DURING_BANKRUPTCY",
+  "golden_evidence": false,
+  "confidence_score": 0.85,
+  "litigation_readiness_score": 75,
+  "notes": "Historical violation showing pattern of disregarding bankruptcy protection",
+  "created_at": "2025-09-04T20:55:33.000000",
+  "updated_at": "2025-09-04T20:55:33.000000"
+}

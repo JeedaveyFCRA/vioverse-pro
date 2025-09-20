@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "case_version": "v4",
+  "id": "OG-MED_LEDGER-ALL-2025-08-13-01",
+  "doc_type": "MED_LEDGER",
+  "title": "Master Evidence Data v4 - Comprehensive FCRA Violation Tracking Matrix",
+  "source": {
+    "source_filename": "Master-Evidence-Data_v4.csv",
+    "source_path": "/assets/evidence-for-json/",
+    "sha256": "pending_calculation",
+    "extraction_method": "csv_parse"
+  },
+  "temporal": {
+    "temporal_classification": "OG",
+    "activity_date": null,
+    "date_range": {
+      "start": "2024-04-25",
+      "end": "2025-03-20"
+    },
+    "provenance": {
+      "excluded_from_violation_logic": true,
+      "included_in_contextual_logic": true
+    }
+  },
+  "entities": {
+    "creditor_codes": ["AL", "BK", "JP", "HD", "MF", "CR", "DL", "BY", "SR", "C1", "C2", "DB"],
+    "bureaus": ["EQ", "EX", "TU"],
+    "consumers": ["David Marra"]
+  },
+  "ledger_data": {
+    "total_creditors": 13,
+    "total_bureau_dates": 14,
+    "discharge_date": "2024-02-09",
+    "tracking_period": {
+      "start": "2024-04-25",
+      "end": "2025-03-20",
+      "days_span": 329
+    },
+    "creditor_patterns": {
+      "ongoing_violators": ["AL", "BK", "JP", "HD", "MF", "CR"],
+      "mass_exodus": ["DL", "BY", "SR", "C1", "C2", "DB"],
+      "exodus_date": "2025-02-01"
+    },
+    "violation_categories": [
+      "DS2830_Misreporting",
+      "Account_Status_Violation",
+      "Reported_Balance_Violation",
+      "Public_Records_Violation",
+      "High_Balance_Misreporting",
+      "Included_In_Chapter_13_Post_Discharge",
+      "Wage_Earner_Plan_Post_Discharge"
+    ],
+    "bureau_coverage": {
+      "equifax": {
+        "dates": 6,
+        "span": "2024-04-25 to 2025-03-20"
+      },
+      "experian": {
+        "dates": 4,
+        "span": "2025-02-10 to 2025-03-20"
+      },
+      "transunion": {
+        "dates": 4,
+        "span": "2025-02-10 to 2025-03-20"
+      }
+    }
+  },
+  "evidence_links": {
+    "emotional_impact_letters": true,
+    "damaging_activity_emails": true,
+    "rocket_mortgage_denials": true,
+    "credit_score_drops": true,
+    "cross_bureau_comparisons": true
+  },
+  "analysis": {
+    "key_findings": [
+      "13 creditors systematically misreporting post-discharge",
+      "Mass exodus of 6 creditors in February 2025",
+      "6 creditors continuing violations through March 2025",
+      "All creditors showing 'Included in Chapter 13' instead of 'Discharged'",
+      "Public records violations across all bureaus"
+    ],
+    "violation_patterns": [
+      "Coordinated false reporting across bureaus",
+      "DS2830 administrative reopening exploitation",
+      "Systematic balance misreporting on discharged accounts",
+      "Public records showing contradictory statuses"
+    ]
+  },
+  "references": {
+    "source_evidence_ids": [],
+    "related_ids": [],
+    "corroborates": [],
+    "contradicts": [],
+    "triggers": []
+  },
+  "validation": {
+    "record_checks": [
+      {"check": "creditor_whitelist", "status": "PASS", "note": "All 13 creditors match whitelist"},
+      {"check": "bureau_validation", "status": "PASS", "note": "All bureaus EQ/EX/TU valid"},
+      {"check": "date_consistency", "status": "PASS", "note": "All dates post-discharge"}
+    ],
+    "cross_doc_checks": []
+  },
+  "confidence_score": 0.95,
+  "contextual_weight": 0.95,
+  "litigation_readiness_score": 0,
+  "notes": "Master tracking document containing violation matrix for all 13 creditors across 3 bureaus. Critical for establishing pattern of systematic FCRA violations.",
+  "created_at": "2025-09-04T18:35:00Z",
+  "updated_at": "2025-09-04T18:35:00Z"
+}

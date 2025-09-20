@@ -1,0 +1,183 @@
+# ==========================
+# rules_litigation.yaml
+# ==========================
+# Serious/Severe/Extreme only — litigation-hardened.
+# No minor/moderate rules. No account-fragment mismatch (kept for audit outside of claims).
+
+rules:
+
+  # ---------- EXTREME ----------
+
+  - id: EXT-001
+    name: "Post-Discharge Balance > 0"
+    severity: Extreme
+    statutes: ["§1681e(b)", "§1681c(f)"]
+    explain: "Balance reported > $0 after discharge (reported_balance={{reported_balance}}, report_date={{report_date}}, discharge={{discharge_date}})."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - any:
+            - { field: balance, op: ">", value: 0 }
+            - { field: reported_balance, op: ">", value: 0 }
+
+  - id: EXT-002
+    name: "Post-Discharge Past Due > 0"
+    severity: Extreme
+    statutes: ["§1681e(b)", "§1681c(f)"]
+    explain: "Amount past due reported after discharge (amount_past_due={{amount_past_due}})."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - { field: amount_past_due, op: ">", value: 0 }
+
+  - id: EXT-003
+    name: "Post-Discharge Charge-Off Amount"
+    severity: Extreme
+    statutes: ["§1681e(b)", "§1681c(f)"]
+    explain: "Charge-off amount reported after discharge (charge_off_amount={{charge_off_amount}})."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - { field: charge_off_amount, op: ">", value: 0 }
+
+  - id: EXT-004
+    name: "Bankruptcy Status Persisting Post-Discharge"
+    severity: Extreme
+    statutes: ["§1681e(b)", "§1681c(f)"]
+    explain: "Account still reported as bankruptcy/Chapter 13 post-discharge (account_status={{account_status}} or remarks={{remarks_multi}})."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - any:
+            - { field: account_status, op: "contains_any", value_from: derog_statuses }
+            - { field: remarks_multi, op: "contains_any", value_from: derog_statuses }
+
+  - id: EXT-006
+    name: "Post-Discharge Payment Activity"
+    severity: Extreme
+    statutes: ["§1681e(b)"]
+    explain: "Last payment is on/after discharge while tradeline remains (date_of_last_payment={{date_of_last_payment}})."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - { field: date_of_last_payment, op: ">=", value: "{{discharge_date}}" }
+
+  - id: EXT-007
+    name: "Post-Discharge Account Activity"
+    severity: Extreme
+    statutes: ["§1681e(b)"]
+    explain: "Last activity on/after discharge (date_of_last_activity={{date_of_last_activity}})."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - { field: date_of_last_activity, op: ">=", value: "{{discharge_date}}" }
+
+  # ---------- SEVERE ----------
+
+  - id: SEV-001
+    name: "Closed Account Reporting Balance/Past Due"
+    severity: Severe
+    statutes: ["§1681e(b)"]
+    explain: "Account shows Date Closed but still reports balance/past due."
+    when:
+      all:
+        - { field: date_closed, op: "exists", value: true }
+        - { field: report_date, op: ">=", value: "{{date_closed}}" }
+        - any:
+            - { field: reported_balance, op: ">", value: 0 }
+            - { field: balance, op: ">", value: 0 }
+            - { field: amount_past_due, op: ">", value: 0 }
+
+  - id: SEV-002
+    name: "Frozen/Stale Update With Ongoing Derogatory"
+    severity: Severe
+    statutes: ["§1681e(b)"]
+    explain: "Status not updated post-discharge while derogatory elements persist (last update before discharge)."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - { field: date_reported_last_updated, op: "<", value: "{{discharge_date}}" }
+        - any:
+            - { field: reported_balance, op: ">", value: 0 }
+            - { field: balance, op: ">", value: 0 }
+            - { field: amount_past_due, op: ">", value: 0 }
+            - { field: charge_off_amount, op: ">", value: 0 }
+            - { field: account_status, op: "contains_any", value_from: derog_statuses }
+            - { field: remarks_multi, op: "contains_any", value_from: derog_statuses }
+
+  - id: SEV-003
+    name: "Obsolete Delinquency Beyond 7y+180d"
+    severity: Severe
+    statutes: ["§1681c"]
+    explain: "DoFD too old for continued reporting."
+    when:
+      all:
+        - { field: date_of_first_delinquency, op: "exists", value: true }
+        - { field: report_date - date_of_first_delinquency, op: ">", value: "2730d" }  # approx 7 years + 180 days
+
+  - id: SEV-004
+    name: "Estimated Removal Date Too Late"
+    severity: Severe
+    statutes: ["§1681c"]
+    explain: "Estimated removal exceeds 7y+180d from DoFD."
+    when:
+      all:
+        - { field: date_of_first_delinquency, op: "exists", value: true }
+        - { field: estimated_removal_date, op: ">", value: "dofd+7 years 180 days" }
+
+  - id: SEV-005
+    name: "Re-Aging (DoFD Pushed Later Than First Flag)"
+    severity: Severe
+    statutes: ["§1681e(b)"]
+    explain: "DoFD occurs after first reported delinquency flag."
+    when:
+      all:
+        - { field: delinquency_first_reported, op: "exists", value: true }
+        - { field: date_of_first_delinquency, op: ">", value: "{{delinquency_first_reported}}" }
+
+  - id: SEV-XB-001
+    name: "Cross-Bureau Inconsistency: Status/Remarks"
+    severity: Severe
+    statutes: ["§1681e(b)"]
+    explain: "Critical non-numeric field differs across bureaus for the same report month."
+    when:
+      cross_bureau:
+        type: status_mismatch
+        fields: ["account_status", "remarks_multi"]
+
+  - id: SEV-XB-002
+    name: "Cross-Bureau Inconsistency: Balance/Past Due/Charge-Off"
+    severity: Severe
+    statutes: ["§1681e(b)"]
+    explain: "Critical numeric field differs across bureaus for the same report month beyond tolerance."
+    when:
+      cross_bureau:
+        type: balance_mismatch
+        fields: ["balance", "reported_balance", "amount_past_due", "charge_off_amount"]
+        tolerance_from_context: balance_tolerance
+
+  # ---------- SERIOUS ----------
+
+  - id: SER-001
+    name: "Missing DoFD While Reporting Derogatory"
+    severity: Serious
+    statutes: ["§1681e(b)"]
+    explain: "Derogatory reporting present but DoFD is missing."
+    when:
+      all:
+        - any:
+            - { field: account_status, op: "contains_any", value_from: derog_statuses }
+            - { field: remarks_multi, op: "contains_any", value_from: derog_statuses }
+            - { field: amount_past_due, op: ">", value: 0 }
+            - { field: charge_off_amount, op: ">", value: 0 }
+        - { field: date_of_first_delinquency, op: "not_exists", value: true }
+
+  - id: SER-002
+    name: "Derogatory Remarks Post-Discharge"
+    severity: Serious
+    statutes: ["§1681e(b)", "§1681c(f)"]
+    explain: "Derogatory remarks persist after discharge (remarks={{remarks_multi}})."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - { field: remarks_multi, op: "contains_any", value_from: derog_statuses }

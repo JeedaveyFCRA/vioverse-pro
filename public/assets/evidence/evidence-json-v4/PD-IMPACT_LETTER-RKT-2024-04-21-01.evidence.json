@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0.0",
+  "case_version": "v4",
+  "id": "PD-IMPACT_LETTER-RKT-2024-04-21-01",
+  "doc_type": "IMPACT_LETTER",
+  "title": "Rocket Mortgage Credit Upgrade Referral - Financial and Emotional Impact Statement",
+  "source": {
+    "source_filename": "Rocket-Mortgage-Credit-Upgrade-Referral.md",
+    "source_path": "/assets/evidence-for-json/",
+    "sha256": "pending_calculation",
+    "extraction_method": "manual_parse"
+  },
+  "temporal": {
+    "temporal_classification": "PD",
+    "activity_date": "2024-04-21",
+    "provenance": {
+      "excluded_from_violation_logic": false
+    }
+  },
+  "entities": {
+    "creditor_codes": [],
+    "bureaus": ["TU"],
+    "consumers": ["David Marra"]
+  },
+  "impact": {
+    "emotional_markers": [
+      "marital stress",
+      "social withdrawal", 
+      "health deterioration",
+      "weight gain",
+      "career impacts",
+      "reduced professional confidence",
+      "housing instability",
+      "shame"
+    ],
+    "financial_impacts": [
+      "$23,000 refinance blocked",
+      "$1,000/month excess payments",
+      "$12,000 annual unnecessary interest",
+      "$737 appraisal fee lost",
+      "Lost contractor deposits",
+      "Deferred home repairs"
+    ],
+    "weighting": {
+      "relevance": 0.98,
+      "severity": "SEVERE"
+    },
+    "credit_history": {
+      "baseline_score_2023": 684,
+      "referral_score_2024": 600,
+      "score_drop": 84,
+      "required_score": 640,
+      "gap_to_qualify": 40
+    },
+    "constructive_denial": {
+      "debt_payoff_demand": 10000,
+      "despite_bankruptcy_discharge": true,
+      "days_post_discharge": 72
+    }
+  },
+  "claims": [
+    {
+      "violations": [
+        {
+          "statute": "15 U.S.C. §1681e(b)",
+          "description": "Failure to maintain reasonable procedures for accuracy",
+          "severity": "SEVERE",
+          "harm_estimate": {
+            "amount_point": 12000,
+            "rationale": "Annual unnecessary interest payments"
+          }
+        },
+        {
+          "statute": "15 U.S.C. §1681i(a)",
+          "description": "Failure to conduct reasonable reinvestigation",
+          "severity": "SERIOUS",
+          "harm_estimate": {
+            "amount_point": 23000,
+            "rationale": "Blocked refinance opportunity"
+          }
+        },
+        {
+          "statute": "15 U.S.C. §1681s-2(a)",
+          "description": "Furnishers' duty to provide accurate information",
+          "severity": "SEVERE",
+          "harm_estimate": {
+            "amount_point": 17000,
+            "rationale": "$1,000/month × 17 months excess payments"
+          }
+        }
+      ]
+    }
+  ],
+  "evidence": {
+    "documented_creditworthiness": [
+      "Timely post-bankruptcy payments",
+      "Previous 684 credit score",
+      "Willingness to pay repairs",
+      "Active refinancing attempts"
+    ],
+    "causation_chain": [
+      "13 creditors misreporting",
+      "107-point TransUnion drop",
+      "Credit Upgrade referral",
+      "Constructive denial",
+      "Ongoing financial harm"
+    ]
+  },
+  "references": {
+    "source_evidence_ids": [],
+    "related_ids": [
+      "PD-COR-RKT-2025-04-02-01",
+      "PD-VML-RKT-2025-03-04-01"
+    ],
+    "corroborates": [
+      "PD-COR-RKT-2025-04-02-01"
+    ],
+    "contradicts": [],
+    "triggers": []
+  },
+  "validation": {
+    "record_checks": [
+      {"check": "required_fields", "status": "PASS"},
+      {"check": "emotional_markers", "status": "PASS"},
+      {"check": "financial_impacts", "status": "PASS"},
+      {"check": "post_discharge_violation", "status": "PASS", "note": "72 days post-discharge"}
+    ],
+    "cross_doc_checks": []
+  },
+  "confidence_score": 0.95,
+  "litigation_readiness_score": 90,
+  "notes": "Comprehensive impact statement documenting both financial ($52,000+ total) and emotional harm from constructive mortgage denial caused by 13 creditors' false reporting.",
+  "created_at": "2025-09-04T18:45:00Z",
+  "updated_at": "2025-09-04T18:45:00Z"
+}

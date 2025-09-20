@@ -1,0 +1,256 @@
+{
+  "schema_version": "1.0.0",
+  "relationships_version": "v4",
+  "created_at": "2025-09-04T23:26:00Z",
+  "total_relationships": 22,
+  "summary": {
+    "corroborates_count": 4,
+    "contradicts_count": 0,
+    "triggers_count": 0,
+    "related_ids_count": 18,
+    "most_connected_document": "PD-COR-RKT-2025-04-02-01"
+  },
+  "relationships": [
+    {
+      "type": "corroborates",
+      "source_id": "PD-COR-RKT-2025-04-02-01",
+      "target_id": "PD-VML-RKT-2025-03-04-01",
+      "relationship_strength": "STRONG",
+      "description": "Jessica Vest email confirms Lawrence Young's voicemail claims about credit score requirements",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "corroborates",
+      "source_id": "PD-VML-RKT-2025-03-04-01",
+      "target_id": "PD-COR-RKT-2025-04-02-01",
+      "relationship_strength": "STRONG",
+      "description": "Lawrence Young voicemail confirms Jessica Vest's written requirements",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "PD-COR-RKT-2025-04-02-01",
+      "target_id": "PD-VML-RKT-2025-03-04-01",
+      "relationship_strength": "DIRECT",
+      "description": "Both documents relate to Rocket Mortgage credit requirements post-discharge",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "PD-COR-RKT-2025-04-02-01",
+      "target_id": "PD-DNL-RKT-2024-04-21-01",
+      "relationship_strength": "DIRECT",
+      "description": "Jessica Vest email references the original Rocket Mortgage denial",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "PD-VML-RKT-2025-03-04-01",
+      "target_id": "PD-DNL-RKT-2024-04-21-01",
+      "relationship_strength": "DIRECT",
+      "description": "Lawrence Young voicemail relates to original denial conditions",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "PD-VML-RKT-2025-03-04-01",
+      "target_id": "PD-COR-RKT-2025-04-02-01",
+      "relationship_strength": "DIRECT",
+      "description": "Both documents establish Rocket Mortgage's impossible credit requirements",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "pattern_evidence",
+      "source_id": "VW-ALT-MF-2023-12-31-01",
+      "target_id": "VW-ALT-DB-2023-12-31-01",
+      "relationship_strength": "COORDINATED",
+      "description": "Both creditors executed coordinated New Year's Eve attacks during vulnerability window",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "pattern_evidence",
+      "source_id": "VW-ALT-JP-2023-12-20-01",
+      "target_id": "VW-ALT-ALL-2024-01-17-01",
+      "relationship_strength": "COORDINATED",
+      "description": "JP Morgan led December 20 attack followed by mass coordinated January 17 assault",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "impact_chain",
+      "source_id": "VW-ALT-ALL-2024-01-17-01",
+      "target_id": "PD-DNL-RKT-2024-04-21-01",
+      "relationship_strength": "CAUSAL",
+      "description": "Coordinated January 17 attacks caused credit score drop leading to April 21 denial",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "impact_chain",
+      "source_id": "PD-DNL-RKT-2024-04-21-01",
+      "target_id": "PD-IMPACT_LETTER-RKT-2024-04-21-01",
+      "relationship_strength": "DIRECT",
+      "description": "Rocket Mortgage denial directly led to documented emotional and financial impact",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "temporal_chain",
+      "source_id": "PR-CRT-ALL-2023-11-16-01",
+      "target_id": "PD-CRT-USD-2024-02-09-01",
+      "relationship_strength": "SEQUENTIAL",
+      "description": "Plan completion on Nov 16, 2023 led to discharge on Feb 9, 2024",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "admission_evidence",
+      "source_id": "PD-RSP-DL-2025-03-18-01",
+      "target_id": "VW-ALT-DB-2023-12-31-01",
+      "relationship_strength": "CONFESSION",
+      "description": "Discover's March 18 admission confirms their December 31 attack was willfully false",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "OG-ANA-ALL-2025-09-03-02",
+      "target_id": "OG-ANA-ALL-2025-09-03-04",
+      "relationship_strength": "DIRECT",
+      "description": "Credit score tracking analysis directly supports creditor drop-off pattern analysis",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "OG-ANA-ALL-2025-09-03-05",
+      "target_id": "PD-DNL-RKT-2024-04-21-01",
+      "relationship_strength": "DIRECT",
+      "description": "Rocket Mortgage analysis document references the original denial letter",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "OG-ANA-ALL-2025-09-03-05",
+      "target_id": "PD-COR-RKT-2025-04-02-01",
+      "relationship_strength": "DIRECT",
+      "description": "Rocket Mortgage analysis incorporates Jessica Vest's confirmation email",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "OG-ANA-ALL-2025-09-03-06",
+      "target_id": "VW-ALT-ALL-2024-01-17-01",
+      "relationship_strength": "DIRECT",
+      "description": "Alerts analysis document analyzes the coordinated January 17 attack",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "OG-ANA-ALL-2025-09-03-06",
+      "target_id": "VW-ALT-JP-2023-12-20-01",
+      "relationship_strength": "DIRECT",
+      "description": "Alerts analysis references JP Morgan's December 20 premeditated attack",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "OG-ANA-ALL-2025-09-03-06",
+      "target_id": "VW-ALT-DB-2023-12-31-01",
+      "relationship_strength": "DIRECT",
+      "description": "Alerts analysis covers Discover's New Year's Eve balance fabrication",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "OG-ANA-ALL-2025-09-03-03",
+      "target_id": "OG-ANA-ALL-2025-09-03-05",
+      "relationship_strength": "DIRECT",
+      "description": "Additional denials analysis includes the Rocket Mortgage denial as primary evidence",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "OG-ANA-ALL-2025-09-03-04",
+      "target_id": "OG-ANA-ALL-2025-09-03-02",
+      "relationship_strength": "DIRECT",
+      "description": "Creditor exodus patterns validate credit score recovery tracking data",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "OG-ANA-ALL-2025-08-05-01",
+      "target_id": "OG-ANA-ALL-2025-09-03-06",
+      "relationship_strength": "DIRECT",
+      "description": "Original comprehensive analysis references coordinated alert patterns",
+      "created_at": "2025-09-04T23:26:00Z"
+    },
+    {
+      "type": "related_ids",
+      "source_id": "OG-ANA-ALL-2025-08-05-01",
+      "target_id": "OG-ANA-ALL-2025-09-03-05",
+      "relationship_strength": "DIRECT",
+      "description": "Comprehensive analysis incorporates Rocket Mortgage denial evidence",
+      "created_at": "2025-09-04T23:26:00Z"
+    }
+  ],
+  "relationship_networks": [
+    {
+      "network_id": "rocket_mortgage_evidence_chain",
+      "description": "Complete evidence chain for Rocket Mortgage FCRA violations and damages",
+      "documents": [
+        "PD-DNL-RKT-2024-04-21-01",
+        "PD-VML-RKT-2025-03-04-01", 
+        "PD-COR-RKT-2025-04-02-01",
+        "PD-IMPACT_LETTER-RKT-2024-04-21-01"
+      ],
+      "strength": "COMPLETE_CHAIN"
+    },
+    {
+      "network_id": "coordinated_vulnerability_attacks",
+      "description": "Evidence of coordinated attacks during vulnerability window (Dec 20, 2023 - Jan 17, 2024)",
+      "documents": [
+        "VW-ALT-JP-2023-12-20-01",
+        "VW-ALT-BOA-2023-12-24-01",
+        "VW-ALT-DB-2023-12-31-01",
+        "VW-ALT-MF-2023-12-31-01",
+        "VW-ALT-SR-2024-01-09-01",
+        "VW-ALT-BY-2024-01-13-01",
+        "VW-ALT-ALL-2024-01-17-01"
+      ],
+      "strength": "COORDINATED_PATTERN"
+    },
+    {
+      "network_id": "discover_willful_violation_chain",
+      "description": "Complete chain showing Discover's willful violation from attack to admission",
+      "documents": [
+        "VW-ALT-DB-2023-12-31-01",
+        "PD-RSP-DL-2025-03-18-01"
+      ],
+      "strength": "SMOKING_GUN"
+    },
+    {
+      "network_id": "legal_foundation_documents", 
+      "description": "Core legal documents establishing case foundation",
+      "documents": [
+        "PR-CRT-ALL-2023-11-16-01",
+        "PD-CRT-USD-2024-02-09-01",
+        "OG-MED_LEDGER-ALL-2025-08-13-01"
+      ],
+      "strength": "FOUNDATIONAL"
+    },
+    {
+      "network_id": "case_analysis_documents",
+      "description": "Comprehensive analysis documents that synthesize evidence patterns and legal theories",
+      "documents": [
+        "OG-ANA-ALL-2025-08-05-01",
+        "OG-ANA-ALL-2025-09-03-02",
+        "OG-ANA-ALL-2025-09-03-03",
+        "OG-ANA-ALL-2025-09-03-04",
+        "OG-ANA-ALL-2025-09-03-05",
+        "OG-ANA-ALL-2025-09-03-06"
+      ],
+      "strength": "ANALYTICAL_FRAMEWORK"
+    }
+  ],
+  "validation": {
+    "circular_reference_check": "PASS",
+    "orphaned_relationships": 0,
+    "bidirectional_consistency": "PASS",
+    "document_existence_verification": "PASS"
+  }
+}

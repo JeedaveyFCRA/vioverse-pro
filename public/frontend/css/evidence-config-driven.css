@@ -1,0 +1,44 @@
+/**
+ * Evidence View - Config-Driven Styles
+ * All values from theme.json - NO HARDCODING
+ */
+
+/* CSS Variables populated from config */
+:root {
+  /* Grid values */
+  --grid-padding: var(--config-grid-padding, 20px);
+  --grid-header-offset: var(--config-grid-header-offset, 120px);
+
+  /* Shadow values */
+  --shadow-modal: var(--config-shadow-modal, 0 4px 24px rgba(0, 0, 0, 0.5));
+
+  /* Colors */
+  --color-text-muted: var(--config-color-muted-foreground, #e0e0e0);
+}
+
+/* Evidence Image Container */
+.evidence-image {
+  display: block;
+  width: auto;
+  margin: 0 auto;
+}
+
+/* Calculate height dynamically using CSS variable */
+.evidence-image-main {
+  height: calc(100vh - var(--grid-header-offset));
+  box-shadow: var(--shadow-modal);
+}
+
+/* Document content area */
+.document-content {
+  padding: var(--grid-padding);
+  color: var(--color-text-muted);
+}
+
+/* No data message */
+.no-data-message {
+  text-align: center;
+  padding: var(--grid-padding);
+  color: var(--config-color-muted-foreground, #808080);
+  grid-column: 1/-1;
+}

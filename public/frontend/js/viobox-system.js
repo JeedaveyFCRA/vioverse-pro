@@ -11,34 +11,8 @@ class VioBoxSystem {
       TU: []
     };
 
-    this.severityColors = {
-      Extreme: {
-        border: '#dc2626',
-        background: 'rgba(220, 38, 38, 0.15)',
-        text: '#ff0000'
-      },
-      Severe: {
-        border: '#f97316',
-        background: 'rgba(249, 115, 22, 0.15)',
-        text: '#ff6b35'
-      },
-      Warning: {
-        border: '#fbbf24',
-        background: 'rgba(251, 191, 36, 0.15)',
-        text: '#fbbf24'
-      },
-      Moderate: {
-        border: '#60a5fa',
-        background: 'rgba(96, 165, 250, 0.15)',
-        text: '#60a5fa'
-      },
-      Minor: {
-        border: '#86efac',
-        background: 'rgba(134, 239, 172, 0.15)',
-        text: '#86efac'
-      }
-    };
-
+    this.config = null; // Will be loaded from config
+    this.severityColors = {}; // Will be populated from config
     this.currentScale = 1.0;
     this.vioboxesVisible = true;
     this.initialized = false;
@@ -48,8 +22,8 @@ class VioBoxSystem {
   async init() {
     console.log('🎯 Initializing VioBox System...');
 
-    // Load padding configuration (data-driven)
-    await this.loadPaddingConfig();
+    // Load all configuration (data-driven)
+    await this.loadConfiguration();
 
     // Load CSV data
     await this.loadAllCSVData();
@@ -59,22 +33,53 @@ class VioBoxSystem {
     console.log('📐 VioBox padding:', this.vioboxPadding + 'px');
   }
 
-  async loadPaddingConfig() {
+  async loadConfiguration() {
     try {
-      const response = await fetch('/data/config/viobox-padding.json');
-      const config = await response.json();
-      this.vioboxPadding = config.vioboxPadding || 0;
+      // Load theme config
+      const themeResponse = await fetch('./data/config/theme.json');
+      const theme = await themeResponse.json();
+
+      // Load severity config
+      const severityResponse = await fetch('./data/config/severity.json');
+      const severity = await severityResponse.json();
+
+      // Load padding config
+      const paddingResponse = await fetch('./data/config/viobox-padding.json');
+      const paddingConfig = await paddingResponse.json();
+
+      // Store config
+      this.config = { theme, severity };
+      this.vioboxPadding = paddingConfig.vioboxPadding || 0;
+
+      // Initialize severity colors from config
+      this.severityColors = {};
+      if (severity.severityLevels) {
+        Object.entries(severity.severityLevels).forEach(([level, data]) => {
+          this.severityColors[level] = {
+            border: data.color,
+            background: data.backgroundColor || `${data.color}15`,
+            text: data.color
+          };
+        });
+      }
     } catch (error) {
-      console.warn('⚠️ Could not load padding config, using default (0):', error);
+      console.warn('⚠️ Could not load configuration, using defaults:', error);
       this.vioboxPadding = 0;
+      // Fallback severity colors
+      this.severityColors = {
+        extreme: { border: '#dc2626', background: 'rgba(220, 38, 38, 0.15)', text: '#ff0000' },
+        severe: { border: '#f97316', background: 'rgba(249, 115, 22, 0.15)', text: '#ff6b35' },
+        serious: { border: '#fbbf24', background: 'rgba(251, 191, 36, 0.15)', text: '#fbbf24' },
+        minor: { border: '#60a5fa', background: 'rgba(96, 165, 250, 0.15)', text: '#60a5fa' }
+      };
     }
   }
 
   async loadAllCSVData() {
     const csvFiles = [
-      { bureau: 'EQ', file: '../data/csv/eq_violations_detailed_test.csv' },
-      { bureau: 'EX', file: '../data/csv/ex_violations_detailed_test.csv' },
-      { bureau: 'TU', file: '../data/csv/tu_violations_detailed_test.csv' }
+      { bureau: 'EQ', file: './data/csv/eq_violations_detailed_test.csv' },
+      { bureau: 'EX', file: './data/csv/ex_violations_detailed_test.csv' },
+      { bureau: 'TU', file: './data/csv/tu_violations_detailed_test.csv' }
     ];
 
     // Load all CSV files in parallel
@@ -212,8 +217,13 @@ class VioBoxSystem {
     const paddedWidth = scaledWidth + padding;
     const paddedHeight = scaledHeight + padding;
 
-    // Get severity colors
-    const colors = this.severityColors[violation.severity] || this.severityColors.Warning;
+    // Get severity colors (handle case sensitivity)
+    const severityKey = violation.severity.toLowerCase();
+    const colors = this.severityColors[severityKey] || this.severityColors.serious || {
+      border: '#fbbf24',
+      background: 'rgba(251, 191, 36, 0.15)',
+      text: '#fbbf24'
+    };
 
     // Set styles with padded dimensions
     box.style.cssText = `
@@ -222,7 +232,7 @@ class VioBoxSystem {
       top: ${paddedY}px;
       width: ${paddedWidth}px;
       height: ${paddedHeight}px;
-      border: 2px solid ${colors.border};
+      border: ${this.config?.theme?.borders?.medium || '2px'} ${this.config?.theme?.borders?.style?.solid || 'solid'} ${colors.border};
       background: ${colors.background};
       cursor: pointer;
       pointer-events: all;
@@ -232,13 +242,13 @@ class VioBoxSystem {
 
     // Add hover effect
     box.addEventListener('mouseenter', (e) => {
-      box.style.borderWidth = '3px';
+      box.style.borderWidth = this.config?.theme?.borders?.thick || '3px';
       box.style.zIndex = '1000';
       this.showTooltip(e, violation);
     });
 
     box.addEventListener('mouseleave', () => {
-      box.style.borderWidth = '2px';
+      box.style.borderWidth = this.config?.theme?.borders?.medium || '2px';
       box.style.zIndex = 100 + index;
       this.hideTooltip();
     });
@@ -285,14 +295,14 @@ class VioBoxSystem {
       left: ${boxRect.right + 10}px;
       top: ${boxRect.top}px;
       z-index: 10000;
-      max-width: 300px;
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 6px;
-      padding: 12px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.8);
-      color: #fff;
-      font-size: 12px;
+      max-width: ${this.config?.theme?.tooltip?.maxWidth || '300px'};
+      background: ${this.config?.theme?.tooltip?.backgroundColor || '#1a1a1a'};
+      border: ${this.config?.theme?.tooltip?.borderWidth || '1px'} solid ${this.config?.theme?.tooltip?.borderColor || '#333'};
+      border-radius: ${this.config?.theme?.tooltip?.borderRadius || '6px'};
+      padding: ${this.config?.theme?.tooltip?.padding || '12px'};
+      box-shadow: ${this.config?.theme?.shadows?.tooltip || '0 4px 24px rgba(0, 0, 0, 0.8)'};
+      color: ${this.config?.theme?.tooltip?.textColor || '#fff'};
+      font-size: ${this.config?.theme?.tooltip?.fontSize || '12px'};
       line-height: 1.4;
       pointer-events: none;
     `;

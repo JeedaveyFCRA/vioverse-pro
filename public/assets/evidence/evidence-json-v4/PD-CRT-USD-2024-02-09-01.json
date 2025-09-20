@@ -1,0 +1,161 @@
+{
+  "document_id": "PD-CRT-USD-2024-02-09-01",
+  "version": "4.0",
+  "created_date": "2025-09-04",
+  "source_file": "order-of-discharge-february-9-2024.md",
+  "document_type": "COURT_DOCUMENT",
+  "temporal_period": "PD",
+  "creditor_code": "USD",
+  "activity_date": "2024-02-09",
+  "sequence": "01",
+  
+  "document_metadata": {
+    "title": "Official Chapter 13 Order of Discharge - February 9, 2024",
+    "court": "United States Bankruptcy Court - Western District of New York",
+    "case_number": "1-18-12245-PRW",
+    "judge": "Honorable Paul R. Warren",
+    "debtor": "David V. Marra",
+    "discharge_date": "2024-02-09",
+    "primary_purpose": "Legal termination of debts and establishment of FCRA creditor obligations"
+  },
+  
+  "legal_framework": {
+    "primary_statutes": ["11 U.S.C. §1328(a)", "15 U.S.C. §1681c(a)(3)", "15 U.S.C. §1681s-2(a)(1)(A)"],
+    "violation_types": [
+      "FOUNDATIONAL_LEGAL_PROTECTION",
+      "CREDITOR_NOTIFICATION_ESTABLISHMENT",
+      "FCRA_UPDATING_OBLIGATIONS"
+    ],
+    "bankruptcy_sections": {
+      "1328(a)": "Chapter 13 discharge provisions"
+    },
+    "fcra_sections": {
+      "1681c(a)(3)": "Reporting of bankruptcy information",
+      "1681s-2(a)(1)(A)": "Furnisher accuracy obligations"
+    }
+  },
+  
+  "court_details": {
+    "court_name": "United States Bankruptcy Court",
+    "district": "Western District of New York",
+    "location": "Buffalo, New York",
+    "case_number": "1-18-12245-PRW",
+    "chapter": "Chapter 13",
+    "judge": "Honorable Paul R. Warren",
+    "discharge_statute": "11 U.S.C. § 1328(a)"
+  },
+  
+  "discharge_order": {
+    "discharge_granted_to": "David V. Marra",
+    "discharge_date": "February 9, 2024",
+    "legal_effect": "Eliminates personal liability for debts provided for by Chapter 13 plan",
+    "creditor_prohibitions": [
+      "Cannot sue debtor on discharged debts",
+      "Cannot garnish wages", 
+      "Cannot assert deficiencies",
+      "Cannot contact debtor by mail, phone, or otherwise to collect",
+      "Violations can result in damages and attorney's fees"
+    ]
+  },
+  
+  "certificate_of_notice": {
+    "total_noticed": 33,
+    "first_class_mail_recipients": 6,
+    "electronic_transmission_recipients": 28,
+    "bypassed_recipients": 1,
+    "notice_date": "February 11, 2024",
+    "certifying_official": "Gustava Winters, Bankruptcy Noticing Center"
+  },
+  
+  "key_creditor_notifications": [
+    {
+      "creditor": "Ally Financial",
+      "notice_type": "EDI: AISACG.COM and GMACFS.COM", 
+      "notification_time": "Feb 09 2024 23:21:00",
+      "addresses": "Multiple addresses including Oklahoma City and Troy MI",
+      "significance": "Formal notice of discharge - ongoing violations willful"
+    },
+    {
+      "creditor": "Bank of America",
+      "notice_type": "EDI: BANKAMER",
+      "notification_time": "Feb 09 2024 23:21:00", 
+      "address": "P.O. Box 15019, Wilmington, DE 19886-5019",
+      "significance": "Electronic notification establishes knowledge"
+    },
+    {
+      "creditor": "Cornerstone Community FCU",
+      "notice_type": "First class mail",
+      "notification_date": "Feb 11, 2024",
+      "addresses": "PO Box 830, Lockport, NY and c/o Chiari & Ilecki",
+      "significance": "Local credit union formally notified"
+    },
+    {
+      "creditor": "Rocket Mortgage LLC",
+      "notice_type": "CM/ECF electronic filing",
+      "notification_date": "February 9, 2024",
+      "legal_counsel": "Multiple attorneys at Davidson Fink LLP",
+      "significance": "Mortgage servicer formally notified through counsel"
+    }
+  ],
+  
+  "fcra_implications": {
+    "updating_obligations": "Under FCRA §1681s-2(a)(1)(A), furnishers must update tradelines to reflect discharge",
+    "reporting_restrictions": "Under FCRA §1681c(a)(3), bankruptcy information must be accurately reported",
+    "violation_threshold": "Any failure to update after formal notice constitutes direct FCRA violation",
+    "willfulness_establishment": "Certificate of Notice proves creditor knowledge - post-discharge violations willful"
+  },
+  
+  "timeline_significance": [
+    {
+      "date": "2024-01-10", 
+      "event": "Case closed with discharge WITHHELD due to missing DS2830",
+      "significance": "30-day vulnerability window begins"
+    },
+    {
+      "date": "2024-01-17",
+      "event": "Coordinated creditor attack during vulnerability window",
+      "significance": "10 negative items appear during unprotected period"
+    },
+    {
+      "date": "2024-02-09",
+      "event": "Official discharge granted and creditors formally notified",
+      "significance": "End of vulnerability window - FCRA protection fully restored"
+    },
+    {
+      "date": "2024-02-11",
+      "event": "Certificate of Notice mailed to all creditors",
+      "significance": "Final formal notification - all post-date violations willful"
+    }
+  ],
+  
+  "post_discharge_violations_enabled": {
+    "ally_financial": "569+ days of continued false 'wage earner plan' reporting",
+    "discover": "403 days of false charge-off reporting (admitted March 18, 2025)",
+    "systematic_pattern": "Multiple creditors ignored formal discharge notification",
+    "willfulness_proof": "Certificate of Notice eliminates good faith defense for all creditors"
+  },
+  
+  "legal_protections_established": {
+    "personal_liability": "Eliminated for all debts provided for in Chapter 13 plan",
+    "collection_prohibition": "Creditors cannot attempt collection personally",
+    "contact_prohibition": "No mail, phone, or other contact for collection purposes", 
+    "enforcement_remedies": "Violations can result in damages and attorney's fees to debtor",
+    "lien_preservation": "Property liens may still be enforced unless avoided"
+  },
+  
+  "strategic_significance": {
+    "evidence_strength": "FOUNDATIONAL_LEGAL_DOCUMENT",
+    "willfulness_establishment": "Formal creditor notification eliminates good faith defense",
+    "violation_baseline": "All post-February 9, 2024 false reporting is willful",
+    "damages_foundation": "Establishes legal protection period for calculating harm",
+    "case_cornerstone": "Most critical document proving creditor knowledge and obligations"
+  },
+  
+  "vioripple_metadata": {
+    "impact_score": 100,
+    "legal_strength": "FOUNDATIONAL", 
+    "evidence_quality": "OFFICIAL_COURT_ORDER",
+    "damage_quantification": "LEGAL_PROTECTION_BASELINE",
+    "strategic_value": "CASE_CORNERSTONE"
+  }
+}

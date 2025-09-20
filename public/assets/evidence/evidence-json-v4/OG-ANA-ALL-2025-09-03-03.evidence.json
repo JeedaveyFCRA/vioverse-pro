@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0.0",
+  "case_version": "v4",
+  "id": "OG-ANA-ALL-2025-09-03-03",
+  "doc_type": "CASE_ANALYSIS",
+  "title": "Additional Credit Denials - FCRA Damages Documentation",
+  "source": {
+    "source_filename": "ADDITIONAL CREDIT DENIALS-REWRITE-FOR-FLOW.md",
+    "source_path": "/MUD/OTHER/",
+    "sha256": "pending_calculation",
+    "extraction_method": "md_parse"
+  },
+  "temporal": {
+    "temporal_classification": "OG",
+    "activity_date": null,
+    "analysis_date": "2025-09-03",
+    "date_range": {
+      "start": "2024-04-23",
+      "end": "2025-01-20"
+    },
+    "provenance": {
+      "excluded_from_violation_logic": true,
+      "included_in_contextual_logic": true
+    }
+  },
+  "entities": {
+    "creditor_codes": [],
+    "bureaus": ["EQ", "EX"],
+    "consumers": ["David Marra"],
+    "lenders": ["Best Egg", "Cross River Bank", "Capital One"]
+  },
+  "analysis": {
+    "analysis_scope": ["Credit Denials", "Score Suppression", "Damages Quantification"],
+    "analysis_type": ["pattern", "damages", "causation", "strategic"],
+    "key_findings": [
+      "Four credit denials spanning 571 days post-bankruptcy discharge",
+      "Every denial cites legally impossible reasons - serious delinquency on discharged debts",
+      "684 baseline score established pre-false reporting",
+      "25-63 point suppression documented across denials",
+      "Pattern escalates from negligent to extreme willfulness",
+      "Multi-bureau contamination proves systematic violations",
+      "Total actual damages: $112,610",
+      "Statutory damages range: $163,910 to $1,259,610"
+    ],
+    "statistics": {
+      "total_denials": 4,
+      "days_span": 347,
+      "baseline_score": 684,
+      "score_suppression_range": "25-63 points",
+      "lowest_score": 621,
+      "highest_score": 659,
+      "days_since_discharge": 571,
+      "violation_escalation_days": [74, 171, 287, 347]
+    },
+    "damages_summary": {
+      "actual": "112610",
+      "statutory": "51300-1147000",
+      "conservative_total": "163910",
+      "moderate_total": "456110",
+      "aggressive_total": "1259610",
+      "assumptions": [
+        "Lost consolidation: $25,000 per denial",
+        "Excess interest: $700/month × 17 months",
+        "Negligent violations: $1,000 minimum",
+        "Willful violations: $5,000+ per violation",
+        "Pattern enhancement for multi-bureau contamination"
+      ]
+    },
+    "denial_details": [
+      {
+        "date": "2024-04-23",
+        "lender": "Best Egg",
+        "bureau": "Experian",
+        "score": 632,
+        "suppression": 52,
+        "days_post_discharge": 74,
+        "violation_type": "Negligent",
+        "primary_reason": "Serious delinquency/public record"
+      },
+      {
+        "date": "2024-07-30",
+        "lender": "Cross River Bank",
+        "bureau": "Equifax",
+        "score": 621,
+        "suppression": 63,
+        "days_post_discharge": 171,
+        "violation_type": "Approaching willful",
+        "primary_reason": "Time since delinquency too recent"
+      },
+      {
+        "date": "2024-11-22",
+        "lender": "Best Egg",
+        "bureau": "Experian",
+        "score": 659,
+        "suppression": 25,
+        "days_post_discharge": 287,
+        "violation_type": "Willful",
+        "primary_reason": "Serious delinquency/public record"
+      },
+      {
+        "date": "2025-01-20",
+        "lender": "Capital One",
+        "bureau": "Equifax",
+        "score": null,
+        "suppression": null,
+        "days_post_discharge": 347,
+        "violation_type": "Extreme willfulness",
+        "primary_reason": "Too many seriously delinquent/derogatory obligations"
+      }
+    ],
+    "illegal_reasons_frequency": {
+      "serious_delinquency_public_record": "4 of 4 denials",
+      "accounts_with_delinquency": "3 of 4 denials",
+      "time_since_delinquency_recent": "2 of 4 denials",
+      "derogatory_public_record": "2 of 4 denials"
+    },
+    "causal_chains": [
+      {
+        "chain": ["false reporting", "score suppression", "credit denials", "lost consolidation"],
+        "notes": "Each denial prevented $25,000 debt consolidation opportunity"
+      },
+      {
+        "chain": ["negligent reporting", "willful continuation", "extreme willfulness"],
+        "notes": "Pattern escalates from Day 74 to Day 347"
+      },
+      {
+        "chain": ["multi-bureau contamination", "systematic violations", "enhanced damages"],
+        "notes": "Experian and Equifax both show pattern"
+      }
+    ],
+    "litigation_strategy": [
+      "Lead with 347-day extreme willfulness pattern",
+      "Show escalation from negligent to willful",
+      "Emphasize legally impossible denial reasons",
+      "Calculate damages using lost consolidation metric",
+      "Use multi-bureau contamination for pattern evidence",
+      "Present conservative/moderate/aggressive valuations to jury"
+    ],
+    "charts": [
+      {
+        "label": "Chart 1: The True Cost of False Reporting",
+        "description": "Visual calculation of $112,610 actual damages",
+        "inferred_from": ["Damage calculations table"]
+      },
+      {
+        "label": "Chart 2: Illegal Denial Reasons - Frequency Analysis",
+        "description": "Bar chart showing 100% illegal reasons across all denials",
+        "inferred_from": ["Denial reason frequency data"]
+      },
+      {
+        "label": "Chart 3: Case Value Assessment",
+        "description": "Conservative to Aggressive valuation range",
+        "inferred_from": ["Damage summary calculations"]
+      },
+      {
+        "label": "Chart 4: 570 Days Timeline",
+        "description": "Timeline showing violation duration",
+        "inferred_from": ["Days post-discharge tracking"]
+      },
+      {
+        "label": "Chart 5: Denial Timeline",
+        "description": "Score suppression over time",
+        "inferred_from": ["Score suppression evidence table"]
+      }
+    ],
+    "methodology_notes": [
+      "All scores verified from official denial letters",
+      "684 baseline from pre-violation documentation",
+      "Damages calculated per industry standards",
+      "Willfulness determined by days post-discharge"
+    ]
+  },
+  "references": {
+    "source_evidence_ids": [],
+    "related_ids": [
+      "OG-ANA-ALL-2025-09-03-02",
+      "OG-ANA-ALL-2025-09-03-04",
+      "OG-ANA-ALL-2025-09-03-05"
+    ],
+    "corroborates": [],
+    "derived_from": []
+  },
+  "validation": {
+    "record_checks": [
+      {"check": "is_case_analysis", "status": "PASS"},
+      {"check": "no_violation_counting", "status": "PASS"},
+      {"check": "creditor_ids_whitelisted_if_present", "status": "PASS"}
+    ],
+    "cross_doc_checks": []
+  },
+  "confidence_score": 0.96,
+  "contextual_weight": 0.95,
+  "litigation_readiness_score": 0,
+  "notes": "Comprehensive analysis of four credit denials establishing pattern of willful FCRA violations with quantified damages ranging from $163,910 to $1,259,610.",
+  "created_at": "2025-09-04T19:20:00Z",
+  "updated_at": "2025-09-04T19:20:00Z"
+}

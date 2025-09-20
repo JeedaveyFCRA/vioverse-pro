@@ -1,0 +1,180 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-09-19",
+    "description": "Evidence document manifest for VIOVERSE violation tracking system",
+    "totalDocuments": 0,
+    "categories": {
+      "credit-denial": {
+        "label": "Credit Denials",
+        "icon": "📄",
+        "tabIndex": 0,
+        "color": "#FF6B6B",
+        "description": "Rejection letters from lenders due to false reporting"
+      },
+      "damaging-alert": {
+        "label": "Damaging Alerts",
+        "icon": "⚠️",
+        "tabIndex": 1,
+        "color": "#FFA500",
+        "description": "Credit monitoring alerts showing score drops"
+      },
+      "emotional-impact": {
+        "label": "Emotional Impact",
+        "icon": "💔",
+        "tabIndex": 2,
+        "color": "#9B59B6",
+        "description": "Personal impact letters documenting harm"
+      },
+      "additional-evidence": {
+        "label": "Additional Evidence",
+        "icon": "📁",
+        "tabIndex": 3,
+        "color": "#3498DB",
+        "description": "Supporting documents and correspondence"
+      },
+      "timeline-trigger": {
+        "label": "Timeline Triggers",
+        "icon": "🕐",
+        "tabIndex": 4,
+        "color": "#2ECC71",
+        "description": "Key date-related evidence"
+      },
+      "bankruptcy-doc": {
+        "label": "Bankruptcy Docs",
+        "icon": "📑",
+        "tabIndex": 5,
+        "color": "#34495E",
+        "description": "Court filings and discharge papers"
+      }
+    }
+  },
+  "documents": [
+    {
+      "id": "capital-one-denial-2024",
+      "title": "Capital One Credit Line Increase Denial",
+      "date": "2024-04-15",
+      "creditor": "Capital One",
+      "category": "credit-denial",
+      "documentType": "png",
+      "pageCount": 1,
+      "impactScore": 8.5,
+      "rippleScore": 85,
+      "tags": ["smoking_gun", "admission", "post_discharge"],
+      "filepath": "assets/evidence/capital-one-credit-line-increase-denial-P1.png",
+      "textPath": null,
+      "violationLinks": [
+        {
+          "bureau": "EX",
+          "page": 5,
+          "x": 234,
+          "y": 567,
+          "violationId": "capital-one-ex-001"
+        }
+      ],
+      "keyPhrases": [
+        "bankruptcy",
+        "denied",
+        "credit report"
+      ],
+      "timeline": {
+        "period": "post-discharge",
+        "daysAfterDischarge": 65
+      }
+    },
+    {
+      "id": "best-egg-denial-april-2024",
+      "title": "Best Egg Loan Denial",
+      "date": "2024-04-23",
+      "creditor": "Best Egg",
+      "category": "credit-denial",
+      "documentType": "png",
+      "pageCount": 2,
+      "impactScore": 9.0,
+      "rippleScore": 90,
+      "tags": ["smoking_gun", "coordinated_attack"],
+      "filepath": "assets/evidence/best-egg-denial-april-23-2024-P1.png",
+      "textPath": null,
+      "pages": [
+        {
+          "pageNumber": 1,
+          "filepath": "assets/evidence/best-egg-denial-april-23-2024-P1.png"
+        },
+        {
+          "pageNumber": 2,
+          "filepath": "assets/evidence/best-egg-denial-april-23-2024-P2.png"
+        }
+      ],
+      "violationLinks": [],
+      "keyPhrases": [
+        "bankruptcy",
+        "Chapter 13",
+        "denied"
+      ],
+      "timeline": {
+        "period": "post-discharge",
+        "daysAfterDischarge": 73
+      }
+    },
+    {
+      "id": "emotional-impact-barclays",
+      "title": "Emotional & Financial Impact Letter - Barclays",
+      "date": "2024-08-15",
+      "creditor": "Barclays",
+      "category": "emotional-impact",
+      "documentType": "md",
+      "pageCount": 4,
+      "impactScore": 7.5,
+      "rippleScore": 75,
+      "tags": ["emotional_harm", "financial_damage"],
+      "filepath": null,
+      "textPath": "assets/evidence/emotional-financial-impact-barclays.md",
+      "violationLinks": [],
+      "keyPhrases": [
+        "mental health",
+        "financial hardship",
+        "career impact"
+      ],
+      "timeline": {
+        "period": "post-discharge",
+        "daysAfterDischarge": 187
+      }
+    }
+  ],
+  "violationCrossReference": {
+    "description": "Maps violation IDs to evidence document IDs",
+    "mappings": []
+  },
+  "vectorEmbeddings": {
+    "enabled": false,
+    "description": "Future: Vector database for semantic search and evidence-violation linking",
+    "dimensions": 768,
+    "model": "text-embedding-ada-002"
+  },
+  "filterPresets": {
+    "smoking-guns": {
+      "name": "Smoking Guns",
+      "filters": {
+        "minImpactScore": 9.0,
+        "minRippleScore": 90,
+        "tags": ["smoking_gun"]
+      }
+    },
+    "vulnerability-window": {
+      "name": "Vulnerability Window",
+      "filters": {
+        "dateRange": {
+          "start": "2024-01-10",
+          "end": "2024-02-09"
+        }
+      }
+    },
+    "coordinated-attacks": {
+      "name": "Coordinated Attacks",
+      "filters": {
+        "tags": ["coordinated_attack"],
+        "multipleCreditors": true
+      }
+    }
+  }
+}

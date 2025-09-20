@@ -1,0 +1,105 @@
+# ==================================
+# public_record_rules_litigation.yaml
+# ==================================
+# Serious/Severe/Extreme only — PUBLIC RECORDS.
+# No moderate/minor flags. These rules target high-value litigation theories.
+
+rules:
+
+  # ---------- EXTREME ----------
+  - id: PR-EXT-001
+    name: "Post-Discharge Not Marked Discharged"
+    severity: Extreme
+    statutes: ["§1681e(b)"]
+    explain: "On/after discharge, record not clearly marked Discharged."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - not_any_contains:
+            fields: ["status","disposition"]
+            keywords_from: discharged_keywords
+
+  - id: PR-EXT-002
+    name: "Post-Discharge Misclassification as Dismissed/Closed"
+    severity: Extreme
+    statutes: ["§1681e(b)"]
+    explain: "On/after discharge, record uses dismissal/closure phrasing that contradicts a discharge."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - any_contains:
+            fields: ["status","disposition","prior_disposition"]
+            keywords_from: misclassification_keywords
+
+  - id: PR-EXT-003
+    name: "Liability/Amount Reported After Discharge"
+    severity: Extreme
+    statutes: ["§1681e(b)"]
+    explain: "Positive liability amount reported after discharge."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - { field: liability_amount, op: ">", value: 0 }
+
+  # ---------- SEVERE ----------
+  - id: PR-SEV-001
+    name: "Removal Window Exceeds 10 Years from Filing"
+    severity: Severe
+    statutes: ["§1681c(a)(1)"]
+    explain: "Estimated removal date exceeds 10 years from filing date."
+    when:
+      all:
+        - { field: date_filed, op: "exists", value: true }
+        - { field: estimated_removal_date, op: "exists", value: true }
+        - { op: "gt_years_from", field: estimated_removal_date, ref_field: date_filed, years: 10 }
+
+  - id: PR-SEV-002
+    name: "Frozen/Stale Public Record Not Updated Post-Discharge"
+    severity: Severe
+    statutes: ["§1681e(b)"]
+    explain: "On/after discharge, last update predates discharge and record not clearly Discharged."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - { field: date_updated, op: "<", value: "{{discharge_date}}" }
+        - not_any_contains:
+            fields: ["status","disposition"]
+            keywords_from: discharged_keywords
+
+  - id: PR-SEV-003
+    name: "Inconsistent Discharge Dating"
+    severity: Severe
+    statutes: ["§1681e(b)"]
+    explain: "Disposition says Discharged but the recorded dates conflict."
+    when:
+      all:
+        - any_contains:
+            fields: ["disposition"]
+            keywords:
+              - "discharged"
+        - any:
+            - { field: date_resolved, op: "<", value: "{{discharge_date}}" }
+            - { field: current_disposition_date, op: "!=", value: "{{discharge_date}}" }
+
+  # ---------- SERIOUS ----------
+  - id: PR-SER-001
+    name: "No Refresh Within 60 Days After Discharge"
+    severity: Serious
+    statutes: ["§1681e(b)"]
+    explain: "No update to public record within 60 days after discharge."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date_plus_60}}" }
+        - { field: date_updated, op: "<", value: "{{discharge_date}}", allow_missing: true }
+
+  - id: PR-SER-002
+    name: "Missing Disposition While Reporting Public Record Post-Discharge"
+    severity: Serious
+    statutes: ["§1681e(b)"]
+    explain: "On/after discharge, key disposition/status data missing."
+    when:
+      all:
+        - { field: report_date, op: ">=", value: "{{discharge_date}}" }
+        - any:
+            - { field: disposition, op: "not_exists", value: true }
+            - { field: status, op: "not_exists", value: true }

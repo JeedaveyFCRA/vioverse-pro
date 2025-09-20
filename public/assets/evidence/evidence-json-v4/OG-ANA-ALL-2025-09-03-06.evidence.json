@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "id": "OG-ANA-ALL-2025-09-03-06",
+    "title": "FCRA Violations: Experian Alerts Analysis",
+    "doc_type": "CASE_ANALYSIS",
+    "temporal_prefix": "OG",
+    "date_created": "2025-09-03",
+    "days_since_discharge": 571,
+    "ally_violation_days": 571,
+    "analysis_date": "2025-09-03",
+    "excluded_from_violation_logic": true,
+    "source_document": "Alerts_Analysis_REVISED.md",
+    "golden_evidence": true,
+    "vio_ripple_score": 98
+  },
+  "content": {
+    "summary": "Nine creditors furnished demonstrably false information between December 2023 and February 2024. Mathematical impossibilities and 571 days of ongoing violations establish willful FCRA noncompliance through coordinated attack pattern.",
+    "critical_timeline": [
+      {"date": "2018-10-25", "event": "Chapter 13 Filed", "days_relative": -1926, "significance": "Initiated Automatic Stay"},
+      {"date": "2023-08-22", "event": "Plan Payments Complete", "days_relative": -171, "significance": "Debtor fulfilled plan obligations"},
+      {"date": "2024-01-10", "event": "Case Closed (Discharge Withheld)", "days_relative": -30, "significance": "Protection ended; vulnerability window began"},
+      {"date": "2024-01-15", "event": "DS2830 Signed", "days_relative": -25, "significance": "Triggered final administrative steps"},
+      {"date": "2024-02-09", "event": "DISCHARGE GRANTED", "days_relative": 0, "significance": "Legal injunction; reporting must reflect"},
+      {"date": "2025-09-03", "event": "Analysis Date", "days_relative": 571, "significance": "Demonstrates duration of ongoing violations"}
+    ],
+    "alert_cluster_analysis": {
+      "date": "2024-01-17",
+      "total_alerts": 10,
+      "pattern": "Simultaneous delivery of negative alerts",
+      "coordination_proof": "Activity dates reveal phased attack beginning Dec 20, 2023"
+    },
+    "pre_closure_activity": [
+      {
+        "creditor": "Cornerstone",
+        "activity_date": "2023-06-21",
+        "alert_date": "2023-07-29",
+        "violation": "False discharge date",
+        "balance": 0,
+        "days_before_closure": 203
+      },
+      {
+        "creditor": "Home Depot/CBNA",
+        "activity_date": "2019-06-13",
+        "alert_date": "2024-01-17",
+        "violation": "Obsolete debt (4.5 years)",
+        "balance": 0
+      },
+      {
+        "creditor": "JPMorgan",
+        "activity_date": "2023-12-20",
+        "alert_date": "2024-01-17",
+        "violation": "Charge-off during bankruptcy",
+        "balance": 742,
+        "days_before_closure": 21
+      },
+      {
+        "creditor": "Bank of America",
+        "activity_date": "2023-12-24",
+        "alert_date": "2024-01-17",
+        "violation": "Charge-off during bankruptcy",
+        "balance": 7270,
+        "days_before_closure": 17
+      },
+      {
+        "creditor": "Discover Loans",
+        "activity_date": "2023-12-31",
+        "alert_date": "2024-01-17",
+        "violation": "Charge-off of $0 balance",
+        "balance": 0,
+        "days_before_closure": 10
+      },
+      {
+        "creditor": "Mariner",
+        "activity_date": "2023-12-31",
+        "alert_date": "2024-01-17",
+        "violation": "Charge-off during bankruptcy",
+        "balance": 3556,
+        "days_before_closure": 10
+      }
+    ],
+    "vulnerability_window_activity": [
+      {
+        "creditor": "Best Buy/CBNA #1",
+        "activity_date": "2024-01-13",
+        "alert_date": "2024-01-17",
+        "violation": "Credit line closed",
+        "balance": 0,
+        "days_after_closure": 3
+      },
+      {
+        "creditor": "Best Buy/CBNA #2",
+        "activity_date": "2024-01-13",
+        "alert_date": "2024-01-17",
+        "violation": "90-days past due on $0",
+        "balance": 0,
+        "days_after_closure": 3
+      }
+    ],
+    "february_followup_attacks": [
+      {
+        "creditor": "JPMorgan #2",
+        "activity_date": "2024-01-19",
+        "alert_date": "2024-02-08",
+        "violation": "Duplicate charge-off",
+        "balance": 742,
+        "timing": "1 day before discharge"
+      },
+      {
+        "creditor": "Mariner #2",
+        "activity_date": "2024-01-31",
+        "alert_date": "2024-02-07",
+        "violation": "Duplicate charge-off",
+        "balance": 3556,
+        "timing": "2 days before discharge"
+      },
+      {
+        "creditor": "Discover #2",
+        "activity_date": "2024-01-31",
+        "alert_date": "2024-02-18",
+        "violation": "Balance fabrication",
+        "balance": 23816,
+        "timing": "9 days AFTER discharge"
+      }
+    ],
+    "ongoing_ally_violation": {
+      "duration_days": 571,
+      "start_date": "2024-02-09",
+      "current_status": "Payment Plan / Wage Earner Plan (Both TU & EQ)",
+      "required_status": "Discharged in Bankruptcy",
+      "first_furnishing": "2024-02-19 (10 days post-discharge)",
+      "language_modified": "July 2025 after 515 days - proves knowledge",
+      "violation_count": "571 days × 2 bureaus = 1,142 violations minimum"
+    },
+    "mathematical_impossibilities": [
+      "Zero-balance violations: Cannot be '90 days past due' on $0 (SEARS, Best Buy, Home Depot)",
+      "Zero charge-off: Cannot 'charge off' $0 (Discover Dec 31)",
+      "JPMorgan duplicate: Same $742 balance charged off twice (Dec 20 & Jan 19)",
+      "Mariner duplicate: Same $3,556 balance charged off twice (Dec 31 & Jan 31)",
+      "Discover fabrication: $0 balance became $23,816 overnight",
+      "Cornerstone temporal: Discharge reported 233 days before actual discharge",
+      "Home Depot obsolete: 2019 activity reported in 2024"
+    ],
+    "fcra_violations_by_creditor": [
+      {
+        "creditor": "Ally Financial",
+        "primary_violation": "Ongoing Willful Non-Compliance",
+        "conduct": "571+ days of false 'Payment Plan' reporting post-discharge",
+        "statutes": ["§1681s-2(a)(1)(A)", "§1681s-2(a)(2)"]
+      },
+      {
+        "creditor": "Discover",
+        "primary_violation": "Fabrication of Data",
+        "conduct": "Charged off $0 balance; later reported $23,816",
+        "statutes": ["§1681s-2(a)(1)(A)", "§1681s-2(a)(2)"]
+      },
+      {
+        "creditor": "JPMorgan",
+        "primary_violation": "Duplicate Reporting",
+        "conduct": "Two identical charge-offs (Dec & Jan)",
+        "statutes": ["§1681s-2(a)(1)(A)", "§1681s-2(a)(2)"]
+      },
+      {
+        "creditor": "Mariner",
+        "primary_violation": "Duplicate Reporting",
+        "conduct": "Two identical charge-offs (Dec & Jan)",
+        "statutes": ["§1681s-2(a)(1)(A)", "§1681s-2(a)(2)"]
+      },
+      {
+        "creditor": "Bank of America",
+        "primary_violation": "Reporting During Bankruptcy",
+        "conduct": "Charge-off filed during active Ch. 13 case",
+        "statutes": ["§1681s-2(a)(1)(A)"]
+      },
+      {
+        "creditor": "CBNA Group",
+        "primary_violation": "Logical Impossibility",
+        "conduct": "'90 days past due' on $0 balances (SEARS, Best Buy, Home Depot)",
+        "statutes": ["§1681s-2(a)(1)(A)", "§1681c(a)(1)"]
+      },
+      {
+        "creditor": "Cornerstone",
+        "primary_violation": "False Legal Status",
+        "conduct": "Reported discharge 233 days before it occurred",
+        "statutes": ["§1681s-2(a)(1)(A)"]
+      }
+    ],
+    "damage_calculations": {
+      "conservative_model": {
+        "negligent_violations": 13000,
+        "willful_violations": 65000,
+        "ally_ongoing": 56800,
+        "total": 134800
+      },
+      "moderate_model": {
+        "base_willful": 65000,
+        "serial_violators": 75000,
+        "ally_ongoing": 568000,
+        "balance_fabrication": 119080,
+        "total": 827080
+      },
+      "aggressive_model": {
+        "willful_base": 65000,
+        "ally_ongoing": 5680000,
+        "serial_multiplier": 300000,
+        "discover_fabrication": 238160,
+        "pattern_premium": 450000,
+        "total": 6733160
+      },
+      "actual_damages": {
+        "mortgage_refinance_blocked": 150000,
+        "monthly_payment_differential": 11900,
+        "lost_consolidation_opportunities": 25000,
+        "credit_monitoring_costs": 500,
+        "total": 187400
+      }
+    },
+    "willfulness_indicators": [
+      "Mathematical impossibilities eliminate mistake defense",
+      "571-day ongoing violation proves deliberate conduct",
+      "Temporal clustering (10 alerts same day) defies random error",
+      "Language modification after 515 days shows actual knowledge",
+      "Pattern across 9 creditors negates isolated incident"
+    ],
+    "discovery_priorities": [
+      "Metro 2 files: December 2023 - February 2024",
+      "Furnishing logs: February 9-19, 2024 (Ally's first post-discharge report)",
+      "Internal communications: January 10-17, 2024",
+      "Account status change documentation",
+      "PACER access logs: January 2024"
+    ],
+    "settlement_leverage": {
+      "ally_financial": "2000000-5000000 (571-day ongoing violation)",
+      "discover": "500000-1000000 (balance fabrication)",
+      "jpmorgan_mariner": "250000-500000 each (serial violations)",
+      "cbna_enterprise": "500000-1000000 (systematic failures)",
+      "others": "50000-150000 each"
+    },
+    "litigation_positioning": {
+      "individual_fcra_violations": "Each false report (§1681s-2(a))",
+      "pattern_violations": "Systematic failures (§1681e(b))",
+      "willful_noncompliance": "Based on impossibilities (§1681n)",
+      "ongoing_violations": "Ally Financial continuing harm (§1681s-2)"
+    },
+    "statistical_summary": {
+      "days_since_discharge": 571,
+      "total_creditors": 9,
+      "documented_violations": "14+ (excluding ongoing daily violations)",
+      "mathematical_impossibilities": 8,
+      "analysis_status": "Prima facie FCRA violations through objective evidence that cannot be explained by good-faith error"
+    }
+  }
+}

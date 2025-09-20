@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "case_version": "v4",
+  "id": "PD-RPT-TU-2025-03-13-01",
+  "doc_type": "RPT",
+  "title": "TransUnion False Resolution Date: Hides 30-Day Vulnerability Window",
+  "source": {
+    "source_filename": "transunion-public-record-bankruptcy-discharge-2025-03-13-page-2.md",
+    "source_path": "/assets/evidence-for-json/",
+    "sha256": "b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0",
+    "extraction_method": "manual_parse"
+  },
+  "temporal": {
+    "temporal_classification": "PD",
+    "activity_date": "2025-03-13",
+    "provenance": {
+      "excluded_from_violation_logic": false
+    }
+  },
+  "entities": {
+    "creditor_codes": [],
+    "bureaus": ["TU"],
+    "consumers": ["David Marra"]
+  },
+  "claims": [
+    {
+      "violations": [
+        {
+          "statute": "15 U.S.C. §1681e(b)",
+          "severity": "SEVERE",
+          "description": "False 'Date Paid' conceals vulnerability window when creditors attacked",
+          "harm_estimate": {
+            "amount_point": 5000,
+            "rationale": "Conceals evidence of vulnerability window exploitation"
+          }
+        }
+      ]
+    }
+  ],
+  "false_reporting": {
+    "reported_date_paid": "2024-01-10",
+    "actual_discharge_date": "2024-02-09",
+    "concealed_period": {
+      "start": "2024-01-10",
+      "end": "2024-02-09",
+      "days_hidden": 30
+    },
+    "truth": "Case closed without discharge on 2024-01-10, discharge granted 2024-02-09"
+  },
+  "legal_significance": {
+    "hides_vulnerability_window": true,
+    "obscures_attack_timing": true,
+    "enables_false_protection_narrative": true
+  },
+  "public_record_accuracy": {
+    "type": "CHAPTER 13 BANKRUPTCY DISCHARGED",
+    "date_filed": "2018-10-25",
+    "date_updated": "2024-02-14",
+    "false_date_paid": "2024-01-10",
+    "correct_discharge": "2024-02-09"
+  },
+  "special_handling": "FALSE_RESOLUTION_DATE",
+  "golden_evidence": true,
+  "golden_rationale": "False date paid conceals 30-day vulnerability window exploitation",
+  "confidence_score": 0.95,
+  "litigation_readiness_score": 90,
+  "notes": "Shows DISCHARGED status but conceals vulnerability timing with false date paid",
+  "created_at": "2025-09-04T20:55:34.000000",
+  "updated_at": "2025-09-04T20:55:34.000000"
+}

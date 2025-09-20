@@ -1,0 +1,296 @@
+{
+  "2024-04-25": {
+    "displayDate": "4/25/24",
+    "bureaus": {
+      "EQ": {
+        "totalPages": 84,
+        "violationPages": [
+          57,
+          58
+        ]
+      },
+      "EX": {
+        "totalPages": 51,
+        "violationPages": [
+          5
+        ]
+      },
+      "TU": {
+        "totalPages": 95,
+        "violationPages": [
+          7
+        ]
+      }
+    }
+  },
+  "2024-08-19": {
+    "displayDate": "8/19/24",
+    "bureaus": {
+      "EQ": {
+        "totalPages": 41,
+        "violationPages": [
+          1,
+          2
+        ]
+      },
+      "EX": null,
+      "TU": null
+    }
+  },
+  "2025-02-10": {
+    "displayDate": "2/10/25",
+    "bureaus": {
+      "EQ": {
+        "totalPages": 73,
+        "violationPages": [
+          51,
+          52
+        ]
+      },
+      "EX": {
+        "totalPages": 50,
+        "violationPages": [
+          4,
+          5
+        ]
+      },
+      "TU": {
+        "totalPages": 91,
+        "violationPages": [
+          6
+        ]
+      }
+    }
+  },
+  "2025-03-02": {
+    "displayDate": "3/2/25",
+    "bureaus": {
+      "EQ": {
+        "totalPages": 73,
+        "violationPages": [
+          51,
+          52
+        ]
+      },
+      "EX": {
+        "totalPages": 47,
+        "violationPages": [
+          4,
+          5
+        ]
+      },
+      "TU": {
+        "totalPages": 92,
+        "violationPages": [
+          6
+        ]
+      }
+    }
+  },
+  "2025-03-13": {
+    "displayDate": "3/13/25",
+    "bureaus": {
+      "EQ": {
+        "totalPages": 64,
+        "violationPages": [
+          42,
+          43
+        ]
+      },
+      "EX": {
+        "totalPages": 48,
+        "violationPages": [
+          4,
+          5
+        ]
+      },
+      "TU": {
+        "totalPages": 94,
+        "violationPages": [
+          6
+        ]
+      }
+    }
+  },
+  "2025-03-20": {
+    "displayDate": "3/20/25",
+    "bureaus": {
+      "EQ": {
+        "totalPages": 16,
+        "violationPages": [
+          1,
+          2
+        ]
+      },
+      "EX": {
+        "totalPages": 45,
+        "violationPages": [
+          4,
+          5
+        ]
+      },
+      "TU": null
+    }
+  },
+  "2025-03-22": {
+    "displayDate": "3/22/25",
+    "bureaus": {
+      "EQ": {
+        "totalPages": 63,
+        "violationPages": [
+          40,
+          41
+        ]
+      },
+      "EX": null,
+      "TU": {
+        "totalPages": 88,
+        "violationPages": [
+          6
+        ]
+      }
+    }
+  },
+  "2025-04-02": {
+    "displayDate": "4/2/25",
+    "bureaus": {
+      "EQ": {
+        "totalPages": 65,
+        "violationPages": [
+          51,
+          52
+        ]
+      },
+      "EX": {
+        "totalPages": 44,
+        "violationPages": [
+          4,
+          5
+        ]
+      },
+      "TU": {
+        "totalPages": 91,
+        "violationPages": [
+          6
+        ]
+      }
+    }
+  },
+  "2025-04-14": {
+    "displayDate": "4/14/25",
+    "bureaus": {
+      "EQ": {
+        "totalPages": 65,
+        "violationPages": [
+          51,
+          52
+        ]
+      },
+      "EX": {
+        "totalPages": 45,
+        "violationPages": [
+          4,
+          5
+        ]
+      },
+      "TU": {
+        "totalPages": 83,
+        "violationPages": [
+          6
+        ]
+      }
+    }
+  },
+  "2025-05-25": {
+    "displayDate": "5/25/25",
+    "bureaus": {
+      "EQ": {
+        "totalPages": 65,
+        "violationPages": [
+          51,
+          52
+        ]
+      },
+      "EX": {
+        "totalPages": 45,
+        "violationPages": [
+          4,
+          5
+        ]
+      },
+      "TU": {
+        "totalPages": 82,
+        "violationPages": []
+      }
+    }
+  },
+  "2025-07-09": {
+    "displayDate": "7/9/25",
+    "bureaus": {
+      "EQ": {
+        "totalPages": 22,
+        "violationPages": [
+          13
+        ]
+      },
+      "EX": {
+        "totalPages": 44,
+        "violationPages": [
+          4,
+          5
+        ]
+      },
+      "TU": {
+        "totalPages": 81,
+        "violationPages": [
+          6
+        ]
+      }
+    }
+  },
+  "2025-08-10": {
+    "displayDate": "8/10/25",
+    "bureaus": {
+      "EQ": {
+        "totalPages": 22,
+        "violationPages": [
+          13
+        ]
+      },
+      "EX": null,
+      "TU": {
+        "totalPages": 81,
+        "violationPages": [
+          6
+        ]
+      }
+    }
+  },
+  "2025-08-24": {
+    "displayDate": "8/24/25",
+    "bureaus": {
+      "EQ": null,
+      "EX": null,
+      "TU": {
+        "totalPages": 25,
+        "violationPages": [
+          17
+        ]
+      }
+    }
+  },
+  "statistics": {
+    "totalReports": 13,
+    "totalPDFs": 270,
+    "reportsByBureau": {
+      "EQ": 12,
+      "EX": 9,
+      "TU": 11
+    },
+    "violationPagesByBureau": {
+      "EQ": 22,
+      "EX": 17,
+      "TU": 10
+    }
+  }
+}

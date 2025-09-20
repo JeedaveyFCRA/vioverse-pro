@@ -1,0 +1,127 @@
+{
+  "document_id": "PD-RPT-EQF-2025-02-10-01",
+  "version": "4.0",
+  "created_date": "2025-09-04",
+  "source_file": "equifax-public-record-2025-02-10.md",
+  "document_type": "BUREAU_REPORT",
+  "temporal_period": "PD",
+  "creditor_code": "EQF",
+  "activity_date": "2025-02-10",
+  "sequence": "01",
+  
+  "document_metadata": {
+    "title": "Equifax Public Records Section - Chapter 13 Status Misreporting",
+    "report_date": "2025-02-10",
+    "bureau": "Equifax",
+    "page_reference": "Page 67",
+    "source_document": "Equifax_Feb-10-2025.pdf",
+    "primary_purpose": "Document false 'Dismissed/Closed' status 1 day after discharge"
+  },
+  
+  "legal_framework": {
+    "primary_statutes": ["15 U.S.C. §1681e(b)", "15 U.S.C. §1681i(a)"],
+    "violation_types": [
+      "FALSE_PUBLIC_RECORD_STATUS",
+      "DISMISSED_VS_DISCHARGED_MISREPRESENTATION",
+      "IMMEDIATE_POST_DISCHARGE_VIOLATION"
+    ],
+    "fcra_sections": {
+      "1681e(b)": "Reasonable procedures to assure maximum possible accuracy",
+      "1681i(a)": "Procedure in case of disputed accuracy"
+    }
+  },
+  
+  "bureau_details": {
+    "reporting_bureau": "EQF",
+    "bureau_name": "Equifax",
+    "report_date": "2025-02-10",
+    "page_number": 67,
+    "section": "Public Records"
+  },
+  
+  "public_record_details": {
+    "reference_number": "1812245",
+    "court": "US BANKRUPTCY COURT BUFFALO",
+    "date_filed": "2018-10-25",
+    "type": "Individual Chapter 13",
+    "actual_status": "DISCHARGED (February 9, 2024)",
+    "reported_status": "Dismissed/Closed",
+    "filer": "Subject (David V. Marra)",
+    "disposition_text": "Chapter 13, Dismissed/Closed: The bankruptcy petition has been dismissed or closed or has not been honored by the court. Debtor remains liable for his debts under the terms of the initial contract."
+  },
+  
+  "timeline_context": [
+    {
+      "date": "2024-02-09", 
+      "event": "Chapter 13 bankruptcy discharge granted by court",
+      "significance": "Legal completion of bankruptcy case with debt discharge"
+    },
+    {
+      "date": "2025-02-10",
+      "event": "Equifax reports false 'Dismissed/Closed' status",
+      "significance": "1 day after discharge anniversary, reports case as dismissed rather than discharged"
+    }
+  ],
+  
+  "violations_identified": [
+    {
+      "violation_type": "FALSE_PUBLIC_RECORD_STATUS",
+      "fcra_section": "15 U.S.C. §1681e(b)",
+      "description": "Reporting bankruptcy as 'Dismissed/Closed' when case was actually discharged",
+      "legal_significance": "Dismissed = debtor remains liable; Discharged = debts eliminated",
+      "harm_caused": "Misrepresents consumer's legal liability status to future creditors"
+    },
+    {
+      "violation_type": "MAXIMUM_ACCURACY_FAILURE",
+      "fcra_section": "15 U.S.C. §1681e(b)",
+      "description": "Failed to maintain maximum possible accuracy in public record reporting",
+      "harm_caused": "Inaccurate legal status affects creditworthiness assessment"
+    },
+    {
+      "violation_type": "IMMEDIATE_POST_DISCHARGE_VIOLATION",
+      "fcra_section": "15 U.S.C. §1681e(b)", 
+      "description": "False status reported exactly 1 day after discharge anniversary",
+      "harm_caused": "Systematic misrepresentation of consumer's legal standing"
+    }
+  ],
+  
+  "legal_significance": {
+    "dismissed_vs_discharged": {
+      "dismissed_meaning": "Bankruptcy petition rejected or withdrawn; debtor remains liable for all debts",
+      "discharged_meaning": "Bankruptcy completed successfully; qualifying debts legally eliminated",
+      "consumer_impact": "Fundamental misrepresentation of debt liability status"
+    },
+    "creditor_interpretation": {
+      "dismissed_interpretation": "Consumer failed in bankruptcy; all original debts remain valid",
+      "discharged_interpretation": "Consumer successfully completed bankruptcy; debts eliminated",
+      "lending_impact": "Affects willingness to extend credit and terms offered"
+    }
+  },
+  
+  "temporal_analysis": {
+    "report_date": "2025-02-10",
+    "discharge_date": "2024-02-09", 
+    "time_differential": "Exactly 1 year and 1 day post-discharge",
+    "significance": "Anniversary timing suggests systematic failure to update status",
+    "pattern_indicator": "Likely reflects broader pattern of public record misreporting"
+  },
+  
+  "strategic_significance": {
+    "evidence_strength": "HIGH",
+    "willfulness_indicators": [
+      "Clear legal distinction between dismissed and discharged",
+      "Anniversary timing suggests systematic oversight failure",
+      "Fundamental misrepresentation of consumer legal status"
+    ],
+    "bureau_liability": "Direct bureau responsibility for public record accuracy",
+    "case_value_contribution": "Establishes bureau-level FCRA violations beyond furnisher violations"
+  },
+  
+  "vioripple_metadata": {
+    "impact_score": 85,
+    "legal_strength": "HIGH", 
+    "evidence_quality": "CLEAR_DOCUMENTATION",
+    "damage_quantification": "LEGAL_STATUS_MISREPRESENTATION",
+    "strategic_value": "BUREAU_DIRECT_LIABILITY"
+  }
+}

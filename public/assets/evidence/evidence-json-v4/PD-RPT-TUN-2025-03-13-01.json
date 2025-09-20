@@ -1,0 +1,146 @@
+{
+  "document_id": "PD-RPT-TUN-2025-03-13-01",
+  "version": "4.0",
+  "created_date": "2025-09-04",
+  "source_file": "transunion-public-record-bankruptcy-discharge-2025-03-13-page-2.md",
+  "document_type": "BUREAU_REPORT",
+  "temporal_period": "PD",
+  "creditor_code": "TUN",
+  "activity_date": "2025-03-13",
+  "sequence": "01",
+  
+  "document_metadata": {
+    "title": "TransUnion Public Records Section - False Date Paid Information",
+    "report_date": "2025-03-13",
+    "bureau": "TransUnion",
+    "page_reference": "Page 2",
+    "source_document": "TransUnion Mar-13-2025.pdf",
+    "primary_purpose": "Document incorrect 'Date Paid: 01/10/2024' - case closed date not discharge date"
+  },
+  
+  "legal_framework": {
+    "primary_statutes": ["15 U.S.C. §1681e(b)", "15 U.S.C. §1681i(a)"],
+    "violation_types": [
+      "FALSE_DATE_PAID_REPORTING",
+      "CASE_CLOSURE_VS_DISCHARGE_CONFUSION",
+      "VULNERABILITY_WINDOW_MISREPRESENTATION"
+    ],
+    "fcra_sections": {
+      "1681e(b)": "Reasonable procedures to assure maximum possible accuracy",
+      "1681i(a)": "Procedure in case of disputed accuracy"
+    }
+  },
+  
+  "bureau_details": {
+    "reporting_bureau": "TUN",
+    "bureau_name": "TransUnion",
+    "report_date": "2025-03-13",
+    "page_number": 2,
+    "section": "Public Records"
+  },
+  
+  "public_record_details": {
+    "reference_number": "1812245",
+    "court": "USBK COURT WESTERN NEW YORK",
+    "court_address": "2 NIAGARA SQUARE BUFFALO, NY 14202",
+    "court_phone": "716-362-3200",
+    "type": "CHAPTER 13 BANKRUPTCY DISCHARGED",
+    "date_filed": "2018-10-25",
+    "court_type": "US Bankruptcy Court",
+    "date_updated": "2024-02-14",
+    "reported_date_paid": "2024-01-10",
+    "actual_discharge_date": "2024-02-09",
+    "estimated_removal": "September 2025",
+    "plaintiff_attorney": "PETER D GRUBEA",
+    "responsibility": "Individual Debt"
+  },
+  
+  "timeline_context": [
+    {
+      "date": "2024-01-10", 
+      "event": "Case closed with discharge WITHHELD due to missing DS2830 form",
+      "significance": "TransUnion incorrectly reports this as 'Date Paid'"
+    },
+    {
+      "date": "2024-02-09",
+      "event": "Actual bankruptcy discharge granted by court",
+      "significance": "True resolution date - when debts were legally eliminated"
+    },
+    {
+      "date": "2024-02-14",
+      "event": "Date Updated on TransUnion report",
+      "significance": "TransUnion updated record but maintained false Date Paid"
+    },
+    {
+      "date": "2025-03-13",
+      "event": "TransUnion continues reporting false Date Paid",
+      "significance": "Over 1 year of false date reporting"
+    }
+  ],
+  
+  "violations_identified": [
+    {
+      "violation_type": "FALSE_DATE_PAID_REPORTING",
+      "fcra_section": "15 U.S.C. §1681e(b)",
+      "description": "Reports case closure date (01/10/2024) as 'Date Paid' instead of actual discharge date (02/09/2024)",
+      "legal_significance": "Misrepresents when consumer's legal obligations were actually resolved",
+      "harm_caused": "Conceals 30-day vulnerability window when creditors attacked"
+    },
+    {
+      "violation_type": "VULNERABILITY_WINDOW_CONCEALMENT",
+      "fcra_section": "15 U.S.C. §1681e(b)",
+      "description": "False Date Paid obscures the January 10 - February 9 window when consumer had no discharge protection",
+      "harm_caused": "Enables creditor defense that protection existed during attack period"
+    },
+    {
+      "violation_type": "MAXIMUM_ACCURACY_FAILURE",
+      "fcra_section": "15 U.S.C. §1681e(b)",
+      "description": "Failed to maintain maximum possible accuracy in critical date reporting",
+      "harm_caused": "Inaccurate timeline affects legal analysis of FCRA violations"
+    }
+  ],
+  
+  "legal_significance": {
+    "case_closure_vs_discharge": {
+      "case_closure_meaning": "Administrative closure with discharge withheld pending DS2830 filing",
+      "discharge_meaning": "Legal elimination of qualifying debts",
+      "consumer_protection": "Discharge provides FCRA protection; closure without discharge does not"
+    },
+    "vulnerability_window": {
+      "start_date": "2024-01-10 (case closed)",
+      "end_date": "2024-02-09 (discharge granted)", 
+      "duration": "30 days without discharge protection",
+      "creditor_exploitation": "10 negative items appeared January 17 during this window"
+    },
+    "false_narrative_creation": {
+      "transunion_narrative": "Consumer was protected from January 10, 2024",
+      "actual_timeline": "Consumer was vulnerable January 10 - February 9, 2024",
+      "legal_impact": "Enables creditor defense of good faith reporting"
+    }
+  },
+  
+  "creditor_attack_correlation": {
+    "january_17_2024": "10 negative items appeared via Experian alerts during vulnerability window",
+    "creditor_defense_enabled": "False Date Paid allows creditors to claim they believed consumer was protected",
+    "pattern_concealment": "Obscures coordinated timing of creditor attacks during vulnerable period"
+  },
+  
+  "strategic_significance": {
+    "evidence_strength": "VERY_HIGH",
+    "willfulness_indicators": [
+      "Clear distinction between case closure and discharge dates",
+      "Updated record in February 2024 but maintained false Date Paid",
+      "Over 1 year of continued false date reporting"
+    ],
+    "case_impact": "Undermines creditor defenses by exposing true vulnerability timeline",
+    "bureau_liability": "Direct TransUnion responsibility for accurate date reporting"
+  },
+  
+  "vioripple_metadata": {
+    "impact_score": 92,
+    "legal_strength": "VERY_HIGH", 
+    "evidence_quality": "TIMELINE_SMOKING_GUN",
+    "damage_quantification": "VULNERABILITY_WINDOW_CONCEALMENT",
+    "strategic_value": "CREDITOR_DEFENSE_KILLER"
+  }
+}

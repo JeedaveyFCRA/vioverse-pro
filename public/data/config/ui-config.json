@@ -1,0 +1,108 @@
+{
+  "sidebar": {
+    "width": {
+      "desktop": 380,
+      "tablet": 320,
+      "mobile": "100%"
+    }
+  },
+  "icons": {
+    "pageGrid": {
+      "scale": 0.75,
+      "scaleHover": 0.85,
+      "showOnBlankPages": false
+    }
+  },
+  "grid": {
+    "desktop": {
+      "columns": 10,
+      "gap": 4,
+      "pageBoxSize": "auto",
+      "showPageNumbers": true,
+      "fontSize": "11px",
+      "maxHeight": "300px",
+      "breakpoint": 1280
+    },
+    "tablet": {
+      "columns": 8,
+      "gap": 3,
+      "pageBoxSize": "auto",
+      "showPageNumbers": true,
+      "fontSize": "10px",
+      "maxHeight": "250px",
+      "breakpoint": 768
+    },
+    "mobile": {
+      "columns": 5,
+      "gap": 2,
+      "pageBoxSize": "auto",
+      "showPageNumbers": false,
+      "fontSize": "9px",
+      "maxHeight": "200px",
+      "breakpoint": 320
+    }
+  },
+  "animations": {
+    "pageHover": {
+      "scale": 1.15,
+      "duration": "150ms",
+      "easing": "ease-out"
+    },
+    "pageSelect": {
+      "borderWidth": "2px",
+      "borderColor": "#ffffff",
+      "pulseAnimation": true
+    },
+    "transitions": {
+      "fast": "150ms",
+      "normal": "200ms",
+      "slow": "300ms"
+    }
+  },
+  "colors": {
+    "pageNormal": "#404040",
+    "pageViolation": "#ff6b35",
+    "pageCurrent": "#dc2626",
+    "pageHover": "#505050",
+    "borderSelected": "#ffffff",
+    "textPrimary": "#ffffff",
+    "textSecondary": "#b0b0b0",
+    "textMuted": "#808080"
+  },
+  "sidebar": {
+    "desktop": {
+      "width": "320px",
+      "collapsible": true
+    },
+    "tablet": {
+      "width": "280px",
+      "collapsible": true
+    },
+    "mobile": {
+      "width": "100%",
+      "collapsible": false,
+      "slideUp": true
+    }
+  },
+  "dateButtons": {
+    "showAll": true,
+    "disableUnavailable": true,
+    "layout": {
+      "desktop": "3-column",
+      "tablet": "2-column",
+      "mobile": "2-column"
+    }
+  },
+  "loadBehavior": {
+    "initialLoad": "firstViolation",
+    "defaultPage": 1,
+    "preloadAdjacent": false,
+    "showLoadingIndicator": true
+  },
+  "saveController": {
+    "autoSave": true,
+    "autoSaveInterval": 30000,
+    "sessionStorage": "localStorage",
+    "exportFormat": "json"
+  }
+}
