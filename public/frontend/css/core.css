@@ -6,10 +6,10 @@
 /* CSS Custom Properties (will be set by config-loader.js) */
 :root {
   /* These defaults will be overridden by config-loader.js */
-  --color-background: #1a1a1a;
-  --color-foreground: #ffffff;
-  --color-primary: #667eea;
-  --color-secondary: #764ba2;
+  --color-background: var(--color-backgrounds-primary);
+  --color-foreground: var(--color-text-primary);
+  --color-primary: var(--color-accents-primary);
+  --color-secondary: var(--color-accents-secondary);
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
   --font-mono: 'Monaco', 'Courier New', monospace;
   --spacing-xs: 0.125rem;
@@ -223,7 +223,7 @@ label {
 }
 
 .badge-unknown {
-  background: var(--bureau-unknown-color, #9E9E9E);
+  background: var(--bureau-unknown-color, var(--color-bureau-unknown));
   color: white;
 }
 

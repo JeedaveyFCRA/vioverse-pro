@@ -5,28 +5,31 @@
 
 /* CSS Variables - All configurable values */
 :root {
-  /* Colors - Dark theme */
-  --color-bg-primary: #1a1a1a;
-  --color-bg-secondary: #242424;
-  --color-bg-tertiary: #2d2d2d;
-  --color-bg-sidebar: #1f1f1f;
-  --color-border: #333333;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #b0b0b0;
-  --color-text-muted: #808080;
+  /* Colors - All loaded from theme.json via config-loader.js */
+  /* Background colors mapped from theme.json */
+  --color-bg-primary: var(--color-backgrounds-primary);
+  --color-bg-secondary: var(--color-backgrounds-secondary);
+  --color-bg-tertiary: var(--color-backgrounds-tertiary);
+  --color-bg-sidebar: var(--color-backgrounds-sidebar);
+  --color-border: var(--color-borders-default);
 
-  /* Accent Colors */
-  --color-accent-orange: #ff6b35;
-  --color-accent-hover: #ff8555;
-  --color-violation-extreme: #dc2626;
-  --color-violation-severe: #f97316;
-  --color-violation-warning: #fbbf24;
+  /* Text colors mapped from theme.json */
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
 
-  /* Page Grid Colors */
-  --color-page-normal: #404040;
-  --color-page-violation: #ff6b35;
-  --color-page-current: #dc2626;
-  --color-page-hover: #505050;
+  /* Accent colors mapped from theme.json */
+  --color-accent-orange: var(--color-accents-orange);
+  --color-accent-hover: var(--color-accents-orange-hover);
+  --color-violation-extreme: var(--color-violations-extreme);
+  --color-violation-severe: var(--color-violations-severe);
+  --color-violation-warning: var(--color-violations-warning);
+
+  /* Page Grid colors mapped from theme.json */
+  --color-page-normal: var(--color-page-normal);
+  --color-page-violation: var(--color-page-violation);
+  --color-page-current: var(--color-page-current);
+  --color-page-hover: var(--color-page-hover);
 
   /* Spacing */
   --spacing-xs: 4px;
@@ -506,7 +509,7 @@ body {
   background: var(--color-page-current);
   color: var(--color-text-primary);
   font-weight: 700;
-  border-color: #ffffff;
+  border-color: var(--color-borders-white);
   animation: pulse 2s infinite;
   z-index: 3;
 }

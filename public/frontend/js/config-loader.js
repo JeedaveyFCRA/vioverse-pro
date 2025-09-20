@@ -11,9 +11,17 @@ class ConfigLoader {
 
   async init() {
     try {
-      // Load UI configuration
-      const response = await fetch('./data/config/ui-config.json');
-      this.config = await response.json();
+      // Load both UI and theme configuration
+      const [uiResponse, themeResponse] = await Promise.all([
+        fetch('../data/config/ui-config.json'),
+        fetch('../data/config/theme.json')
+      ]);
+
+      const uiConfig = await uiResponse.json();
+      const themeConfig = await themeResponse.json();
+
+      // Merge configs with theme taking precedence for colors
+      this.config = { ...uiConfig, ...themeConfig };
 
       // Inject CSS variables from config
       this.injectCSSVariables();
@@ -72,12 +80,23 @@ class ConfigLoader {
       root.style.setProperty('--grid-columns-mobile', this.config.grid.mobile.columns);
     }
 
-    // Colors
+    // Colors - handle nested structure
     if (this.config.colors) {
-      Object.entries(this.config.colors).forEach(([key, value]) => {
-        const cssVarName = `--color-${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
-        root.style.setProperty(cssVarName, value);
-      });
+      const flattenColors = (obj, prefix = '') => {
+        Object.entries(obj).forEach(([key, value]) => {
+          if (typeof value === 'object' && !Array.isArray(value)) {
+            // Recurse for nested objects
+            flattenColors(value, `${prefix}${key}-`);
+          } else {
+            // Convert camelCase to kebab-case and create CSS variable
+            const kebabKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
+            const kebabPrefix = prefix.replace(/([A-Z])/g, '-$1').toLowerCase();
+            const cssVarName = `--color-${kebabPrefix}${kebabKey}`;
+            root.style.setProperty(cssVarName, value);
+          }
+        });
+      };
+      flattenColors(this.config.colors);
     }
   }
 

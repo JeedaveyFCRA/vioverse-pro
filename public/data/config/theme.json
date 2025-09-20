@@ -2,29 +2,70 @@
   "name": "vioverse-dark",
   "mode": "dark",
   "colors": {
-    "primary": "#667eea",
-    "secondary": "#764ba2",
-    "accent": "#4fc3f7",
-    "background": "#1a1a1a",
-    "foreground": "#ffffff",
-    "muted": "#2a2a2a",
-    "mutedForeground": "#888888",
-    "border": "#333333",
-    "ring": "#667eea",
-    "destructive": "#dc3545",
-    "destructiveForeground": "#ffffff",
-    "warning": "#ff9800",
-    "warningForeground": "#ffffff",
-    "success": "#4caf50",
-    "successForeground": "#ffffff",
-    "info": "#2196f3",
-    "infoForeground": "#ffffff",
-    "canvasBackground": "#1a1a1a",
-    "sidebarBackground": "#1f1f1f",
-    "cardBackground": "#2a2a2a",
-    "statusBarBackground": "#252525",
-    "gradientStart": "#667eea",
-    "gradientEnd": "#764ba2"
+    "backgrounds": {
+      "primary": "#1a1a1a",
+      "secondary": "#242424",
+      "tertiary": "#2d2d2d",
+      "sidebar": "#1f1f1f",
+      "viewport": "#7C868D",
+      "card": "#2a2a2a",
+      "statusBar": "#252525",
+      "canvas": "#1a1a1a",
+      "darkPrimary": "#1e2a35",
+      "darkSecondary": "#253541",
+      "darkCard": "#2f4858"
+    },
+    "text": {
+      "primary": "#ffffff",
+      "secondary": "#b0b0b0",
+      "muted": "#808080",
+      "mutedAlt": "#e0e0e0",
+      "gray600": "#666",
+      "gray700": "#777",
+      "gray888": "#888888"
+    },
+    "accents": {
+      "primary": "#667eea",
+      "secondary": "#764ba2",
+      "tertiary": "#4fc3f7",
+      "orange": "#ff6b35",
+      "orangeHover": "#ff8555",
+      "orangeDark": "#f26419"
+    },
+    "violations": {
+      "extreme": "#dc2626",
+      "severe": "#f97316",
+      "warning": "#fbbf24",
+      "destructive": "#dc3545"
+    },
+    "status": {
+      "success": "#4caf50",
+      "successForeground": "#ffffff",
+      "info": "#2196f3",
+      "infoForeground": "#ffffff",
+      "warning": "#ff9800",
+      "warningForeground": "#ffffff"
+    },
+    "page": {
+      "normal": "#404040",
+      "violation": "#ff6b35",
+      "current": "#dc2626",
+      "hover": "#505050"
+    },
+    "borders": {
+      "default": "#333333",
+      "white": "#ffffff"
+    },
+    "bureau": {
+      "unknown": "#9E9E9E"
+    },
+    "ui": {
+      "ring": "#667eea"
+    },
+    "gradients": {
+      "start": "#667eea",
+      "end": "#764ba2"
+    }
   },
   "fonts": {
     "sans": "Inter, system-ui, -apple-system, sans-serif",

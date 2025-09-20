@@ -173,7 +173,7 @@
 }
 
 .status-label {
-  color: #777;
+  color: var(--color-text-gray700);
 }
 
 .status-value {
@@ -329,7 +329,7 @@
 }
 
 .violation-coords {
-  color: #666;
+  color: var(--color-text-gray600);
   font-size: 10px;
   font-family: var(--font-mono);
 }
@@ -372,7 +372,7 @@
 
 .stat-label {
   font-size: 10px;
-  color: #666;
+  color: var(--color-text-gray600);
   text-transform: uppercase;
   margin-top: 2px;
 }
@@ -480,7 +480,7 @@
 }
 /* Viewport Background - Data-driven from theme */
 .canvas-container {
-  background: #7C868D;
+  background: var(--color-backgrounds-viewport);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -669,7 +669,7 @@ html, body {
   border-radius: 16px; /* Half of height for pill shape */
   
   /* Colors - no stroke */
-  background: #f26419;
+  background: var(--color-accents-orange-dark);
   color: white;
   border: none;
   
@@ -700,7 +700,7 @@ html, body {
   height: 0;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-top: 6px solid #f26419;
+  border-top: 6px solid var(--color-accents-orange-dark);
   
   /* Display control */
   opacity: 0;
@@ -720,7 +720,7 @@ html, body {
 
 /* Override gradient with solid color for top menu bar */
 .top-controls {
-  background: #253541 !important;
+  background: var(--color-backgrounds-dark-secondary) !important;
   background-image: none !important;
 }
 
@@ -743,7 +743,7 @@ html, body {
 body,
 .main-container,
 .pdf-viewer {
-  background: #1e2a35 !important;
+  background: var(--color-backgrounds-dark-primary) !important;
 }
 
 /* Secondary backgrounds - was dark gray, now #253541 */
@@ -753,18 +753,18 @@ body,
 .stats-summary,
 .status-bar,
 .violations-container {
-  background: #253541 !important;
+  background: var(--color-backgrounds-dark-secondary) !important;
 }
 
 /* Card backgrounds - slightly lighter for contrast */
 .violation-item,
 .bureau-filters {
-  background: #2f4858 !important;
+  background: var(--color-backgrounds-dark-card) !important;
 }
 
 /* Loading screen background */
 .loading {
-  background: #1e2a35;
+  background: var(--color-backgrounds-dark-primary);
 }
 
 /* Ensure proper text contrast on new backgrounds */

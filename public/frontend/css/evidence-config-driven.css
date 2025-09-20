@@ -13,7 +13,7 @@
   --shadow-modal: var(--config-shadow-modal, 0 4px 24px rgba(0, 0, 0, 0.5));
 
   /* Colors */
-  --color-text-muted: var(--config-color-muted-foreground, #e0e0e0);
+  --color-text-muted: var(--config-color-muted-foreground, var(--color-text-muted-alt));
 }
 
 /* Evidence Image Container */
@@ -39,6 +39,6 @@
 .no-data-message {
   text-align: center;
   padding: var(--grid-padding);
-  color: var(--config-color-muted-foreground, #808080);
+  color: var(--config-color-muted-foreground, var(--color-text-muted));
   grid-column: 1/-1;
 }

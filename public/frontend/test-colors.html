@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Config Test</title>
+    <script src="./js/config-loader.js"></script>
+    <style>
+        body {
+            background: var(--color-backgrounds-primary);
+            color: var(--color-text-primary);
+            padding: 20px;
+            font-family: monospace;
+        }
+        .test-box {
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid var(--color-borders-default);
+        }
+        .orange { background: var(--color-accents-orange); }
+        .severe { background: var(--color-violations-severe); }
+        .extreme { background: var(--color-violations-extreme); }
+    </style>
+</head>
+<body>
+    <h1>Color Configuration Test</h1>
+    <div class="test-box orange">Orange Accent Color</div>
+    <div class="test-box severe">Severe Violation Color</div>
+    <div class="test-box extreme">Extreme Violation Color</div>
+    <pre id="colors"></pre>
+    <script>
+        setTimeout(() => {
+            const styles = getComputedStyle(document.documentElement);
+            const colorVars = [];
+            for (let prop of styles) {
+                if (prop.startsWith('--color-')) {
+                    colorVars.push(`${prop}: ${styles.getPropertyValue(prop)}`);
+                }
+            }
+            document.getElementById('colors').textContent = colorVars.join('\n');
+        }, 1000);
+    </script>
+</body>
+</html>
