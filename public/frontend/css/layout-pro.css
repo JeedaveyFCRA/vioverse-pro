@@ -468,11 +468,15 @@ body {
   position: relative;
 }
 
-.page-box i {
-  opacity: 0.9;
-  transform: scale(var(--icon-scale));  /* Data-driven from config */
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
+/* Fix icon size in page grid cells */
+.page-box svg.lucide-icon {
+  width: 16px !important;
+  height: 16px !important;
+  pointer-events: none; /* Prevent icon from interfering with clicks */
+  flex-shrink: 0; /* Prevent icon from shrinking */
 }
+
+/* Icons are now SVGs with class .lucide-icon, not i elements */
 
 .page-box:hover {
   transform: scale(1.15);
@@ -591,15 +595,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-bg-primary);
   position: relative;
   overflow: auto;
+  padding: 20px;
+  min-height: 0; /* Important for flexbox */
+  background: var(--color-bg-primary);
 }
 
 .pdf-canvas-container {
   position: relative;
+  display: inline-block; /* Changed from flex - this is critical for centering */
   max-width: 100%;
   max-height: 100%;
+  margin: 0 auto; /* Center horizontally */
 }
 
 #pdfCanvas {

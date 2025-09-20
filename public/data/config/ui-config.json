@@ -104,5 +104,14 @@
     "autoSaveInterval": 30000,
     "sessionStorage": "localStorage",
     "exportFormat": "json"
+  },
+  "pdf": {
+    "defaultScaleMode": "fit-best",
+    "containerPadding": 40,
+    "minScale": 0.5,
+    "maxScale": 3.0,
+    "scaleStep": 1.2,
+    "enableResponsiveResize": true,
+    "resizeDebounceMs": 100
   }
 }

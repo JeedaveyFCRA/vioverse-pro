@@ -280,19 +280,7 @@
     <script src="./js/viobox-alignment-helper.js"></script>
     <script src="./js/app-pro-complete.js"></script>
     <script>
-        // Initialize Lucide icons when DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.lucide) {
-                window.lucide.createIcons();
-            }
-
-            // Re-initialize icons after a short delay to catch any that were missed
-            setTimeout(() => {
-                if (window.lucide) {
-                    window.lucide.createIcons();
-                }
-            }, 500);
-        });
+        // DO NOT initialize Lucide here - handled entirely in app-pro-complete.js
     </script>
 </body>
 </html>

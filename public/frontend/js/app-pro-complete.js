@@ -398,17 +398,26 @@ class VioversePro {
       this.elements.zoomOut.addEventListener('click', () => this.zoomOut());
     }
 
-    // Window resize handler to maintain alignment
+    // Window resize handler to maintain alignment and recalculate fit-to-width
     window.addEventListener('resize', () => {
-      if (this.state.currentPDF && window.VioBoxAlignmentHelper) {
-        // Debounce the resize handler
+      if (this.state.currentPDF) {
+        // Debounce the resize handler (from config)
+        const pdfConfig = this.state.uiConfig?.pdf || {};
+        const debounceMs = pdfConfig.resizeDebounceMs || 100;
+
         clearTimeout(this.resizeTimeout);
         this.resizeTimeout = setTimeout(() => {
-          window.VioBoxAlignmentHelper.syncOverlayToCanvas(
-            this.elements.pdfCanvas,
-            this.elements.vioboxOverlay
-          );
-        }, 100);
+          // Reload PDF with new fit-to-width calculation if enabled
+          if (pdfConfig.enableResponsiveResize !== false) {
+            this.loadPDF(this.state.currentPDF);
+          } else if (window.VioBoxAlignmentHelper) {
+            // Just sync overlay if responsive resize disabled
+            window.VioBoxAlignmentHelper.syncOverlayToCanvas(
+              this.elements.pdfCanvas,
+              this.elements.vioboxOverlay
+            );
+          }
+        }, debounceMs);
       }
     });
   }
@@ -551,11 +560,9 @@ class VioversePro {
 
       const pageMeta = this.state.pageMetadata[i];
 
-      // A+ Compliant: Icons ONLY on pages with violations (data-driven from CSV)
-      if (pageMeta && pageMeta.hasViolation) {
-        const icon = document.createElement('i');
-        icon.setAttribute('data-lucide', 'file-text');
-        box.appendChild(icon);
+      // Icons on violation pages (orange) AND current page (red)
+      if ((pageMeta && pageMeta.hasViolation) || (this.state.currentPage !== null && i === this.state.currentPage)) {
+        this.addIconToBox(box);
       }
 
       if (pageMeta && pageMeta.hasViolation) {
@@ -572,10 +579,7 @@ class VioversePro {
       this.elements.pageGrid.appendChild(box);
     }
 
-    // Initialize Lucide icons
-    if (window.lucide) {
-      window.lucide.createIcons();
-    }
+    // Icons are already added as SVGs, no need to call createIcons()
   }
 
   navigateToPage(pageNum) {
@@ -596,19 +600,13 @@ class VioversePro {
       // Update current class
       box.classList.toggle('current', isCurrent);
 
-      // A+ Compliant: Icon presence determined solely by CSV violation data
-      const hasIcon = box.querySelector('i[data-lucide]');
-      const shouldHaveIcon = hasViolation; // Remove isCurrent - not data-driven
+      // Icons should appear on violation pages (orange) AND current page (red)
+      const shouldHaveIcon = hasViolation || isCurrent;
+      const hasIcon = box.querySelector('svg.lucide-icon');
 
       if (shouldHaveIcon && !hasIcon) {
         // Add icon if it should have one but doesn't
-        const icon = document.createElement('i');
-        icon.setAttribute('data-lucide', 'file-text');
-        box.appendChild(icon);
-        // Re-initialize this specific icon
-        if (window.lucide) {
-          window.lucide.createIcons({ icons: { 'file-text': window.lucide.icons['file-text'] } });
-        }
+        this.addIconToBox(box);
       } else if (!shouldHaveIcon && hasIcon) {
         // Remove icon if it shouldn't have one
         hasIcon.remove();
@@ -671,7 +669,31 @@ class VioversePro {
       // Clear canvas before rendering
       context.clearRect(0, 0, canvas.width, canvas.height);
 
-      // CRITICAL: Use baseScale 1.0 for CSV coordinates, multiply by zoomLevel for display
+      // A+ Compliant: Calculate best fit scale (considers both width and height)
+      const container = this.elements.pdfContainer;
+      const containerWidth = container.clientWidth;
+      const containerHeight = container.clientHeight;
+
+      // Get padding from config (fallback to 40 if not set)
+      const padding = this.state.uiConfig?.pdf?.containerPadding || 40;
+      const availableWidth = containerWidth - padding;
+      const availableHeight = containerHeight - padding;
+
+      // Get PDF's natural dimensions
+      const defaultViewport = page.getViewport({ scale: 1.0 });
+      const pdfWidth = defaultViewport.width;
+      const pdfHeight = defaultViewport.height;
+
+      // Calculate scale to fit both width and height
+      const scaleX = availableWidth / pdfWidth;
+      const scaleY = availableHeight / pdfHeight;
+
+      // Use the smaller scale to ensure PDF fits completely
+      // But ensure minimum reasonable size (at least 1.0 for readability)
+      const fitScale = Math.max(Math.min(scaleX, scaleY), 1.0);
+
+      // Store as base scale and apply user zoom
+      this.state.baseScale = fitScale;
       const scale = this.state.baseScale * this.state.zoomLevel;
       const viewport = page.getViewport({ scale });
 
@@ -776,10 +798,12 @@ class VioversePro {
 
     // Re-render if visible and we have a current PDF
     if (visible && this.state.currentPDF) {
+      // Use the same scale calculation as in loadPDF
+      const scale = this.state.baseScale * this.state.zoomLevel;
       this.vioboxSystem.renderVioBoxes(
         this.elements.vioboxOverlay,
         this.state.currentPDF,
-        this.state.scale
+        scale
       );
     }
   }
@@ -827,7 +851,12 @@ class VioversePro {
   }
 
   zoomIn() {
-    this.state.zoomLevel = Math.min(this.state.zoomLevel * 1.2, 3.0);
+    // A+ Compliant: Get zoom settings from config
+    const pdfConfig = this.state.uiConfig?.pdf || {};
+    const scaleStep = pdfConfig.scaleStep || 1.2;
+    const maxScale = pdfConfig.maxScale || 3.0;
+
+    this.state.zoomLevel = Math.min(this.state.zoomLevel * scaleStep, maxScale);
     this.updateZoomDisplay();
 
     // Re-render current PDF with new zoom
@@ -845,7 +874,12 @@ class VioversePro {
   }
 
   zoomOut() {
-    this.state.zoomLevel = Math.max(this.state.zoomLevel / 1.2, 0.5);
+    // A+ Compliant: Get zoom settings from config
+    const pdfConfig = this.state.uiConfig?.pdf || {};
+    const scaleStep = pdfConfig.scaleStep || 1.2;
+    const minScale = pdfConfig.minScale || 0.5;
+
+    this.state.zoomLevel = Math.max(this.state.zoomLevel / scaleStep, minScale);
     this.updateZoomDisplay();
 
     // Re-render current PDF with new zoom
@@ -860,6 +894,31 @@ class VioversePro {
         }
       });
     }
+  }
+
+  // Helper method to add icon directly as SVG without using createIcons()
+  addIconToBox(box) {
+    // Check if icon already exists
+    if (box.querySelector('svg.lucide-icon')) {
+      return; // Icon already exists, don't add duplicate
+    }
+
+    // Create SVG icon directly
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '16');
+    svg.setAttribute('height', '16');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.classList.add('lucide-icon');
+
+    // File-text icon path
+    svg.innerHTML = '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>';
+
+    box.appendChild(svg);
   }
 
   resetZoom() {
